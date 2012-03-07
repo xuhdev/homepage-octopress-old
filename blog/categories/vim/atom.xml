@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Vim | Hong Xu]]></title>
+  <link href="http://xuhdev.github.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://xuhdev.github.com/"/>
+  <updated>2012-03-07T22:45:27+08:00</updated>
+  <id>http://xuhdev.github.com/</id>
+  <author>
+    <name><![CDATA[Hong Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Use SingleCompile to Compile and Run a Single Source File Easily in Vim]]></title>
+    <link href="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/"/>
+    <updated>2012-03-07T21:08:00+08:00</updated>
+    <id>http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim</id>
+    <content type="html"><![CDATA[<p>Although <a href="http://www.vim.org">Vim</a> itself has already been a very powerful text editor, its
+plugins make it even better. <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a> is a plugin aimed at making it
+more convenient to compile or run a single source file without leaving Vim.</p>
+
+<p>Consider this situation: you've just written a small C file (or small python
+script) with Vim for some tiny test, then you need to use <code>:!gcc %:p</code> to compile
+the C source file and run the executable with <code>:!./a.out</code> command (Or use
+<code>:!python %:p</code> to run the python script). Although a key mapping could make
+this process a bit convenient, but many of Vim's advanced features will become
+unavailable, such as <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a>, <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a>.  <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a>
+was born to solve this problem, making this process more convenient and
+powerful than simply defining a few key mappings:</p>
+
+<ol>
+<li>Compile or run the source file quickly using <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix feature</a>
+and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a> of vim;</li>
+<li>Auto detecting compilers and interpreters;</li>
+<li>Fast switch between several installed compilers or interpreters;</li>
+<li>Multi-language support;</li>
+<li>Custom your own compiler/interpreter template;</li>
+<li>View the result of last run command at any time(requires <code>tee</code> command);</li>
+<li>Run the compiled program asynchronously and view the result at any time
+(see <code>:SCCompileRunAsync</code> in the help file).</li>
+</ol>
+
+
+<p>Let's see more about SingleCompile.</p>
+
+<!-- more -->
+
+
+<h3>Installation</h3>
+
+<p>Just like most other Vim plugins, it's simple: Download the SingleCompile.zip
+file from <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile homepage</a> and extract it to your Vim
+runtime directory(<code>~/.vim</code> on UNIX/Linux or
+<code>$VIM_INSTALLATION_FOLDER\vimfiles</code> on windows). Execute <code>:helptags
+~/.vim/doc</code> on UNIX/Linux or <code>:helptags $VIM_INSTALLATION_FOLDER\vimfiles\doc</code>
+on Windows if you need to check the SingleCompile documentation. If you are
+using <a href="https://github.com/tpope/vim-pathogen">pathogen</a> to manage your Vim plugins, use the following commands to
+install it (on UNIX/Linux):</p>
+
+<p><code>sh
+cd ~/.vim/bundle
+git clone git://github.com/xuhdev/SingleCompile.git
+</code></p>
+
+<p>The following key mappings should be very helpful for you. Insert them into
+your <code>.vimrc</code> file if you think it useful:</p>
+
+<p><code>vim
+nmap &lt;F9&gt; :SCCompile&lt;cr&gt;
+nmap &lt;F10&gt; :SCCompileRun&lt;cr&gt;
+</code></p>
+
+<p>The above two lines will make <code>F9</code> as the key to trigger the compilation and
+<code>F10</code> to compile the source file and run.</p>
+
+<h3>Use SingleCompile to Compile and Run a Source File</h3>
+
+<p>Let's try to create a new C source file called <code>hello.c</code>:</p>
+
+<p><code>sh
+vim hello.c
+</code></p>
+
+<p>Copy the following content into the buffer:</p>
+
+<p>```c hello.c</p>
+
+<h1>include &lt;stdio.h></h1>
+
+<p>int main(void)
+{</p>
+
+<pre><code>printf("Hello, SingleCompile!\n");
+return 0;
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
+above). Then SingleCompile will automatically find a C compiler available on
+your system (e.g. gcc on my Linux) and use this compiler to compile your
+source file and run the executable file. The output should be displayed on
+your screen now:</p>
+
+<p><img src="/1.png" alt="" /></p>
+
+<p>What if you want to check the result again after you press any key and the
+output is dismissed? Simple, use <code>:SCViewResult</code> command to get it back:</p>
+
+<p><img src="/2.png" alt="" /></p>
+
+<p>OK, let's try to add some syntax errors in the source file. Change the buffer
+into the following:</p>
+
+<p>```c hello.c</p>
+
+<h1>include &lt;stdio.h></h1>
+
+<p>int main(void)
+{</p>
+
+<pre><code>printf("Hello, SingleCompile!\n");
+retur 0; /* a typo is here: the "return" loses its "n" */
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
+above). You should see some compilation errors displayed on the screen now:</p>
+
+<p><img src="/3.png" alt="" /></p>
+
+<p>Now press any key to dismiss the error messages. Now let's open the Vim
+<a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
+
+<p><img src="/4.png" alt="" /></p>
+
+<p>See? The error messages has been put in the Vim quickfix window, which makes
+it quite easy to locate syntax errors!</p>
+
+<h3>More</h3>
+
+<p>Execute <code>:h SingleCompile</code> within Vim to see SingleCompile documentation if
+you want to know more about SingleCompile.</p>
+]]></content>
+  </entry>
+  
+</feed>
