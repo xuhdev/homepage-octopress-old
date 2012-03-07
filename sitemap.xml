@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://xuhdev.github.com/projects/</loc>
+        <lastmod>2012-03-07T20:27:58+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xuhdev.github.com/blog/archives/</loc>
+        <lastmod>2012-03-07T19:28:15+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xuhdev.github.com/blog/</loc>
+        <lastmod>2012-03-07T19:28:15+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xuhdev.github.com/</loc>
+        <lastmod>2012-03-07T19:49:04+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://xuhdev.github.com/projects.html</loc>
+        <lastmod>2012-03-07T19:50:30+08:00</lastmod>
+    </url>
+</urlset>
