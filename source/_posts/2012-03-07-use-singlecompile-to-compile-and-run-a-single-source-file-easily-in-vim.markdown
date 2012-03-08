@@ -121,10 +121,21 @@ Now press any key to dismiss the error messages. Now let's open the Vim
 See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!
 
+
+### Interpreting Languages
+
+For interpreting languages such as python, perl, things are similar:
+interpreter auto detection, Quickfix, etc. but there is one notable difference:
+`:SCCompile` and `:SCCompileRun` do the same job for such kind of languages --
+they both call the interpreter to run your script, since there is no
+compilation required for such langauges.
+
+
 ### More
 
-Execute `:h SingleCompile` within Vim to see SingleCompile documentation if
-you want to know more about SingleCompile.
+SingleCompile is far more powerful than this. Execute `:h SingleCompile` within
+Vim to see SingleCompile documentation if you want to know more about
+SingleCompile.
 
 [Vim]: http://www.vim.org
 [SingleCompile]: http://www.vim.org/scripts/script.php?script_id=3115
