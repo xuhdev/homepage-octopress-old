@@ -243,10 +243,19 @@ above). You should see some compilation errors displayed on the screen now:</p>
 <p>See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!</p>
 
+<h3>Interpreting Languages</h3>
+
+<p>For interpreting languages such as python, perl, things are similar:
+interpreter auto detection, Quickfix, etc. but there is one notable difference:
+<code>:SCCompile</code> and <code>:SCCompileRun</code> do the same job for such kind of languages &#8211;
+they both call the interpreter to run your script, since there is no
+compilation required for such langauges.</p>
+
 <h3>More</h3>
 
-<p>Execute <code>:h SingleCompile</code> within Vim to see SingleCompile documentation if
-you want to know more about SingleCompile.</p>
+<p>SingleCompile is far more powerful than this. Execute <code>:h SingleCompile</code> within
+Vim to see SingleCompile documentation if you want to know more about
+SingleCompile.</p>
 </div>
 
 
