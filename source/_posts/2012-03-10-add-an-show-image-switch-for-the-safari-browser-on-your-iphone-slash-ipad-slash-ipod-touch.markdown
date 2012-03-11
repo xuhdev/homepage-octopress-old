@@ -11,7 +11,7 @@ When we are using the Mobile Safari Browser to surfing the Internet, sometimes
 the page loading speed will be largely slowed down because of the large size of
 the images on the web page. Surprisingly, as one of the world's most popular
 browser, the Safari Browser on [iOS][] (the mobile operating system running on
-iPhone/iPad/iTouch) does not provide a switch to turn on/off the image display.
+iPhone/iPad/iPod Touch) does not provide a switch to turn on/off the image display.
 However, this does not mean you can not add such a switch by yourself.
 
 <!-- more -->
@@ -20,7 +20,7 @@ However, this does not mean you can not add such a switch by yourself.
 
 [Jailbreaking][jailbreaking] is the process of removing the limitations imposed
 by Apple on devices running the iOS operating system, such as iPhone, iPad,
-iTouch, Apple TV. You need to jailbreak your device before you continue to next
+iPod Touch, Apple TV. You need to jailbreak your device before you continue to next
 step. To get your device jailbroken, please take a look at
 [this page](http://www.idownloadblog.com/jailbreak). If you already have your
 device jailbroken, you could skip this step.
