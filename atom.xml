@@ -4,7 +4,7 @@
   <title><![CDATA[Hong Xu]]></title>
   <link href="http://xuhdev.github.com/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-11T11:46:36+08:00</updated>
+  <updated>2012-03-11T11:53:31+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iTouch]]></title>
-    <link href="http://xuhdev.github.com/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch/"/>
+    <title type="html"><![CDATA[Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch]]></title>
+    <link href="http://xuhdev.github.com/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/"/>
     <updated>2012-03-10T16:41:00+08:00</updated>
-    <id>http://xuhdev.github.com/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch</id>
+    <id>http://xuhdev.github.com/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch</id>
     <content type="html"><![CDATA[<p>When we are using the Mobile Safari Browser to surfing the Internet, sometimes
 the page loading speed will be largely slowed down because of the large size of
 the images on the web page. Surprisingly, as one of the world&#8217;s most popular
@@ -50,15 +50,15 @@ might be the best way for you.</p>
 To edit this file with iFile, first enter
 <code>System/Library/PreferenceBundles/MobileSafariSettings.bundle/</code>.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch/1.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/1.png" alt="" /></p>
 
 <p>Then tap <code>Safari.plist</code> and select <code>Text Viewer</code>.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch/2.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/2.png" alt="" /></p>
 
 <p>Tap the <code>Edit</code> button on the top left corner.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch/3.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/3.png" alt="" /></p>
 
 <p>Insert the following text into this file before the last <code>&lt;/array&gt;</code>:</p>
 
@@ -99,14 +99,14 @@ To edit this file with iFile, first enter
 
 <p>It should look something like this:</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch/4.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/4.png" alt="" /></p>
 
 <p>Save the file. Now open <code>Settings-&gt;Safari</code>, you should see a <code>Show Images</code>
 switch at the bottom. If the switch is not shown, please
 <a href="http://www.apple.com/support/iphone/assistant/phone/#section_1">reboot your device</a>
 and open Safari Settings again.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-itouch/5.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/5.png" alt="" /></p>
 
 <p>I tested this on iOS 5.0.1, but it should also work on other versions of iOS.</p>
 
