@@ -20,15 +20,15 @@ unavailable, such as [quickfix][], [compiler feature][].  [SingleCompile][]
 was born to solve this problem, making this process more convenient and
 powerful than simply defining a few key mappings:
 
-1.  Compile or run the source file quickly using [quickfix feature][quickfix]
-    and [compiler feature][] of vim;
-2.  Auto detecting compilers and interpreters;
-3.  Fast switch between several installed compilers or interpreters;
-4.  Multi-language support;
-5.  Custom your own compiler/interpreter template;
-6.  View the result of last run command at any time(requires `tee` command);
-7.  Run the compiled program asynchronously and view the result at any time
-    (see `:SCCompileRunAsync` in the help file).
+-  Compile or run the source file quickly using [quickfix feature][quickfix]
+   and [compiler feature][] of vim;
+-  Auto detecting compilers and interpreters;
+-  Fast switch between several installed compilers or interpreters;
+-  Multi-language support;
+-  Custom your own compiler/interpreter template;
+-  View the result of last run command at any time(requires `tee` command);
+-  Run the compiled program asynchronously and view the result at any time
+   (see `:SCCompileRunAsync` in the help file).
 
 Let's see more about SingleCompile.
 
