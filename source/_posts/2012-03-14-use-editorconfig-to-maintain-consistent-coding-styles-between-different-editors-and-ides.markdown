@@ -6,7 +6,7 @@ comments: true
 categories: [Development, Editor, IDE, Coding Style]
 ---
 
-Usually for a project with more than one developers involved, it is essentially
+Usually for a project with more than one developer involved, it is essentially
 important for the project to define and maintain a consistent [coding style][].
 Most code editors and IDEs, such as [Vim][], [Emacs][], [Code::Blocks][],
 provide settings related to coding styles, such as the width of tab, the size of
@@ -15,15 +15,14 @@ for different Editors and IDEs: we have to maintain many config files for
 different editors and IDEs, such as [.vimrc][] for [Vim][], [.emacs][] for
 [Emacs][]. In order to solve this, [EditorConfig][] was born. By defining coding
 style in files named `.editorconfig`, the [EditorConfig plugins][] for different
-editors and IDEs will change your coding style automatically to adjust your
-coding style.
+editors and IDEs will automatically adjust your coding style.
 
 <!-- more -->
 
 ### Download EditorConfig Plugin for Your Editor/IDE
 
 To use EditorConfig, you have to download the corresponding
-[EditorConfig plugin][] for your Editor or IDE. Follow the installation
+[EditorConfig plugins][] for your Editor or IDE. Follow the installation
 instructions to install them.
 
 
@@ -34,7 +33,7 @@ of your coding style. You could use one or more `.editorconfig` files to
 indicate the coding style of your project. Let's try a simple example. Create a
 file named `.editorconfig` at the root of your project source tree (if you are
 working on Windows and using Windows Explorer, you will find Window Explorer
-prevent report such file name illegal. Don't worry, just create a file named
+reports such file name as illegal. Don't worry, just create a file named
 `.editorconfig.`, which will be renamed to `.editorconfig` automatically by
 Windows Explorer):
 
