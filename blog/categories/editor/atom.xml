@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Editor | Hong Xu]]></title>
   <link href="http://xuhdev.github.com/blog/categories/editor/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-14T22:12:56+08:00</updated>
+  <updated>2012-03-14T22:42:38+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -18,7 +18,7 @@
     <link href="http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/"/>
     <updated>2012-03-14T21:46:00+08:00</updated>
     <id>http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides</id>
-    <content type="html"><![CDATA[<p>Usually for a project with more than one developers involved, it is essentially
+    <content type="html"><![CDATA[<p>Usually for a project with more than one developer involved, it is essentially
 important for the project to define and maintain a consistent <a href="http://en.wikipedia.org/wiki/Programming_style">coding style</a>.
 Most code editors and IDEs, such as <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs">Emacs</a>, <a href="http://www.codeblocks.org">Code::Blocks</a>,
 provide settings related to coding styles, such as the width of tab, the size of
@@ -27,8 +27,7 @@ for different Editors and IDEs: we have to maintain many config files for
 different editors and IDEs, such as <a href="http://vim.wikia.com/wiki/Open_vimrc_file">.vimrc</a> for <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">.emacs</a> for
 <a href="http://www.gnu.org/software/emacs">Emacs</a>. In order to solve this, <a href="http://editorconfig.org">EditorConfig</a> was born. By defining coding
 style in files named <code>.editorconfig</code>, the <a href="http://editorconfig.org/#download">EditorConfig plugins</a> for different
-editors and IDEs will change your coding style automatically to adjust your
-coding style.</p>
+editors and IDEs will automatically adjust your coding style.</p>
 
 <!-- more -->
 
@@ -36,7 +35,7 @@ coding style.</p>
 <h3>Download EditorConfig Plugin for Your Editor/IDE</h3>
 
 <p>To use EditorConfig, you have to download the corresponding
-[EditorConfig plugin][] for your Editor or IDE. Follow the installation
+<a href="http://editorconfig.org/#download">EditorConfig plugins</a> for your Editor or IDE. Follow the installation
 instructions to install them.</p>
 
 <h3>Create an <code>.editorconfig</code> File for Your Project</h3>
@@ -46,7 +45,7 @@ of your coding style. You could use one or more <code>.editorconfig</code> files
 indicate the coding style of your project. Let's try a simple example. Create a
 file named <code>.editorconfig</code> at the root of your project source tree (if you are
 working on Windows and using Windows Explorer, you will find Window Explorer
-prevent report such file name illegal. Don't worry, just create a file named
+reports such file name as illegal. Don't worry, just create a file named
 <code>.editorconfig.</code>, which will be renamed to <code>.editorconfig</code> automatically by
 Windows Explorer):</p>
 
