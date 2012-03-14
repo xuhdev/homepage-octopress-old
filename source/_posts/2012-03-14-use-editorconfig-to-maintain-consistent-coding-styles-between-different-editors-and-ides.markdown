@@ -98,8 +98,9 @@ for indentation, and the size of indentation is 8.
 
 ### More
 
-This is a simple introduction of [EditorConfig][]. If you find this useful,
-visit [EditorConfig homepage][EditorConfig] to see more about it.
+This is just a simple introduction of [EditorConfig][]. If you find this
+useful, you may want to visit [EditorConfig homepage][EditorConfig] to see more
+about it.
 
 
 _related article:_
