@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs - Hong Xu</title>
+  <meta name="author" content="Hong Xu">
+
+  
+  <meta name="description" content="Usually for a project with more than one developers involved, it is essentially
+important for the project to define and maintain a consistent coding &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides">
+  <link rel="shortcut icon" href="http://www.gravatar.com/avatar/756510c4cc0e0b44234f301faf4a434d">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hong Xu" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29984794-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hong Xu</a></h1>
+  
+    <h2>Open Source Software Development</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xuhdev.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/projects/">Projects</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about/">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Use EditorConfig to Maintain Consistent Coding Styles Between Different Editors and IDEs</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T21:46:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Usually for a project with more than one developers involved, it is essentially
+important for the project to define and maintain a consistent <a href="http://en.wikipedia.org/wiki/Programming_style">coding style</a>.
+Most code editors and IDEs, such as <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs">Emacs</a>, <a href="http://www.codeblocks.org">Code::Blocks</a>,
+provide settings related to coding styles, such as the width of tab, the size of
+indentation, <a href="http://en.wikipedia.org/wiki/Newline">end of line</a>, etc. However, it is hard to provide the same settings
+for different Editors and IDEs: we have to maintain many config files for
+different editors and IDEs, such as <a href="http://vim.wikia.com/wiki/Open_vimrc_file">.vimrc</a> for <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">.emacs</a> for
+<a href="http://www.gnu.org/software/emacs">Emacs</a>. In order to solve this, <a href="http://editorconfig.org">EditorConfig</a> was born. By defining coding
+style in files named <code>.editorconfig</code>, the <a href="http://editorconfig.org/#download">EditorConfig plugins</a> for different
+editors and IDEs will change your coding style automatically to adjust your
+coding style.</p>
+
+<!-- more -->
+
+
+<h3>Download EditorConfig Plugin for Your Editor/IDE</h3>
+
+<p>To use EditorConfig, you have to download the corresponding
+[EditorConfig plugin][] for your Editor or IDE. Follow the installation
+instructions to install them.</p>
+
+<h3>Create an <code>.editorconfig</code> File for Your Project</h3>
+
+<p>An <code>.editorconfig</code> file is an <a href="http://en.wikipedia.org/wiki/INI_file">INI</a> format file, which contains the settings
+of your coding style. You could use one or more <code>.editorconfig</code> files to
+indicate the coding style of your project. Let&#8217;s try a simple example. Create a
+file named <code>.editorconfig</code> at the root of your project source tree (if you are
+working on Windows and using Windows Explorer, you will find Window Explorer
+prevent report such file name illegal. Don&#8217;t worry, just create a file named
+<code>.editorconfig.</code>, which will be renamed to <code>.editorconfig</code> automatically by
+Windows Explorer):</p>
+
+<figure class='code'><figcaption><span>.editorconfig</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="c">; indicate this is the root of the project</span>
+</span><span class='line'><span class="na">root</span> <span class="o">=</span> <span class="s">true</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">[*]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">space</span>
+</span><span class='line'><span class="na">end_of_line</span> <span class="o">=</span> <span class="s">cr</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">[*.c]</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">4</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">[Makefile]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">tab</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&#8217;s check this file line by line.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="c">; indicate this is the root of the project</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a <a href="http://en.wikipedia.org/wiki/Comment_(computer_programming)">comment line</a>. All lines starting with a <code>#</code> or <code>;</code> will be
+regarded as comment lines.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="na">root</span> <span class="o">=</span> <span class="s">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This line tells EditorConfig this is the root of the project, thus EditorConfig
+won&#8217;t apply the settings of <code>.editorconfig</code> outside this directory.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">space</span>
+</span><span class='line'><span class="na">end_of_line</span> <span class="o">=</span> <span class="s">cr</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These 3 lines indicates for all files, if not specially specified, we use spaces
+for indentation, and use <code>cr</code> as the <a href="http://en.wikipedia.org/wiki/Newline">EOL</a> marker for all files.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*.c]</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These two lines means, for any C source files, the size of indentation is 4.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[Makefile]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">tab</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These 3 lines tell EditorConfig that, for any file named <code>Makefile</code>, we use tab
+for indentation, and the size of indentation is 8.</p>
+
+<h3>More</h3>
+
+<p>This is a simple introduction of <a href="http://editorconfig.org">EditorConfig</a>. If you find this useful,
+visit <a href="http://editorconfig.org">EditorConfig homepage</a> to see more about it.</p>
+
+<p><em>related article:</em></p>
+
+<p><a href="http://treyhunner.com/2012/02/editorconfig"><strong>Maintaining Consistent Coding Conventions With EditorConfig</strong></a> by <a href="http://treyhunner.com"><em>Trey Hunner</em></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hong Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T21:46:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/coding-style/'>Coding Style</a>, <a class='category' href='/blog/categories/development/'>Development</a>, <a class='category' href='/blog/categories/editor/'>Editor</a>, <a class='category' href='/blog/categories/ide/'>IDE</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/" data-via="" data-counturl="http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/" title="Previous Post: Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch">&laquo; Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Use SingleCompile to Compile and Run a Single Source File Easily in Vim</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xuhdev">@xuhdev</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xuhdev',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Hong Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xuhdev-homepage';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/';
+        var disqus_url = 'http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
