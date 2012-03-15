@@ -94,6 +94,12 @@ indent_size = 8
 These 3 lines tell EditorConfig that, for any file named `Makefile`, we use tab
 for indentation, and the size of indentation is 8.
 
+After saving this file, open a C source file and a Makefile in your source tree
+with your editor/IDE. If everything goes well, you will find that the
+buffer-local coding style settings have been adjusted. (Note: EditorConfig is
+not a code formatter. That is to say, the existing codes in your source files
+will not be reformatted. Only the style of your newly input code is adjusted.)
+
 
 ### More
 
