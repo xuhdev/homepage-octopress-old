@@ -4,7 +4,7 @@
   <title><![CDATA[Category: IDE | Hong Xu]]></title>
   <link href="http://xuhdev.github.com/blog/categories/ide/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-14T22:42:38+08:00</updated>
+  <updated>2012-03-15T09:49:03+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -105,6 +105,12 @@ indent_size = 8
 
 <p>These 3 lines tell EditorConfig that, for any file named <code>Makefile</code>, we use tab
 for indentation, and the size of indentation is 8.</p>
+
+<p>After saving this file, open a C source file and a Makefile in your source tree
+with your editor/IDE. If everything goes well, you will find that the
+buffer-local coding style settings have been adjusted. (Note: EditorConfig is
+not a code formatter. That is to say, the existing codes in your source files
+will not be reformatted. Only the style of your newly input code is adjusted.)</p>
 
 <h3>More</h3>
 
