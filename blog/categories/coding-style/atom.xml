@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coding Style | Hong Xu]]></title>
   <link href="http://xuhdev.github.com/blog/categories/coding-style/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-15T17:15:46+08:00</updated>
+  <updated>2012-03-15T21:48:32+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -74,34 +74,39 @@ indent_size = 8
 <p>This is a <a href="http://en.wikipedia.org/wiki/Comment_(computer_programming)">comment line</a>. All lines starting with a <code>#</code> or <code>;</code> will be
 regarded as comment lines.</p>
 
-<p><code>ini
-root = true
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="na">root</span> <span class="o">=</span> <span class="s">true</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>This line tells EditorConfig this is the root of the project, thus EditorConfig
 won't apply the settings of <code>.editorconfig</code> outside this directory.</p>
 
-<p><code>ini
-[*]
-indent_style = space
-end_of_line = cr
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">space</span>
+</span><span class='line'><span class="na">end_of_line</span> <span class="o">=</span> <span class="s">cr</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>These 3 lines indicates for all files, if not specially specified, we use spaces
 for indentation, and use <code>cr</code> as the <a href="http://en.wikipedia.org/wiki/Newline">EOL</a> marker for all files.</p>
 
-<p><code>ini
-[*.c]
-indent_size = 4
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*.c]</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">4</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>These two lines means, for any C source files, the size of indentation is 4.</p>
 
-<p><code>ini
-[Makefile]
-indent_style = tab
-indent_size = 8
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[Makefile]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">tab</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">8</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>These 3 lines tell EditorConfig that, for any file named <code>Makefile</code>, we use tab
 for indentation, and the size of indentation is 8.</p>

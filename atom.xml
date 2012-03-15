@@ -4,7 +4,7 @@
   <title><![CDATA[Hong Xu]]></title>
   <link href="http://xuhdev.github.com/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-15T17:15:46+08:00</updated>
+  <updated>2012-03-15T21:48:32+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -88,7 +88,7 @@ Windows Explorer):</p>
 <p>This is a <a href="http://en.wikipedia.org/wiki/Comment_(computer_programming)">comment line</a>. All lines starting with a <code>#</code> or <code>;</code> will be
 regarded as comment lines.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="na">root</span> <span class="o">=</span> <span class="s">true</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -96,9 +96,9 @@ regarded as comment lines.</p>
 <p>This line tells EditorConfig this is the root of the project, thus EditorConfig
 won&#8217;t apply the settings of <code>.editorconfig</code> outside this directory.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*]</span>
 </span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">space</span>
 </span><span class='line'><span class="na">end_of_line</span> <span class="o">=</span> <span class="s">cr</span>
@@ -108,8 +108,8 @@ won&#8217;t apply the settings of <code>.editorconfig</code> outside this direct
 <p>These 3 lines indicates for all files, if not specially specified, we use spaces
 for indentation, and use <code>cr</code> as the <a href="http://en.wikipedia.org/wiki/Newline">EOL</a> marker for all files.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*.c]</span>
 </span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">4</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -117,9 +117,9 @@ for indentation, and use <code>cr</code> as the <a href="http://en.wikipedia.org
 
 <p>These two lines means, for any C source files, the size of indentation is 4.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[Makefile]</span>
 </span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">tab</span>
 </span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">8</span>
