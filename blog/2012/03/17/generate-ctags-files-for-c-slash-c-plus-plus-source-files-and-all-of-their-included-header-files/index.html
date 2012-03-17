@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog - Hong Xu</title>
+  <title>Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files - Hong Xu</title>
   <meta name="author" content="Hong Xu">
 
   
@@ -21,7 +21,7 @@ this post may not be useful. When using ctags to &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xuhdev.github.com/blog">
+  <link rel="canonical" href="http://xuhdev.github.com/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
@@ -80,15 +80,12 @@ this post may not be useful. When using ctags to &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/">Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files</a></h1>
+      <h1 class="entry-title">Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files</h1>
     
     
       <p class="meta">
@@ -111,7 +108,7 @@ this post may not be useful. When using ctags to &hellip;">
   </header>
 
 
-  <div class="entry-content"><p><em>This post is for those people who use <a href="http://ctags.sourceforge.net">Exuberant Ctags</a>. If you are
+<div class="entry-content"><p><em>This post is for those people who use <a href="http://ctags.sourceforge.net">Exuberant Ctags</a>. If you are
 using
 <a href="http://en.wikipedia.org/wiki/Ctags#Variants_of_ctags">other versions of ctags</a>,
 this post may not be useful.</em></p>
@@ -152,77 +149,62 @@ then we use ctags to generate a tags file for these files and our source files,
 in this way, a much smaller tags file that containing all the symbols that maybe
 useful for the project is generated.</p>
 
+<!-- more -->
+
+
+<p>To do this, I wrote a shell script:</p>
+
+<div><script src='https://gist.github.com/1729992.js?file='></script>
+<noscript><pre><code>#!/bin/sh
+
+# ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.
+
+gcc -M $* | sed -e 's/[\\ ]/\n/g' | \
+        sed -e '/^$/d' -e '/\.o:[ \t]*$/d' | ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q
+</code></pre></noscript></div>
+
+
+<p>Click <a href="https://gist.github.com/raw/1729992/master/ctags_with_dep.sh">here</a> to
+download this script. If you only want to use it, the following command is what
+you need:</p>
+
+<pre><code>./ctags_with_dep.sh file1.c file2.c file3.cpp ...
+</code></pre>
+
+<p>Read on if you want to know what&#8217;s happening here. This script will first use
+<code>gcc -M</code> to output the list of header files that are included in our C or C++
+source files. However, the output could not be directly used by ctags, thus this
+script uses <a href="http://en.wikipedia.org/wiki/Sed">sed</a> commands to filter the output. Finally, this script uses a
+<a href="http://en.wikipedia.org/wiki/Pipeline_(Unix)">pipe</a> to put the file list to the <a href="">stdin</a> of the ctags program &#8211; ctags
+will read the file list from stdin if <code>-L -</code> is passed to it on the command
+line.</p>
+
+<p>What if you have other directories besides the standard <code>/usr/include</code> that
+containing the header files you need? You could do a little modification on this
+script. For example, you have some header files in <code>~/include</code>, then you could
+pass <code>-I ~/include</code> to the gcc command. Just like below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gcc -M -I ~/include <span class="nv">$*</span> | sed -e <span class="s1">&#39;s/[\\ ]/\n/g&#39;</span> | <span class="se">\</span>
+</span><span class='line'>        sed -e <span class="s1">&#39;/^$/d&#39;</span> -e <span class="s1">&#39;/\.o:[ \t]*$/d&#39;</span> | <span class="se">\</span>
+</span><span class='line'>        ctags -L - --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have any suggestion on this idea, please let me know.</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Use EditorConfig to Maintain Consistent Coding Styles Between Different Editors and IDEs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Hong Xu</span></span>
 
-<time datetime="2012-03-14T21:46:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Usually for a project with more than one developer involved, it is essentially
-important for the project to define and maintain a consistent <a href="http://en.wikipedia.org/wiki/Programming_style">coding style</a>.
-Most code editors and IDEs, such as <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs">Emacs</a>, <a href="http://www.codeblocks.org">Code::Blocks</a>,
-provide settings related to coding styles, such as the width of tab, the size of
-indentation, <a href="http://en.wikipedia.org/wiki/Newline">end of line</a>, etc. However, it is hard to provide the same settings
-for different Editors and IDEs: we have to maintain many config files for
-different editors and IDEs, such as <a href="http://vim.wikia.com/wiki/Open_vimrc_file">.vimrc</a> for <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">.emacs</a> for
-<a href="http://www.gnu.org/software/emacs">Emacs</a>. In order to solve this, <a href="http://editorconfig.org">EditorConfig</a> was born. By defining coding
-style in files named <code>.editorconfig</code>, the <a href="http://editorconfig.org/#download">EditorConfig plugins</a> for different
-editors and IDEs will automatically adjust your coding style.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add an &#8220;Show Image&#8221; Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -234,104 +216,44 @@ editors and IDEs will automatically adjust your coding style.</p>
   
 
 
-<time datetime="2012-03-10T16:41:00+08:00" pubdate data-updated="true">Mar 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When we are using the Mobile Safari Browser to surfing the Internet, sometimes
-the page loading speed will be largely slowed down because of the large size of
-the images on the web page. Surprisingly, as one of the world&#8217;s most popular
-browser, the Safari Browser on <a href="http://en.wikipedia.org/wiki/IOS">iOS</a> (the mobile operating system running on
-iPhone/iPad/iPod Touch) does not provide a switch to turn on/off the image display.
-However, this does not mean you can not add such a switch by yourself.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-03-17T14:29:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Use SingleCompile to Compile and Run a Single Source File Easily in Vim</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/c/'>C</a>, <a class='category' href='/blog/categories/c-/'>C++</a>, <a class='category' href='/blog/categories/c-c-/'>C/C++</a>, <a class='category' href='/blog/categories/ide/'>IDE</a>, <a class='category' href='/blog/categories/vim/'>Vim</a>, <a class='category' href='/blog/categories/ctags/'>ctags</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/editor/'>editor</a>
+  
+</span>
 
 
-<time datetime="2012-03-07T21:08:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
-        
-      </p>
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xuhdev.github.com/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/" data-via="" data-counturl="http://xuhdev.github.com/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/" title="Previous Post: Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs">&laquo; Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><p>Although <a href="http://www.vim.org">Vim</a> itself has already been a very powerful text editor, its
-plugins make it even better. <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a> is a plugin aimed at making it
-more convenient to compile or run a single source file without leaving Vim.</p>
-
-<p>Consider this situation: you&#8217;ve just written a small C file (or small python
-script) with Vim for some tiny test, then you need to use <code>:!gcc %:p</code> to compile
-the C source file and run the executable with <code>:!./a.out</code> command (Or use
-<code>:!python %:p</code> to run the python script). Although a key mapping could make
-this process a bit convenient, but many of Vim&#8217;s advanced features will become
-unavailable, such as <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a>, <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a>.  <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a>
-was born to solve this problem, making this process more convenient and
-powerful than simply defining a few key mappings:</p>
-
-<ul>
-<li>Compile or run the source file quickly using <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix feature</a>
-and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a> of vim;</li>
-<li>Auto detecting compilers and interpreters;</li>
-<li>Fast switch between several installed compilers or interpreters;</li>
-<li>Multi-language support;</li>
-<li>Custom your own compiler/interpreter template;</li>
-<li>View the result of last run command at any time(requires <code>tee</code> command);</li>
-<li>Run the compiled program asynchronously and view the result at any time
-(see <code>:SCCompileRunAsync</code> in the help file).</li>
-</ul>
-
-
-<p>Let&#8217;s see more about SingleCompile.</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -347,7 +269,7 @@ and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select
       </li>
     
       <li class="post">
-        <a href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add an &#8220;Show Image&#8221; Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
+        <a href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
       </li>
     
       <li class="post">
@@ -360,7 +282,7 @@ and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/xuhdev">@xuhdev</a> on GitHub
@@ -391,6 +313,7 @@ and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -405,7 +328,10 @@ and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select
       var disqus_shortname = 'xuhdev-homepage';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xuhdev.github.com/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/';
+        var disqus_url = 'http://xuhdev.github.com/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
