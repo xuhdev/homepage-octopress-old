@@ -4,7 +4,7 @@
   <title><![CDATA[Hong Xu]]></title>
   <link href="http://xuhdev.github.com/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-17T18:07:10+08:00</updated>
+  <updated>2012-03-18T12:23:00+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -64,19 +64,27 @@ useful for the project is generated.</p>
 
 <p>To do this, I wrote a shell script:</p>
 
-<div><script src='https://gist.github.com/1729992.js?file='></script>
-<noscript><pre><code>#!/bin/sh
+<figure class='code'><figcaption><span>ctags_with_dep.sh</span><a href='https://gist.github.com/raw/1729992/4eae76f78ba44d5fd0e705d51b0ededbeb0a7a6a/ctags_with_dep.sh'>Download the script </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.</span>
+</span><span class='line'>
+</span><span class='line'>gcc -M <span class="nv">$*</span> | sed -e <span class="s1">&#39;s/[\\ ]/\n/g&#39;</span> | <span class="se">\</span>
+</span><span class='line'>        sed -e <span class="s1">&#39;/^$/d&#39;</span> -e <span class="s1">&#39;/\.o:[ \t]*$/d&#39;</span> | <span class="se">\</span>
+</span><span class='line'>        ctags -L - --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q
+</span></code></pre></td></tr></table></div></figure>
 
-# ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.
 
-gcc -M $* | sed -e 's/[\\ ]/\n/g' | \
-        sed -e '/^$/d' -e '/\.o:[ \t]*$/d' | ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q
-</code></pre></noscript></div>
-
-
-<p>Click <a href="https://gist.github.com/raw/1729992/master/ctags_with_dep.sh">here</a> to
-download this script. If you only want to use it, the following command is what
-you need:</p>
+<p>This script is also available on <a href="https://gist.github.com/1729992">github gist</a>.
+If you only want to use it,
+<a href="https://gist.github.com/raw/1729992/4eae76f78ba44d5fd0e705d51b0ededbeb0a7a6a/ctags_with_dep.sh">download</a>
+the script and use the following command to generate the tags file:</p>
 
 <pre><code>./ctags_with_dep.sh file1.c file2.c file3.cpp ...
 </code></pre>
@@ -278,15 +286,15 @@ might be the best way for you.</p>
 To edit this file with iFile, first enter
 <code>System/Library/PreferenceBundles/MobileSafariSettings.bundle/</code>.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/1.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/1.png" alt="" /></p>
 
 <p>Then tap <code>Safari.plist</code> and select <code>Text Viewer</code>.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/2.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/2.png" alt="" /></p>
 
 <p>Tap the <code>Edit</code> button on the top left corner.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/3.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/3.png" alt="" /></p>
 
 <p>Insert the following text into this file before the last <code>&lt;/array&gt;</code>:</p>
 
@@ -327,14 +335,14 @@ To edit this file with iFile, first enter
 
 <p>It should look something like this:</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/4.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/4.png" alt="" /></p>
 
 <p>Save the file. Now open <code>Settings-&gt;Safari</code>, you should see a <code>Show Images</code>
 switch at the bottom. If the switch is not shown, please
 <a href="http://www.apple.com/support/iphone/assistant/phone/#section_1">reboot your device</a>
 and open Safari Settings again.</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/5.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/5.png" alt="" /></p>
 
 <p>I tested this on iOS 5.0.1, but it should also work on other versions of iOS.</p>
 
@@ -444,12 +452,12 @@ your system (e.g. gcc on my Linux) and use this compiler to compile your
 source file and run the executable file. The output should be displayed on
 your screen now:</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/1.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/1.png" alt="" /></p>
 
 <p>What if you want to check the result again after you press any key and the
 output is dismissed? Simple, use <code>:SCViewResult</code> command to get it back:</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/2.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/2.png" alt="" /></p>
 
 <p>OK, let&#8217;s try to add some syntax errors in the source file. Change the buffer
 into the following:</p>
@@ -474,12 +482,12 @@ into the following:</p>
 <p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
 above). You should see some compilation errors displayed on the screen now:</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/3.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/3.png" alt="" /></p>
 
 <p>Now press any key to dismiss the error messages. Now let&#8217;s open the Vim
 <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
 
-<p><img src="http://xuhdev.github.com/images/posts/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/4.png" alt="" /></p>
+<p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/4.png" alt="" /></p>
 
 <p>See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!</p>

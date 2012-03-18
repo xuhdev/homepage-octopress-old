@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C/C++ | Hong Xu]]></title>
   <link href="http://xuhdev.github.com/blog/categories/c-c-/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-17T18:07:10+08:00</updated>
+  <updated>2012-03-18T12:23:00+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -64,21 +64,38 @@ useful for the project is generated.</p>
 
 <p>To do this, I wrote a shell script:</p>
 
-<p><div><script src='https://gist.github.com/1729992.js?file='></script>
-<noscript><pre><code>#!/bin/sh
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ctags_with_dep.sh</span><a href='https://gist.github.com/raw/1729992/4eae76f78ba44d5fd0e705d51b0ededbeb0a7a6a/ctags_with_dep.sh'>Download the script </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;!/bin/sh&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;./ctags_with_dep.sh file1.c file2.c ... to generate a tags file <span class="k">for </span>these files.&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gcc -M <span class="nv">$*</span> | sed -e <span class="s1">&#39;s/[\ ]/\n/g&#39;</span> | <span class="se">\&lt;</span>/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;    sed -e <span class="s1">&#39;/^$/d&#39;</span> -e <span class="s1">&#39;/\.o:[ \t]*$/d&#39;</span> | <span class="se">\</span>
+</span><span class='line'>    ctags -L - --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-# ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.
-
-gcc -M $* | sed -e 's/[\\ ]/\n/g' | \
-        sed -e '/^$/d' -e '/\.o:[ \t]*$/d' | ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q
-</code></pre></noscript></div>
-</p>
-
-<p></p>
-
-<p>Click <a href="https://gist.github.com/raw/1729992/master/ctags_with_dep.sh">here</a> to
-download this script. If you only want to use it, the following command is what
-you need:</p>
+<p>This script is also available on <a href="https://gist.github.com/1729992">github gist</a>.
+If you only want to use it,
+<a href="https://gist.github.com/raw/1729992/4eae76f78ba44d5fd0e705d51b0ededbeb0a7a6a/ctags_with_dep.sh">download</a>
+the script and use the following command to generate the tags file:</p>
 
 <pre><code>./ctags_with_dep.sh file1.c file2.c file3.cpp ...
 </code></pre>
