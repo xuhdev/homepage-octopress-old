@@ -3,9 +3,11 @@ layout: post
 title: Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch
 date: 2012-03-10 16:41
 comments: true
-imagedir: /images/posts/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch
+post_file_dir: post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch
 categories: [iOS, iPhone, iPad, Apple, Safari, webkit]
 ---
+
+{% capture post_file_url %}{{ root_url }}/{{ page.post_file_dir }}{% endcapture %}
 
 When we are using the Mobile Safari Browser to surfing the Internet, sometimes
 the page loading speed will be largely slowed down because of the large size of
@@ -39,15 +41,15 @@ You need to edit a file named `Safari.plist` located in
 To edit this file with iFile, first enter
 `System/Library/PreferenceBundles/MobileSafariSettings.bundle/`.
 
-![]({{ page.imagedir }}/1.png)
+![]({{ post_file_url }}/1.png)
 
 Then tap `Safari.plist` and select `Text Viewer`.
 
-![]({{ page.imagedir }}/2.png)
+![]({{ post_file_url }}/2.png)
 
 Tap the `Edit` button on the top left corner.
 
-![]({{ page.imagedir }}/3.png)
+![]({{ post_file_url }}/3.png)
 
 
 Insert the following text into this file before the last `</array>`:
@@ -73,7 +75,7 @@ Insert the following text into this file before the last `</array>`:
 
 It should look something like this:
 
-![]({{ page.imagedir }}/4.png)
+![]({{ post_file_url }}/4.png)
 
 
 Save the file. Now open `Settings->Safari`, you should see a `Show Images`
@@ -81,7 +83,7 @@ switch at the bottom. If the switch is not shown, please
 [reboot your device](http://www.apple.com/support/iphone/assistant/phone/#section_1)
 and open Safari Settings again.
 
-![]({{ page.imagedir }}/5.png)
+![]({{ post_file_url }}/5.png)
 
 I tested this on iOS 5.0.1, but it should also work on other versions of iOS.
 

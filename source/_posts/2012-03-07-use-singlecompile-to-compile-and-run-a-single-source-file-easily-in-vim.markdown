@@ -3,9 +3,11 @@ layout: post
 title: "Use SingleCompile to Compile and Run a Single Source File Easily in Vim"
 date: 2012-03-07 21:08
 comments: true
-imagedir: /images/posts/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim
+post_file_dir: post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim
 categories: [Vim, Development, Editor]
 ---
+
+{% capture post_file_url %}{{ root_url }}/{{ page.post_file_dir }}{% endcapture %}
 
 Although [Vim][] itself has already been a very powerful text editor, its
 plugins make it even better. [SingleCompile][] is a plugin aimed at making it
@@ -88,12 +90,12 @@ your system (e.g. gcc on my Linux) and use this compiler to compile your
 source file and run the executable file. The output should be displayed on
 your screen now:
 
-![]({{ page.imagedir }}/1.png)
+![]({{ post_file_url }}/1.png)
 
 What if you want to check the result again after you press any key and the
 output is dismissed? Simple, use `:SCViewResult` command to get it back:
 
-![]({{ page.imagedir }}/2.png)
+![]({{ post_file_url }}/2.png)
 
 OK, let's try to add some syntax errors in the source file. Change the buffer
 into the following:
@@ -111,12 +113,12 @@ int main(void)
 Now execute `:SCCompileRun` (or press `F10` if you have set the key mapping
 above). You should see some compilation errors displayed on the screen now:
 
-![]({{ page.imagedir }}/3.png)
+![]({{ post_file_url }}/3.png)
 
 Now press any key to dismiss the error messages. Now let's open the Vim
 [quickfix][] window by executing `:cope`:
 
-![]({{ page.imagedir }}/4.png)
+![]({{ post_file_url }}/4.png)
 
 See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!
