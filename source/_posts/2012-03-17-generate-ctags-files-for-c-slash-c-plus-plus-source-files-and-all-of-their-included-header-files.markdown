@@ -48,10 +48,7 @@ useful for the project is generated.
 
 To do this, I wrote a shell script:
 
-{% gist 1729992 %}
-
-{% comment %}
-{% codeblock lang:shell ctags_with_dep.sh %}
+{% codeblock lang:sh ctags_with_dep.sh https://gist.github.com/raw/1729992/4eae76f78ba44d5fd0e705d51b0ededbeb0a7a6a/ctags_with_dep.sh Download the script %}
 #!/bin/sh
 
 # ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.
@@ -60,11 +57,11 @@ gcc -M $* | sed -e 's/[\\ ]/\n/g' | \
         sed -e '/^$/d' -e '/\.o:[ \t]*$/d' | \
         ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q
 {% endcodeblock %}
-{% endcomment %}
 
-Click [here](https://gist.github.com/raw/1729992/master/ctags_with_dep.sh) to
-download this script. If you only want to use it, the following command is what
-you need:
+This script is also available on [github gist](https://gist.github.com/1729992).
+If you only want to use it,
+[download](https://gist.github.com/raw/1729992/4eae76f78ba44d5fd0e705d51b0ededbeb0a7a6a/ctags_with_dep.sh)
+the script and use the following command to generate the tags file:
 
     ./ctags_with_dep.sh file1.c file2.c file3.cpp ...
 
