@@ -3,11 +3,11 @@ layout: post
 title: Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch
 date: 2012-03-10 16:41
 comments: true
-post_file_dir: post-files/2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch
+file_title: 2012-03-10-add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch
 categories: [iOS, iPhone, iPad, Apple, Safari, webkit]
 ---
 
-{% capture post_file_url %}{{ root_url }}/{{ page.post_file_dir }}{% endcapture %}
+{% include custom/post_initialization.html %}
 
 When we are using the Mobile Safari Browser to surfing the Internet, sometimes
 the page loading speed will be largely slowed down because of the large size of

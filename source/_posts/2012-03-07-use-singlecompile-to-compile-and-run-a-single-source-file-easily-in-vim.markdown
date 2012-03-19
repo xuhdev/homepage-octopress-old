@@ -3,11 +3,11 @@ layout: post
 title: "Use SingleCompile to Compile and Run a Single Source File Easily in Vim"
 date: 2012-03-07 21:08
 comments: true
-post_file_dir: post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim
+file_title: 2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim
 categories: [Vim, Development, Editor]
 ---
 
-{% capture post_file_url %}{{ root_url }}/{{ page.post_file_dir }}{% endcapture %}
+{% include custom/post_initialization.html %}
 
 Although [Vim][] itself has already been a very powerful text editor, its
 plugins make it even better. [SingleCompile][] is a plugin aimed at making it
