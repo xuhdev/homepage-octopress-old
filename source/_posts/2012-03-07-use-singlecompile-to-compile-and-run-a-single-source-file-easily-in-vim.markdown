@@ -86,7 +86,7 @@ Now execute `:SCCompileRun` (or press `F10` if you have set the key mapping
 above). Then SingleCompile will automatically find a C compiler available on
 your system (e.g. gcc on my Linux) and use this compiler to compile your
 source file and run the executable file. The output should be displayed on
-your screen now:
+your screen then:
 
 ![]({{ post_file_url }}/1.png)
 
@@ -100,7 +100,7 @@ command to switch the compiler you want to use:
 
 ![]({{ post_file_url }}/3.png)
 
-Now, let's try to add some syntax errors into the source file. Change the buffer
+Let's try to add some syntax errors into the source file. Change the buffer
 into the following:
 
 ```c hello.c
@@ -113,12 +113,12 @@ int main(void)
 }
 ```
 
-Now execute `:SCCompileRun` (or press `F10` if you have set the key mapping
-above). You should see some compilation errors displayed on the screen now:
+Execute `:SCCompileRun` (or press `F10` if you have set the key mapping above),
+then you will see some compilation errors displayed on the screen:
 
 ![]({{ post_file_url }}/4.png)
 
-Now press any key to dismiss the error messages. Now let's open the Vim
+Press any key to dismiss the error messages. Now let's open the Vim
 [quickfix][] window by executing `:cope`:
 
 ![]({{ post_file_url }}/5.png)
