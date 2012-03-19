@@ -130,7 +130,7 @@ it quite easy to locate syntax errors!
 ### Interpreting Languages
 
 For interpreting languages such as python, perl, things are similar:
-interpreter auto detection, Quickfix, etc. but there is one notable difference:
+interpreter auto detection, Quickfix, etc. But there is one notable difference:
 `:SCCompile` and `:SCCompileRun` do the same job for such kind of languages --
 they both call the interpreter to run your script, since there is no
 compilation required for such langauges.
