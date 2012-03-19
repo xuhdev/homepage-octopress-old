@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vim | Hong Xu]]></title>
   <link href="http://xuhdev.github.com/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-19T13:25:44+08:00</updated>
+  <updated>2012-03-19T13:31:04+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -219,7 +219,7 @@ return 0;
 above). Then SingleCompile will automatically find a C compiler available on
 your system (e.g. gcc on my Linux) and use this compiler to compile your
 source file and run the executable file. The output should be displayed on
-your screen now:</p>
+your screen then:</p>
 
 <p><img src="/1.png" alt="" /></p>
 
@@ -233,7 +233,7 @@ command to switch the compiler you want to use:</p>
 
 <p><img src="/3.png" alt="" /></p>
 
-<p>Now, let's try to add some syntax errors into the source file. Change the buffer
+<p>Let's try to add some syntax errors into the source file. Change the buffer
 into the following:</p>
 
 <p>```c hello.c</p>
@@ -250,12 +250,12 @@ retur 0; /* a typo is here: the "return" loses its "n" */
 <p>}
 ```</p>
 
-<p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
-above). You should see some compilation errors displayed on the screen now:</p>
+<p>Execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping above),
+then you will see some compilation errors displayed on the screen:</p>
 
 <p><img src="/4.png" alt="" /></p>
 
-<p>Now press any key to dismiss the error messages. Now let's open the Vim
+<p>Press any key to dismiss the error messages. Now let's open the Vim
 <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
 
 <p><img src="/5.png" alt="" /></p>

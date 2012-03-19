@@ -4,7 +4,7 @@
   <title><![CDATA[Hong Xu]]></title>
   <link href="http://xuhdev.github.com/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-19T13:25:44+08:00</updated>
+  <updated>2012-03-19T13:31:04+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -448,7 +448,7 @@ your <code>.vimrc</code> file if you think it useful:</p>
 above). Then SingleCompile will automatically find a C compiler available on
 your system (e.g. gcc on my Linux) and use this compiler to compile your
 source file and run the executable file. The output should be displayed on
-your screen now:</p>
+your screen then:</p>
 
 <p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/1.png" alt="" /></p>
 
@@ -462,7 +462,7 @@ command to switch the compiler you want to use:</p>
 
 <p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/3.png" alt="" /></p>
 
-<p>Now, let&#8217;s try to add some syntax errors into the source file. Change the buffer
+<p>Let&#8217;s try to add some syntax errors into the source file. Change the buffer
 into the following:</p>
 
 <figure class='code'><figcaption><span>hello.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -482,12 +482,12 @@ into the following:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
-above). You should see some compilation errors displayed on the screen now:</p>
+<p>Execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping above),
+then you will see some compilation errors displayed on the screen:</p>
 
 <p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/4.png" alt="" /></p>
 
-<p>Now press any key to dismiss the error messages. Now let&#8217;s open the Vim
+<p>Press any key to dismiss the error messages. Now let&#8217;s open the Vim
 <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
 
 <p><img src="http://xuhdev.github.com/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/5.png" alt="" /></p>
