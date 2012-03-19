@@ -68,9 +68,7 @@ The above two lines will make `F9` as the key to trigger the compilation and
 
 Let's try to create a new C source file called `hello.c`:
 
-```sh
-vim hello.c
-```
+    vim hello.c
 
 Copy the following content into the buffer:
 
@@ -97,7 +95,12 @@ output is dismissed? Simple, use `:SCViewResult` command to get it back:
 
 ![]({{ post_file_url }}/2.png)
 
-OK, let's try to add some syntax errors in the source file. Change the buffer
+If you have multiple compilers installed on your system, use `:SCChooseCompiler`
+command to switch the compiler you want to use:
+
+![]({{ post_file_url }}/3.png)
+
+Now, let's try to add some syntax errors into the source file. Change the buffer
 into the following:
 
 ```c hello.c
@@ -113,12 +116,12 @@ int main(void)
 Now execute `:SCCompileRun` (or press `F10` if you have set the key mapping
 above). You should see some compilation errors displayed on the screen now:
 
-![]({{ post_file_url }}/3.png)
+![]({{ post_file_url }}/4.png)
 
 Now press any key to dismiss the error messages. Now let's open the Vim
 [quickfix][] window by executing `:cope`:
 
-![]({{ post_file_url }}/4.png)
+![]({{ post_file_url }}/5.png)
 
 See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!
