@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vim | Hong Xu]]></title>
   <link href="http://xuhdev.github.com/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://xuhdev.github.com/"/>
-  <updated>2012-03-18T12:23:00+08:00</updated>
+  <updated>2012-03-19T13:25:44+08:00</updated>
   <id>http://xuhdev.github.com/</id>
   <author>
     <name><![CDATA[Hong Xu]]></name>
@@ -131,7 +131,8 @@ pass <code>-I ~/include</code> to the gcc command. Just like below:</p>
     <link href="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/"/>
     <updated>2012-03-07T21:08:00+08:00</updated>
     <id>http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim</id>
-    <content type="html"><![CDATA[<p></p>
+    <content type="html"><![CDATA[<p>
+</p>
 
 <p>Although <a href="http://www.vim.org">Vim</a> itself has already been a very powerful text editor, its
 plugins make it even better. <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a> is a plugin aimed at making it
@@ -195,9 +196,8 @@ nmap &lt;F10&gt; :SCCompileRun&lt;cr&gt;
 
 <p>Let's try to create a new C source file called <code>hello.c</code>:</p>
 
-<p><code>sh
-vim hello.c
-</code></p>
+<pre><code>vim hello.c
+</code></pre>
 
 <p>Copy the following content into the buffer:</p>
 
@@ -228,7 +228,12 @@ output is dismissed? Simple, use <code>:SCViewResult</code> command to get it ba
 
 <p><img src="/2.png" alt="" /></p>
 
-<p>OK, let's try to add some syntax errors in the source file. Change the buffer
+<p>If you have multiple compilers installed on your system, use <code>:SCChooseCompiler</code>
+command to switch the compiler you want to use:</p>
+
+<p><img src="/3.png" alt="" /></p>
+
+<p>Now, let's try to add some syntax errors into the source file. Change the buffer
 into the following:</p>
 
 <p>```c hello.c</p>
@@ -248,12 +253,12 @@ retur 0; /* a typo is here: the "return" loses its "n" */
 <p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
 above). You should see some compilation errors displayed on the screen now:</p>
 
-<p><img src="/3.png" alt="" /></p>
+<p><img src="/4.png" alt="" /></p>
 
 <p>Now press any key to dismiss the error messages. Now let's open the Vim
 <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
 
-<p><img src="/4.png" alt="" /></p>
+<p><img src="/5.png" alt="" /></p>
 
 <p>See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!</p>

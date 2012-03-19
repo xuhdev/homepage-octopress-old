@@ -173,10 +173,8 @@ your <code>.vimrc</code> file if you think it useful:</p>
 
 <p>Let&#8217;s try to create a new C source file called <code>hello.c</code>:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>vim hello.c
-</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>vim hello.c
+</code></pre>
 
 <p>Copy the following content into the buffer:</p>
 
@@ -210,7 +208,12 @@ output is dismissed? Simple, use <code>:SCViewResult</code> command to get it ba
 
 <p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/2.png" alt="" /></p>
 
-<p>OK, let&#8217;s try to add some syntax errors in the source file. Change the buffer
+<p>If you have multiple compilers installed on your system, use <code>:SCChooseCompiler</code>
+command to switch the compiler you want to use:</p>
+
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/3.png" alt="" /></p>
+
+<p>Now, let&#8217;s try to add some syntax errors into the source file. Change the buffer
 into the following:</p>
 
 <figure class='code'><figcaption><span>hello.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -233,12 +236,12 @@ into the following:</p>
 <p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
 above). You should see some compilation errors displayed on the screen now:</p>
 
-<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/3.png" alt="" /></p>
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/4.png" alt="" /></p>
 
 <p>Now press any key to dismiss the error messages. Now let&#8217;s open the Vim
 <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
 
-<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/4.png" alt="" /></p>
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/5.png" alt="" /></p>
 
 <p>See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!</p>
@@ -295,6 +298,8 @@ SingleCompile.</p>
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/" data-via="" data-counturl="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/" >Tweet</a>
   
   
+  <div class="g-plusone" data-size="medium"></div>
+  
   
 </div>
 
@@ -302,7 +307,7 @@ SingleCompile.</p>
     <p class="meta">
       
       
-        <a class="basic-alignment right" href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/" title="Next Post: Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch">Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/" title="Next Post: Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch">Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch &raquo;</a>
       
     </p>
   </footer>
@@ -331,7 +336,7 @@ SingleCompile.</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/03/10/add-an-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add an "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
+        <a href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
       </li>
     
       <li class="post">
@@ -405,6 +410,14 @@ SingleCompile.</p>
 
 
 
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 
