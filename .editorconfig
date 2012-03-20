@@ -1,4 +1,3 @@
-
 root = true
 
 [*]
@@ -7,3 +6,6 @@ end_of_line = lf
 
 [*.html]
 indent_size = 2
+
+[*.markdown]
+indent_size = 4
