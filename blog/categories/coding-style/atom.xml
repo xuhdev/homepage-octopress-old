@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Coding Style | Hong Xu]]></title>
+  <link href="http://xuhdev.github.com/blog/categories/coding-style/atom.xml" rel="self"/>
+  <link href="http://xuhdev.github.com/"/>
+  <updated>2012-03-19T13:31:04+08:00</updated>
+  <id>http://xuhdev.github.com/</id>
+  <author>
+    <name><![CDATA[Hong Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs]]></title>
+    <link href="http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/"/>
+    <updated>2012-03-14T21:46:00+08:00</updated>
+    <id>http://xuhdev.github.com/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides</id>
+    <content type="html"><![CDATA[<p>Usually for a project with more than one developer involved, it is essentially
+important for the project to define and maintain a consistent <a href="http://en.wikipedia.org/wiki/Programming_style">coding style</a>.
+Most code editors and IDEs, such as <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs">Emacs</a>, <a href="http://www.codeblocks.org">Code::Blocks</a>,
+provide settings related to coding styles, such as the width of tab, the size of
+indentation, <a href="http://en.wikipedia.org/wiki/Newline">end of line</a>, etc. However, it is hard to provide the same settings
+for different Editors and IDEs: we have to maintain many config files for
+different editors and IDEs, such as <a href="http://vim.wikia.com/wiki/Open_vimrc_file">.vimrc</a> for <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">.emacs</a> for
+<a href="http://www.gnu.org/software/emacs">Emacs</a>. In order to solve this, <a href="http://editorconfig.org">EditorConfig</a> was born. By defining coding
+style in files named <code>.editorconfig</code>, the <a href="http://editorconfig.org/#download">EditorConfig plugins</a> for different
+editors and IDEs will automatically adjust your coding style.</p>
+
+<!-- more -->
+
+
+<h3>Download EditorConfig Plugin for Your Editor/IDE</h3>
+
+<p>To use EditorConfig, you have to download the corresponding
+<a href="http://editorconfig.org/#download">EditorConfig plugins</a> for your Editor or IDE. Follow the installation
+instructions to install them.</p>
+
+<h3>Create an <code>.editorconfig</code> File for Your Project</h3>
+
+<p>An <code>.editorconfig</code> file is an <a href="http://en.wikipedia.org/wiki/INI_file">INI</a> format file, which contains the settings
+of your coding style. You could use one or more <code>.editorconfig</code> files to
+indicate the coding style of your project. Let's try a simple example. Create a
+file named <code>.editorconfig</code> at the root of your project source tree (if you are
+working on Windows and using Windows Explorer, you will find Window Explorer
+reports such file name as illegal. Don't worry, just create a file named
+<code>.editorconfig.</code>, which will be renamed to <code>.editorconfig</code> automatically by
+Windows Explorer):</p>
+
+<p>```ini .editorconfig
+; indicate this is the root of the project
+root = true</p>
+
+<p>[*]
+indent_style = space
+end_of_line = cr</p>
+
+<p>[*.c]
+indent_size = 4</p>
+
+<p>[Makefile]
+indent_style = tab
+indent_size = 8
+```</p>
+
+<p>Let's check this file line by line.</p>
+
+<p><code>ini
+; indicate this is the root of the project
+</code></p>
+
+<p>This is a <a href="http://en.wikipedia.org/wiki/Comment_(computer_programming)">comment line</a>. All lines starting with a <code>#</code> or <code>;</code> will be
+regarded as comment lines.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="na">root</span> <span class="o">=</span> <span class="s">true</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This line tells EditorConfig this is the root of the project, thus EditorConfig
+won't apply the settings of <code>.editorconfig</code> outside this directory.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">space</span>
+</span><span class='line'><span class="na">end_of_line</span> <span class="o">=</span> <span class="s">cr</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>These 3 lines indicates for all files, if not specially specified, we use spaces
+for indentation, and use <code>cr</code> as the <a href="http://en.wikipedia.org/wiki/Newline">EOL</a> marker for all files.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[*.c]</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">4</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>These two lines means, for any C source files, the size of indentation is 4.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ini'><span class='line'><span class="k">[Makefile]</span>
+</span><span class='line'><span class="na">indent_style</span> <span class="o">=</span> <span class="s">tab</span>
+</span><span class='line'><span class="na">indent_size</span> <span class="o">=</span> <span class="s">8</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>These 3 lines tell EditorConfig that, for any file named <code>Makefile</code>, we use tab
+for indentation, and the size of indentation is 8.</p>
+
+<p>After saving this file, open a C source file and a Makefile in your source tree
+with your editor/IDE. If everything goes well, you will find that the
+buffer-local coding style settings have been adjusted. (Note: EditorConfig is
+not a code formatter. That is to say, the existing codes in your source files
+will not be reformatted. Only the style of your newly input code is adjusted.)</p>
+
+<h3>More</h3>
+
+<p>This is just a simple introduction of <a href="http://editorconfig.org">EditorConfig</a>. If you find this
+useful, you may want to visit <a href="http://editorconfig.org">EditorConfig homepage</a> to see more
+about it.</p>
+
+<p><em>related article:</em></p>
+
+<p><a href="http://treyhunner.com/2012/02/editorconfig"><strong>Maintaining Consistent Coding Conventions With EditorConfig</strong></a> by <a href="http://treyhunner.com"><em>Trey Hunner</em></a></p>
+]]></content>
+  </entry>
+  
+</feed>

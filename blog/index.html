@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Blog - Hong Xu</title>
+  <meta name="author" content="Hong Xu">
+
+  
+  <meta name="description" content="This post is for those people who use Exuberant Ctags. If you are
+using
+other versions of ctags,
+this post may not be useful. When using ctags to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xuhdev.github.com/blog">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hong Xu" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://www.gravatar.com/avatar/756510c4cc0e0b44234f301faf4a434d?s=16" rel="icon">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29984794-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hong Xu</a></h1>
+  
+    <h2>Open Source Software Development</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xuhdev.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/projects/">Projects</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about/">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/">Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-17T14:29:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>This post is for those people who use <a href="http://ctags.sourceforge.net">Exuberant Ctags</a>. If you are
+using
+<a href="http://en.wikipedia.org/wiki/Ctags#Variants_of_ctags">other versions of ctags</a>,
+this post may not be useful.</em></p>
+
+<p>When using <a href="http://ctags.sourceforge.net">ctags</a> to generate the tags file for C/C++ projects, usually we
+use the following command:</p>
+
+<pre><code>ctags -R .
+</code></pre>
+
+<p>For some users that need more info of the symbols, they may use this command
+instead:</p>
+
+<pre><code>ctags –R --c++-kinds=+p --fields=+iaS --extra=+q .
+</code></pre>
+
+<p>No matter which one you use, the generated tags file only contains the symbols
+in the files in your project source tree, but not any external file, such as
+standard header files (e.g. stdio.h, stdlib.h), etc. thus editors or IDEs that
+use tags files, such as <a href="http://www.vim.org">Vim</a>, are not able to locate symbols in external
+header files. There was a solution: generate a tags file for any external header
+files first, and let the editor or IDE read both the generated tags file and the
+tags file for the project source tree. For example, the following command will
+generate a tags file for all your system header files on UNIX/Linux:</p>
+
+<pre><code>ctags –R --c++-kinds=+p --fields=+iaS --extra=+q /usr/include
+</code></pre>
+
+<p>This command usually takes a very long time to finish, and finally it gives a
+quite large tags file, which causes the editor or IDE a long time to search this
+tags file for symbols. To solve this problem, I came up with another idea.</p>
+
+<p>Why must we generate a tags file containing all the symbols in the system
+header? If we only generate the tags file only for the header files that are
+related to our projects, would it be faster? That&#8217;s the point of this idea. We
+could first search for the header files that are included in our projects, and
+then we use ctags to generate a tags file for these files and our source files,
+in this way, a much smaller tags file that containing all the symbols that maybe
+useful for the project is generated.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Use EditorConfig to Maintain Consistent Coding Styles Between Different Editors and IDEs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T21:46:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Usually for a project with more than one developer involved, it is essentially
+important for the project to define and maintain a consistent <a href="http://en.wikipedia.org/wiki/Programming_style">coding style</a>.
+Most code editors and IDEs, such as <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs">Emacs</a>, <a href="http://www.codeblocks.org">Code::Blocks</a>,
+provide settings related to coding styles, such as the width of tab, the size of
+indentation, <a href="http://en.wikipedia.org/wiki/Newline">end of line</a>, etc. However, it is hard to provide the same settings
+for different Editors and IDEs: we have to maintain many config files for
+different editors and IDEs, such as <a href="http://vim.wikia.com/wiki/Open_vimrc_file">.vimrc</a> for <a href="http://www.vim.org">Vim</a>, <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">.emacs</a> for
+<a href="http://www.gnu.org/software/emacs">Emacs</a>. In order to solve this, <a href="http://editorconfig.org">EditorConfig</a> was born. By defining coding
+style in files named <code>.editorconfig</code>, the <a href="http://editorconfig.org/#download">EditorConfig plugins</a> for different
+editors and IDEs will automatically adjust your coding style.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add a &#8220;Show Image&#8221; Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-10T16:41:00+08:00" pubdate data-updated="true">Mar 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When we are using the Mobile Safari Browser to surfing the Internet, sometimes
+the page loading speed will be largely slowed down because of the large size of
+the images on the web page. Surprisingly, as one of the world&#8217;s most popular
+browser, the Safari Browser on <a href="http://en.wikipedia.org/wiki/IOS">iOS</a> (the mobile operating system running on
+iPhone/iPad/iPod Touch) does not provide a switch to turn on/off the image display.
+However, this does not mean you can not add such a switch by yourself.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Use SingleCompile to Compile and Run a Single Source File Easily in Vim</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-07T21:08:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Although <a href="http://www.vim.org">Vim</a> itself has already been a very powerful text editor, its
+plugins make it even better. <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a> is a plugin aimed at making it
+more convenient to compile or run a single source file without leaving Vim.</p>
+
+<p>Consider this situation: you&#8217;ve just written a small C file (or small python
+script) with Vim for some tiny test, then you need to use <code>:!gcc %:p</code> to compile
+the C source file and run the executable with <code>:!./a.out</code> command (Or use
+<code>:!python %:p</code> to run the python script). Although a key mapping could make
+this process a bit convenient, but many of Vim&#8217;s advanced features will become
+unavailable, such as <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a>, <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a>.  <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a>
+was born to solve this problem, making this process more convenient and
+powerful than simply defining a few key mappings:</p>
+
+<ul>
+<li>Compile or run the source file quickly using <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix feature</a>
+and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a> of vim;</li>
+<li>Auto detecting compilers and interpreters;</li>
+<li>Fast switch between several installed compilers or interpreters;</li>
+<li>Multi-language support;</li>
+<li>Custom your own compiler/interpreter template;</li>
+<li>View the result of last run command at any time(requires <code>tee</code> command);</li>
+<li>Run the compiled program asynchronously and view the result at any time
+(see <code>:SCCompileRunAsync</code> in the help file).</li>
+</ul>
+
+
+<p>Let&#8217;s see more about SingleCompile.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/">Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add a &#8220;Show Image&#8221; Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Use SingleCompile to Compile and Run a Single Source File Easily in Vim</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/xuhdev">@xuhdev</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xuhdev',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Hong Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xuhdev-homepage';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

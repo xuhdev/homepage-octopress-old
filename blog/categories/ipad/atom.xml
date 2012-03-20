@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: iPad | Hong Xu]]></title>
+  <link href="http://xuhdev.github.com/blog/categories/ipad/atom.xml" rel="self"/>
+  <link href="http://xuhdev.github.com/"/>
+  <updated>2012-03-19T13:31:04+08:00</updated>
+  <id>http://xuhdev.github.com/</id>
+  <author>
+    <name><![CDATA[Hong Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch]]></title>
+    <link href="http://xuhdev.github.com/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/"/>
+    <updated>2012-03-10T16:41:00+08:00</updated>
+    <id>http://xuhdev.github.com/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch</id>
+    <content type="html"><![CDATA[<p>
+</p>
+
+<p>When we are using the Mobile Safari Browser to surfing the Internet, sometimes
+the page loading speed will be largely slowed down because of the large size of
+the images on the web page. Surprisingly, as one of the world's most popular
+browser, the Safari Browser on <a href="http://en.wikipedia.org/wiki/IOS">iOS</a> (the mobile operating system running on
+iPhone/iPad/iPod Touch) does not provide a switch to turn on/off the image display.
+However, this does not mean you can not add such a switch by yourself.</p>
+
+<!-- more -->
+
+
+<h3>Get Your Device Jailbroken</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/IOS_jailbreaking">Jailbreaking</a> is the process of removing the limitations imposed
+by Apple on devices running the iOS operating system, such as iPhone, iPad,
+iPod Touch, Apple TV. You need to jailbreak your device before you continue to next
+step. To get your device jailbroken, please take a look at
+<a href="http://www.idownloadblog.com/jailbreak">this page</a>. If you already have your
+device jailbroken, you could skip this step.</p>
+
+<h3>Modify Safari.plist</h3>
+
+<p>After jailbreaking, the next thing you need to do is to edit a <a href="http://en.wikipedia.org/wiki/Property_list">plist</a> file
+located on your device. If you are a normal user, you may want to install
+<a href="http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=ifileData">iFile</a>. If you are familiar with UNIX shell,
+<a href="http://thebigboss.org/guides-iphone-ipod-ipad/install-and-use-ssh">log into your device with ssh</a>
+might be the best way for you.</p>
+
+<p>You need to edit a file named <code>Safari.plist</code> located in
+<code>/System/Library/PreferenceBundles/MobileSafariSettings.bundle/</code> on your device.
+To edit this file with iFile, first enter
+<code>System/Library/PreferenceBundles/MobileSafariSettings.bundle/</code>.</p>
+
+<p><img src="/1.png" alt="" /></p>
+
+<p>Then tap <code>Safari.plist</code> and select <code>Text Viewer</code>.</p>
+
+<p><img src="/2.png" alt="" /></p>
+
+<p>Tap the <code>Edit</code> button on the top left corner.</p>
+
+<p><img src="/3.png" alt="" /></p>
+
+<p>Insert the following text into this file before the last <code>&lt;/array&gt;</code>:</p>
+
+<p><code>xml
+&lt;dict&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSGroupCell&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobilesafari&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;WebKitDisplayImagesKey&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;Show Images&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;integer&gt;1&lt;/integer&gt;
+&lt;/dict&gt;
+</code></p>
+
+<p>It should look something like this:</p>
+
+<p><img src="/4.png" alt="" /></p>
+
+<p>Save the file. Now open <code>Settings-&gt;Safari</code>, you should see a <code>Show Images</code>
+switch at the bottom. If the switch is not shown, please
+<a href="http://www.apple.com/support/iphone/assistant/phone/#section_1">reboot your device</a>
+and open Safari Settings again.</p>
+
+<p><img src="/5.png" alt="" /></p>
+
+<p>I tested this on iOS 5.0.1, but it should also work on other versions of iOS.</p>
+
+<p>This post was written based on
+<a href="http://bbs.weiphone.com/read-htm-tid-2871429.html">this post</a> (a Chinese post).</p>
+]]></content>
+  </entry>
+  
+</feed>

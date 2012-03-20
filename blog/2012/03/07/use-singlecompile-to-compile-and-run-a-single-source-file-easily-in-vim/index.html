@@ -1,0 +1,439 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Use SingleCompile to Compile and Run a Single Source File Easily in Vim - Hong Xu</title>
+  <meta name="author" content="Hong Xu">
+
+  
+  <meta name="description" content="Although Vim itself has already been a very powerful text editor, its
+plugins make it even better. SingleCompile is a plugin aimed at making it
+more &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hong Xu" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://www.gravatar.com/avatar/756510c4cc0e0b44234f301faf4a434d?s=16" rel="icon">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29984794-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hong Xu</a></h1>
+  
+    <h2>Open Source Software Development</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xuhdev.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/projects/">Projects</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about/">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Use SingleCompile to Compile and Run a Single Source File Easily in Vim</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-07T21:08:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Although <a href="http://www.vim.org">Vim</a> itself has already been a very powerful text editor, its
+plugins make it even better. <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a> is a plugin aimed at making it
+more convenient to compile or run a single source file without leaving Vim.</p>
+
+<p>Consider this situation: you&#8217;ve just written a small C file (or small python
+script) with Vim for some tiny test, then you need to use <code>:!gcc %:p</code> to compile
+the C source file and run the executable with <code>:!./a.out</code> command (Or use
+<code>:!python %:p</code> to run the python script). Although a key mapping could make
+this process a bit convenient, but many of Vim&#8217;s advanced features will become
+unavailable, such as <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a>, <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a>.  <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile</a>
+was born to solve this problem, making this process more convenient and
+powerful than simply defining a few key mappings:</p>
+
+<ul>
+<li>Compile or run the source file quickly using <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix feature</a>
+and <a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select">compiler feature</a> of vim;</li>
+<li>Auto detecting compilers and interpreters;</li>
+<li>Fast switch between several installed compilers or interpreters;</li>
+<li>Multi-language support;</li>
+<li>Custom your own compiler/interpreter template;</li>
+<li>View the result of last run command at any time(requires <code>tee</code> command);</li>
+<li>Run the compiled program asynchronously and view the result at any time
+(see <code>:SCCompileRunAsync</code> in the help file).</li>
+</ul>
+
+
+<p>Let&#8217;s see more about SingleCompile.</p>
+
+<!-- more -->
+
+
+<h3>Installation</h3>
+
+<p>Just like most other Vim plugins, it&#8217;s simple: Download the SingleCompile.zip
+file from <a href="http://www.vim.org/scripts/script.php?script_id=3115">SingleCompile homepage</a> and extract it to your Vim
+runtime directory(<code>~/.vim</code> on UNIX/Linux or
+<code>$VIM_INSTALLATION_FOLDER\vimfiles</code> on windows). Execute <code>:helptags
+~/.vim/doc</code> on UNIX/Linux or <code>:helptags $VIM_INSTALLATION_FOLDER\vimfiles\doc</code>
+on Windows if you need to check the SingleCompile documentation. If you are
+using <a href="https://github.com/tpope/vim-pathogen">pathogen</a> to manage your Vim plugins, use the following commands to
+install it (on UNIX/Linux):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> ~/.vim/bundle
+</span><span class='line'>git clone git://github.com/xuhdev/SingleCompile.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The following key mappings should be very helpful for you. Insert them into
+your <code>.vimrc</code> file if you think it useful:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="p">&lt;</span>F9<span class="p">&gt;</span> :SCCompile<span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;</span>
+</span><span class='line'>nmap <span class="p">&lt;</span>F10<span class="p">&gt;</span> :SCCompileRun<span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above two lines will make <code>F9</code> as the key to trigger the compilation and
+<code>F10</code> to compile the source file and run.</p>
+
+<h3>Use SingleCompile to Compile and Run a Source File</h3>
+
+<p>Let&#8217;s try to create a new C source file called <code>hello.c</code>:</p>
+
+<pre><code>vim hello.c
+</code></pre>
+
+<p>Copy the following content into the buffer:</p>
+
+<figure class='code'><figcaption><span>hello.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, SingleCompile!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping
+above). Then SingleCompile will automatically find a C compiler available on
+your system (e.g. gcc on my Linux) and use this compiler to compile your
+source file and run the executable file. The output should be displayed on
+your screen then:</p>
+
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/1.png" alt="" /></p>
+
+<p>What if you want to check the result again after you press any key and the
+output is dismissed? Simple, use <code>:SCViewResult</code> command to get it back:</p>
+
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/2.png" alt="" /></p>
+
+<p>If you have multiple compilers installed on your system, use <code>:SCChooseCompiler</code>
+command to switch the compiler you want to use:</p>
+
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/3.png" alt="" /></p>
+
+<p>Let&#8217;s try to add some syntax errors into the source file. Change the buffer
+into the following:</p>
+
+<figure class='code'><figcaption><span>hello.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, SingleCompile!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">retur</span> <span class="mi">0</span><span class="p">;</span> <span class="cm">/* a typo is here: the &quot;return&quot; loses its &quot;n&quot; */</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Execute <code>:SCCompileRun</code> (or press <code>F10</code> if you have set the key mapping above),
+then you will see some compilation errors displayed on the screen:</p>
+
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/4.png" alt="" /></p>
+
+<p>Press any key to dismiss the error messages. Now let&#8217;s open the Vim
+<a href="http://vimdoc.sourceforge.net/htmldoc/quickfix.html">quickfix</a> window by executing <code>:cope</code>:</p>
+
+<p><img src="/post-files/2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/5.png" alt="" /></p>
+
+<p>See? The error messages has been put in the Vim quickfix window, which makes
+it quite easy to locate syntax errors!</p>
+
+<h3>Interpreting Languages</h3>
+
+<p>For interpreting languages such as python, perl, things are similar:
+interpreter auto detection, Quickfix, etc. but there is one notable difference:
+<code>:SCCompile</code> and <code>:SCCompileRun</code> do the same job for such kind of languages &#8211;
+they both call the interpreter to run your script, since there is no
+compilation required for such langauges.</p>
+
+<h3>More</h3>
+
+<p>SingleCompile is far more powerful than this. Execute <code>:h SingleCompile</code> within
+Vim to see SingleCompile documentation if you want to know more about
+SingleCompile.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hong Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-07T21:08:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development/'>Development</a>, <a class='category' href='/blog/categories/editor/'>Editor</a>, <a class='category' href='/blog/categories/vim/'>Vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/" data-via="" data-counturl="http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/" title="Next Post: Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch">Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/">Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/use-editorconfig-to-maintain-consistent-coding-styles-between-different-editors-and-ides/">Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/10/add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch/">Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod Touch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/">Use SingleCompile to Compile and Run a Single Source File Easily in Vim</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/xuhdev">@xuhdev</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xuhdev',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Hong Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'xuhdev-homepage';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/';
+        var disqus_url = 'http://xuhdev.github.com/blog/2012/03/07/use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
