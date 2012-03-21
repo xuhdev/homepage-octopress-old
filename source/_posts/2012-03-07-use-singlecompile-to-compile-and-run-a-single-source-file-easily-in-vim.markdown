@@ -138,9 +138,10 @@ compilation required for such langauges.
 
 ### More
 
-SingleCompile is far more powerful than this. Execute `:h SingleCompile` within
-Vim to see SingleCompile documentation if you want to know more about
-SingleCompile.
+SingleCompile is far more powerful than this. If you want to know more about
+SingleCompile, you may want to visit [SingleCompile homepage][SingleCompile].
+If you have installed SingleCompile, you could also execute `:h SingleCompile`
+within Vim to take a look at the SingleCompile documentation.
 
 [Vim]: http://www.vim.org
 [SingleCompile]: http://www.vim.org/scripts/script.php?script_id=3115
