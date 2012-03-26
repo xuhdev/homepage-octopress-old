@@ -3,7 +3,7 @@ layout: post
 title: Generate Ctags Files for C/C++ Source Files and All of Their Included Header Files
 date: 2012-03-17 14:29
 comments: true
-categories: [development, ctags, C, C++, C/C++, editor, IDE, Vim]
+categories: [Software Development, ctags, C, C++, C/C++, editor, IDE, Vim]
 ---
 
 _This post is for those people who use [Exuberant Ctags][ctags]. If you are

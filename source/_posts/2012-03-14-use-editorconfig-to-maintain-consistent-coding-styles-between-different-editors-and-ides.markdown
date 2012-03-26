@@ -3,7 +3,7 @@ layout: post
 title: Use EditorConfig to Maintain Consistent Coding Styles between Different Editors and IDEs
 date: 2012-03-14 21:46
 comments: true
-categories: [Development, Editor, IDE, Coding Style]
+categories: [Software Development, Editor, IDE, Coding Style]
 ---
 
 Usually for a project with more than one developer involved, it is essentially
