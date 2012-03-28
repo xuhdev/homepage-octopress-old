@@ -22,8 +22,9 @@ However, this does not mean you can not add such a switch by yourself.
 
 [Jailbreaking][jailbreaking] is the process of removing the limitations imposed
 by Apple on devices running the iOS operating system, such as iPhone, iPad,
-iPod Touch, Apple TV. You need to jailbreak your device before you continue to next
-step. To get your device jailbroken, please take a look at
+iPod Touch, Apple TV. You need to jailbreak your device before you continue to
+next step. Don't worry, the jailbreaking process is totally FREE. To get your
+device jailbroken, please take a look at
 [this page](http://www.idownloadblog.com/jailbreak). If you already have your
 device jailbroken, you could skip this step.
 
