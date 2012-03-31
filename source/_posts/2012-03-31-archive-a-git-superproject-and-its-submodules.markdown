@@ -42,7 +42,7 @@ First, visit [git-archive-all homepage][git-archive-all] and download
 
 ### If you are working on a UNIX-like system
 
-Give this file executable bit:
+Give this file execute permission:
 
     chmod +x git-archive-all
 
