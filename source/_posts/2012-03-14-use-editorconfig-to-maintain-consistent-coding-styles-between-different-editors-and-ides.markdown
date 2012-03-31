@@ -19,14 +19,14 @@ editors and IDEs will automatically adjust your coding style.
 
 <!-- more -->
 
-### Download EditorConfig Plugin for Your Editor/IDE
+## Download EditorConfig Plugin for Your Editor/IDE
 
 To use EditorConfig, you have to download the corresponding
 [EditorConfig plugins][] for your Editor or IDE. Follow the installation
 instructions to install them.
 
 
-### Create an `.editorconfig` File for Your Project
+## Create an `.editorconfig` File for Your Project
 
 An `.editorconfig` file is an [INI][] format file, which contains the settings
 of your coding style. You could use one or more `.editorconfig` files to
@@ -101,7 +101,7 @@ not a code formatter. That is to say, the existing codes in your source files
 will not be reformatted. Only the style of your newly input code is adjusted.)
 
 
-### More
+## More
 
 This is just a simple introduction of [EditorConfig][]. If you find this
 useful, you may want to visit [EditorConfig homepage][EditorConfig] to see more
