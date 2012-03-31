@@ -36,7 +36,7 @@ Let's see more about SingleCompile.
 
 <!-- more -->
 
-### Installation
+## Installation
 
 Just like most other Vim plugins, it's simple: Download the SingleCompile.zip
 file from [SingleCompile homepage][SingleCompile] and extract it to your Vim
@@ -64,7 +64,7 @@ The above two lines will make `F9` as the key to trigger the compilation and
 `F10` to compile the source file and run.
 
 
-### Use SingleCompile to Compile and Run a Source File
+## Use SingleCompile to Compile and Run a Source File
 
 Let's try to create a new C source file called `hello.c`:
 
@@ -127,7 +127,7 @@ See? The error messages has been put in the Vim quickfix window, which makes
 it quite easy to locate syntax errors!
 
 
-### Interpreting Languages
+## Interpreting Languages
 
 For interpreting languages such as python, perl, things are similar:
 interpreter auto detection, Quickfix, etc. But there is one notable difference:
@@ -136,7 +136,7 @@ they both call the interpreter to run your script, since there is no
 compilation required for such langauges.
 
 
-### More
+## More
 
 SingleCompile is far more powerful than this. If you want to know more about
 SingleCompile, you may want to visit [SingleCompile homepage][SingleCompile].
