@@ -85,7 +85,7 @@ You don't need to specify a compression format like the Git's Archive command --
 git-archive-all will decide the format based on the suffix of your file name,
 such as [tar.gz][tar], [zip][].
 
-## 
+## More
 
 The git-archive-all script has some other powerful features. If you are
 interested, please visit [its homepage][git-archive-all].
