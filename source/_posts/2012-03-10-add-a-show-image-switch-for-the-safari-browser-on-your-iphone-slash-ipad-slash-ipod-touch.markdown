@@ -18,7 +18,7 @@ However, this does not mean you can not add such a switch by yourself.
 
 <!-- more -->
 
-### Get Your Device Jailbroken
+## Get Your Device Jailbroken
 
 [Jailbreaking][jailbreaking] is the process of removing the limitations imposed
 by Apple on devices running the iOS operating system, such as iPhone, iPad,
@@ -29,7 +29,7 @@ device jailbroken, please take a look at
 device jailbroken, you could skip this step.
 
 
-### Modify Safari.plist
+## Modify Safari.plist
 
 After jailbreaking, the next thing you need to do is to edit a [plist][] file
 located on your device. If you are a normal user, you may want to install
