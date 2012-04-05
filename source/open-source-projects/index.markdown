@@ -26,7 +26,13 @@ systems. This page contains some of my projects related to Vim.
 
 ### [SingleCompile][]
 
-A vim plugin which makes it more convenient to compile or run a single source file.
+A vim plugin which makes it more convenient to compile or run a single source
+file.
+
+### [IniParser][]
+
+This is a vim plugin providing a set of functions to read and write [ini][]
+format files for [vimscript][].
 
 ### [indent/java.vim][]
 
@@ -41,7 +47,8 @@ vim version 7.3.409.
 
 Vim syntax file for dosini files (\*.ini).
 
-This script has been included in the offical vim distribution since vim version 7.3.313.
+This script has been included in the offical vim distribution since vim version
+7.3.313.
 
 ### [nautilus-py-vim][]
 
@@ -57,19 +64,22 @@ gVim on Windows.
 
 Vim compiler file for [GNU Fortran Compiler][].
 
-This script has been included in the offical vim distribution since vim version 7.3.152.
+This script has been included in the offical vim distribution since vim version
+7.3.152.
 
 ### [compiler/ifort.vim][]
 
 Vim compiler file for [Intel Fortran Compiler][].
 
-This script has been included in the offical vim distribution since vim version 7.3.152.
+This script has been included in the offical vim distribution since vim version
+7.3.152.
 
 ### [compiler/g95.vim][]
 
 Vim compiler file for [G95 Fortran Compiler][].
 
-This script has been included in the offical vim distribution since vim version 7.3.152.
+This script has been included in the offical vim distribution since vim version
+7.3.152.
 
 ## Other Projects
 
@@ -119,6 +129,7 @@ You may want to make a donation if you would like to support my projects:
 [EditorConfig]: http://editorconfig.org
 [G95 Fortran Compiler]: http://www.g95.org
 [GNU Fortran Compiler]: http://gcc.gnu.org/wiki/GFortran
+[IniParser]: http://www.vim.org/scripts/script.php?script_id=3434
 [Intel Fortran Compiler]: http://software.intel.com/en-us/articles/intel-compilers
 [SQLite]: http://www.sqlite.org
 [SingleCompile]: http://www.vim.org/scripts/script.php?script_id=3115
@@ -129,7 +140,9 @@ You may want to make a donation if you would like to support my projects:
 [ctags]: http://ctags.sf.net
 [gccxml]: http://www.gccxml.org
 [indent/java.vim]: http://www.vim.org/scripts/script.php?script_id=3899
+[ini]: http://en.wikipedia.org/wiki/INI_file
 [nautilus-py-vim]: http://xuhdev.bitbucket.org/nautilus-py-vim/nautilus-py-vim.html
 [nautilus]: http://live.gnome.org/Nautilus
 [syntax/dosini.vim]: http://www.vim.org/scripts/script.php?script_id=3747
 [tags2db]: http://xuhdev.github.com/tags2db
+[vimscript]: http://en.wikipedia.org/wiki/Vim_script
