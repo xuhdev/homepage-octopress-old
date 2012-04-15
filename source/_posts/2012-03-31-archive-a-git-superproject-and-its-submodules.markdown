@@ -3,7 +3,7 @@ layout: post
 title: Archive a Git Superproject and Its Submodules
 date: 2012-03-31 19:18
 comments: true
-categories: [Software Development, Git]
+categories: [Software, Software Development, Git]
 ---
 
 While [Git][] is a powerful and popular [Distributed Version Control System][],

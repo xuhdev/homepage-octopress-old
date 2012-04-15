@@ -4,7 +4,7 @@ title: Attach a Pull Request to an Existing GitHub Issue
 date: 2012-03-25 21:17
 comments: true
 file_title: 2012-03-25-attach-a-pull-request-to-an-existing-github-issue
-categories: [Software Development, GitHub, git]
+categories: [Software, Software Development, GitHub, git]
 ---
 
 {% include custom/post_initialization.html %}

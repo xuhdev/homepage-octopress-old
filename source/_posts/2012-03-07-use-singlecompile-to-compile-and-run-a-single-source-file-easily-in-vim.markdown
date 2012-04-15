@@ -4,7 +4,7 @@ title: "Use SingleCompile to Compile and Run a Single Source File Easily in Vim"
 date: 2012-03-07 21:08
 comments: true
 file_title: 2012-03-07-use-singlecompile-to-compile-and-run-a-single-source-file-easily-in-vim
-categories: [Vim, Software Development, Editor]
+categories: [Vim, Software, Software Development, Editor]
 ---
 
 {% include custom/post_initialization.html %}
