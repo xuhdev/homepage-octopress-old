@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Run IDL Code from Python without PyIDL/pIDLy
+title: Run IDL Code from Python without Using PyIDL/pIDLy
 date: 2012-04-13 14:02
 comments: true
 categories: [Astronomy, IDL, Python, Software]
