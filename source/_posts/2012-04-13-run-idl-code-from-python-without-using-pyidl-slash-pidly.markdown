@@ -8,12 +8,12 @@ categories: [Astronomy, IDL, Python, Software]
 
 As one of the world's most popular computer languages, [Python][] has attracted
 more and more astronomers' eyes. However, there are still many astronomy codes
-written in [IDL][], which are currently not available in Python. In this way, it
-becomes extremely important to invent a way to run IDL code within Python. While
-[PyIDL][] and [pIDLy][] are two possible way to solve this problem, I would like
-to recommend my own way, which could work on Python 3 and does not require
-any third-party Python library, though it is not as powerful as [PyIDL][] or
-[pIDLy][]. This method takes advantages of Python's
+written in [IDL][], which are currently not available in Python. In this way,
+it becomes extremely important to invent a way to run IDL code within Python
+for pythonic astronomers. While [PyIDL][] and [pIDLy][] are two possible way to
+solve this problem, I would like to recommend my own way, which could work on
+Python 3 and does not require any third-party Python library, though it is not
+as powerful as [PyIDL][] or [pIDLy][]. This method takes advantages of Python's
 [subprocess][Python subprocess] module.
 
 <!-- more -->
