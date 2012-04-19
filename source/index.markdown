@@ -12,4 +12,4 @@ My personal page on Github: [https://github.com/xuhdev](https://github.com/xuhde
 My personal page on Bitbucket.org: [https://bitbucket.org/xuhdev](https://bitbucket.org/xuhdev)
 
 
-Email: [dev@hongxu.me](mailto:dev@hongxu.me) or [xuhdev@gmail.com](mailto:xuhdev@gmail.com)
+Email: [xuhdev@gmail.com](mailto:xuhdev@gmail.com)
