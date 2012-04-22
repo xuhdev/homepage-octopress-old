@@ -3,6 +3,7 @@ layout: page
 title: My Open Source Projects
 footer: false
 comments: false
+sidebar: false
 ---
 
 ## EditorConfig

@@ -3,6 +3,7 @@ layout: page
 title: Hong Xu's Homepage
 footer: false
 comments: false
+sidebar: false
 ---
 
 This is Hong Xu's personal homepage.
