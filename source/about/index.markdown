@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hong Xu's Homepage
+title: About
 footer: false
 comments: false
 sidebar: false
