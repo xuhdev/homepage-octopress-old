@@ -4,7 +4,7 @@ title: Add a "Show Image" Switch for the Safari Browser on Your iPhone/iPad/iPod
 date: 2012-03-10 16:41
 comments: true
 file_title: 2012-03-10-add-a-show-image-switch-for-the-safari-browser-on-your-iphone-slash-ipad-slash-ipod-touch
-categories: [iOS, iPhone, iPad, Apple, Safari, webkit, Software]
+categories: [iOS, iPhone, iPad, Apple, Safari, webkit]
 ---
 
 {% include custom/post_initialization.html %}
