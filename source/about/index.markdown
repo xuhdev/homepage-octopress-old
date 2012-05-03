@@ -6,7 +6,7 @@ comments: false
 sidebar: false
 ---
 
-This is Hong Xu's personal homepage.
+This is Hong Xu's personal homepage and blog.
 
 My personal page on Github: [https://github.com/xuhdev](https://github.com/xuhdev)
 
