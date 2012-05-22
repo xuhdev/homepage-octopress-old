@@ -24,10 +24,14 @@ module Jekyll
   class ContentFilters < PostFilter
     include OctopressFilters
     def pre_render(post)
-      post.content = pre_filter(post.content)
+      if post.ext.match('html|textile|markdown|haml|slim|xml')
+        post.content = pre_filter(post.content)
+      end
     end
     def post_render(post)
-      post.content = post_filter(post.content)
+      if post.ext.match('html|textile|markdown|haml|slim|xml')
+        post.content = post_filter(post.content)
+      end
     end
   end
 end
@@ -76,6 +80,17 @@ module OctopressLiquidFilters
     url ||= '/'
     input.gsub /(\s+(href|src)\s*=\s*["|']{1})(\/[^\"'>]*)/ do
       $1+url+$3
+    end
+  end
+
+  # Prepend a local url with a file path
+  # remote urls and urls beginning with ! will be ignored
+  def prepend_url(input, path='')
+    path += '/' unless path.match /\/$/
+    if input.match /^!/
+      input.gsub(/^(!)(.+)/, '\2')
+    else
+      input.gsub(/^(\/)?([^:]+?)$/, "#{path}"+'\2')
     end
   end
 
