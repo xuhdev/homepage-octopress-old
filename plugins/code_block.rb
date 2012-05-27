@@ -3,7 +3,7 @@
 # Description: Write codeblocks with semantic HTML5 <figure> and <figcaption> elements and optional syntax highlighting — all with a simple, intuitive interface.
 #
 # Syntax:
-# {% codeblock [title] [url] [link text] [lang:language] [start_lnr:n] %}
+# {% codeblock [title] [url] [link text] %}
 # code snippet
 # {% endcodeblock %}
 #
@@ -48,53 +48,44 @@ module Jekyll
 
   class CodeBlock < Liquid::Block
     include HighlightCode
-    include TemplateWrapper
     CaptionUrlTitle = /(\S[\S\s]*)\s+(https?:\/\/)(\S+)\s+(.+)/i
     CaptionUrl = /(\S[\S\s]*)\s+(https?:\/\/)(\S+)/i
     Caption = /(\S[\S\s]*)/
     def initialize(tag_name, markup, tokens)
-      @title = nil
       @caption = nil
-      @filetype = nil
-      @start_lnr = 1
-      @highlight = true
+      @url = nil
+      @lang = nil
+      @start = 1
       if markup =~ /\s*lang:(\w+)/i
-        @filetype = $1
+        @lang = $1
         markup = markup.sub(/lang:\w+/i,'')
       end
-      if markup =~ /\s*start_lnr:(\w+)/i
-        @start_lnr = $1.to_i
-        markup = markup.sub(/start_lnr:\w+/i, '')
+      if markup =~ /\s*start:(\d+)/i
+        @start = $1.to_i
+        markup = markup.sub(/\s*start:\d+/i,'')
       end
       if markup =~ CaptionUrlTitle
-        @file = $1
-        @caption = "<figcaption><span>#{$1}</span><a href='#{$2 + $3}'>#{$4}</a></figcaption>"
+        @caption = $1
+        @url = $2 + $3
+        @anchor = $4
       elsif markup =~ CaptionUrl
-        @file = $1
-        @caption = "<figcaption><span>#{$1}</span><a href='#{$2 + $3}'>link</a></figcaption>"
+        @caption = $1
+        @url = $2 + $3
       elsif markup =~ Caption
-        @file = $1
-        @caption = "<figcaption><span>#{$1}</span></figcaption>\n"
+        @caption = $1
       end
-      if @file =~ /\S[\S\s]*\w+\.(\w+)/ && @filetype.nil?
-        @filetype = $1
+      if @caption =~ /\S[\S\s]*\w+\.(\w+)/ && @lang.nil?
+        @lang = $1
       end
       super
     end
 
     def render(context)
-      code = super
-      source = "<figure class='code'>"
-      source += @caption if @caption
-      if @filetype
-        source += " #{highlight(code, @filetype, @start_lnr)}</figure>"
-      else
-        source += "#{tableize_code(code.lstrip.rstrip.gsub(/</,'&lt;'), '', @start_lnr)}</figure>"
-      end
-      source = safe_wrap(source)
-      source = context['pygments_prefix'] + source if context['pygments_prefix']
-      source = source + context['pygments_suffix'] if context['pygments_suffix']
-      source
+      code = super.strip
+      code = highlight(code, @lang, {caption: @caption, url: @url, anchor: @anchor, start: @start})
+      code = context['pygments_prefix'] + code if context['pygments_prefix']
+      code = code + context['pygments_suffix'] if context['pygments_suffix']
+      code
     end
   end
 end
