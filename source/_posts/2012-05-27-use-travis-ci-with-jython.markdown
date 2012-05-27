@@ -137,7 +137,7 @@ triggered.
 
 ## A Real World Example
 
-A Real World example could be found
+A real world example could be found
 [here](https://github.com/editorconfig/editorconfig-core-py/blob/75e12f97e605accbdbb94bbb31c50faecc5a0c36/.travis.yml).
 It uses [cmake][] as its testing system so it looks a bit different from the
 example above.
