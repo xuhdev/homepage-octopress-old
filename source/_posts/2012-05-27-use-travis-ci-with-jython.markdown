@@ -85,10 +85,28 @@ before_install:
 Then modify the test script to include the use of jython:
 
 ```yaml
-before_script: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then export PYTHON_EXE=jython; else export PYTHON_EXE=python; fi
+before_script: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
 
 script: $PYTHON_EXE setup.py test
 ```
+
+Note that we run `jython -c "print ''"` before we run the testing script,
+because something like the following may print when Jython run for the first
+time, which may affect the testing result:
+
+    *sys-package-mgr*: processing new jar, '/home/vagrant/jython/jython.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/resources.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/jsse.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/jce.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/charsets.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/rhino.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/ext/sunjce_provider.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/ext/pulse-java.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/ext/gnome-java-bridge.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/ext/localedata.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/ext/dnsns.jar'
+    *sys-package-mgr*: processing new jar, '/usr/lib/jvm/java-6-openjdk/jre/lib/ext/sunpkcs11.jar'
 
 The final `.travis.yml` should look like this:
 
@@ -104,7 +122,7 @@ python:
 
 before_install: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then sudo apt-get install jython; fi
 
-before_script: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then export PYTHON_EXE=jython; else export PYTHON_EXE=python; fi
+before_script: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
 
 script: $PYTHON_EXE setup.py test
 {% endcodeblock %}
@@ -125,7 +143,7 @@ before_install:
   - export JYTHON_URL='http://downloads.sourceforge.net/project/jython/jython/2.5.2/jython_installer-2.5.2.jar?r=http%3A%2F%2Fwww.jython.org%2Fdownloads.html&ts=1338089844&use_mirror=iweb'
   - if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then wget $JYTHON_URL -O jython_installer.jar; java -jar jython_installer.jar -s -d $HOME/jython; export PATH=$HOME/jython:$PATH; fi
 
-before_script: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then export PYTHON_EXE=jython; else export PYTHON_EXE=python; fi
+before_script: if [ "$TRAVIS_PYTHON_VERSION" == "jython" ]; then export PYTHON_EXE=jython; jython -c "print ''"; else export PYTHON_EXE=python; fi
 
 script: $PYTHON_EXE setup.py test
 {% endcodeblock %}
@@ -138,9 +156,9 @@ triggered.
 ## A Real World Example
 
 A real world example could be found
-[here](https://github.com/editorconfig/editorconfig-core-py/blob/75e12f97e605accbdbb94bbb31c50faecc5a0c36/.travis.yml).
-It uses [cmake][] as its testing system so it looks a bit different from the
-example above.
+[here](https://github.com/editorconfig/editorconfig-core-py/blob/70a3697d245f515d571ff119f13e76c7af038188/.travis.yml).
+The real world example uses [cmake][] as its testing system so it looks a bit
+different from the example above.
 
 
 [GitHub]: http://github.com
