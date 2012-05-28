@@ -39,13 +39,14 @@ directory to the git repo directory:
 
     cd /home/user/test-repo
 
-Then setup your [GitHub token][] for this repo. After the setup, use hub command
-to attach a pull-request to the issue you have submitted:
+<del>Then setup your [GitHub token][] for this repo. After the setup,</del> use
+hub command to attach a pull-request to the issue you have submitted:
 
     hub pull-request -i 1 -b ORIGINAL_AUTHOR:master -h YOUR_USER_NAME:my-changes
 
-The number **1** in the above command means the number of the issue you created.
-In this example, it's `Issue #1`, thus **1** is passed to the `-i` option.
+You will then be asked for your GitHub username and password. The number **1**
+in the above command means the number of the issue you created. In this
+example, it's `Issue #1`, thus **1** is passed to the `-i` option.
 
 Now this issue should look like this:
 
