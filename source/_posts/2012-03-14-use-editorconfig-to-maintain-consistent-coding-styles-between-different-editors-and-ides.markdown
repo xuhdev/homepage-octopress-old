@@ -43,7 +43,7 @@ root = true
 
 [*]
 indent_style = space
-end_of_line = cr
+end_of_line = lf
 
 [*.c]
 indent_size = 4
@@ -72,11 +72,11 @@ won't apply the settings of `.editorconfig` outside this directory.
 {% codeblock lang:ini start:4 %}
 [*]
 indent_style = space
-end_of_line = cr
+end_of_line = lf
 {% endcodeblock %}
 
 These 3 lines indicates for all files, if not specially specified, we use spaces
-for indentation, and use `cr` as the [EOL][] marker for all files.
+for indentation, and use `lf` as the [EOL][] marker for all files.
 
 {% codeblock lang:ini start:8 %}
 [*.c]
