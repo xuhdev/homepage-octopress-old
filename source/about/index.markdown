@@ -12,5 +12,7 @@ My personal page on Github: [https://github.com/xuhdev](https://github.com/xuhde
 
 My personal page on Bitbucket.org: [https://bitbucket.org/xuhdev](https://bitbucket.org/xuhdev)
 
+My Twitter account: [http://twitter.com/#!/xuhdev](http://twitter.com/#!/xuhdev)
+
 
 Email: [dev@hong.me](mailto:dev@hong.me)(Preferred) OR [xuhdev@gmail.com](mailto:xuhdev@gmail.com)
