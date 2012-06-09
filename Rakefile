@@ -232,7 +232,6 @@ task :update_source, :theme do |t, args|
   cp_r "#{themes_dir}/"+theme+"/source/.", source_dir, :remove_destination=>true
   cp_r "#{source_dir}.old/_includes/custom/.", "#{source_dir}/_includes/custom/", :remove_destination=>true
   if File.exists?("#{source_dir}.old/favicon.png")
-    cp "#{source_dir}.old/favicon.png", source_dir
   else
     rm "#{source_dir}/favicon.png"
   end
