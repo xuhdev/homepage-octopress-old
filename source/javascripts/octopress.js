@@ -54,15 +54,15 @@ var octopress = (function(){
       });
     }
 
-    , testFeature: function (features) {
-      getTestClasses = function (tests) {
-        classes = '';
-        if (typeof(tests.join) == 'function') {
-          for (var i=0; i < features.length; i++)
-            classes += getClass(features[i]) + ' ';
-        } else {
-          classes = getClass(tests);
-        }
+    , testFeatures: function () {
+      if (Modernizr.testAllProps('maskImage')) {
+        $('html').addClass('maskimage')
+      } else {
+        $('html').addClass('no-maskimage')
+      }
+    }
+
+    , flashVideoFallback: function (){
         return classes;
       }
 
@@ -255,7 +255,7 @@ var octopress = (function(){
 
 $(document).ready(function() {
   octopress.wrapFlashVideos();
-  octopress.testFeature(['maskImage', 'transform']);
+  octopress.testFeatures();
   octopress.flashVideoFallback();
   octopress.addCodeLineNumbers();
   octopress.addMobileNav();
