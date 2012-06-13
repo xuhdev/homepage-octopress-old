@@ -4,7 +4,7 @@ title: "Use Travis CI with Jython"
 date: 2012-05-27 17:22
 comments: true
 external-url: 
-categories: [Python, Jython, GitHub, Travis CI, Software Development]
+categories: [Python, Jython, Java, GitHub, Travis CI, Software Development]
 ---
 
 [Travis CI][] is a hosted continuous integration service for the open source
