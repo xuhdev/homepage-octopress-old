@@ -85,8 +85,8 @@ google_plus_one_size: medium
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
-google_plus_user:
-google_plus_hidden: false
+google_plus_user: xuhdev
+google_plus_hidden: true
 google_plus_image_size: 32
 
 # Pinboard
