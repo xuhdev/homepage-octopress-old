@@ -96,7 +96,13 @@ way to publish the package on command line, see [cpush][].
 ## 
 
 You should be able to create a simple Chocolatey package now. For more details,
-please take a look at the [official guide][].
+please take a look at the [official guide][]. Also, you can find many real
+world examples [here](https://github.com/ferventcoder/nugetpackages).
+
+* _FYI, this blog post was written after I made
+[this package](http://chocolatey.org/packages/editorconfig.core). You can find
+its source
+[here](https://github.com/editorconfig/chocolatey-packages/tree/master/editorconfig-core)._
 
 
 
