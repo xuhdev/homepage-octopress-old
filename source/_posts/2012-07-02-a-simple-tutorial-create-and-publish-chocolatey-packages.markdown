@@ -19,13 +19,11 @@ this tutorial is simpler.
 ## Create the Package
 
 First, [install Chocolatey][Chocolatey] if you haven't done yet. Then, add
-`%CHOCOLATEY_INSTALLATION%\bin` and
-`%CHOCOLATEY_INSTALLATION%\chocolateyInstall` to the
-[PATH environmental variable][], where `%CHOCOLATEY_INSTALLATION%` is the
-Chocolatey installation path. The default installation directory is
-`C:\Chocolatey`, so the paths you need to add to PATH variable are
-`C:\Chocolatey\bin` and `C:\Chocolatey\chocolateyInstall` by default. If you
-don't know how to modify environmental variables, take a look at
+`%CHOCOLATEY_INSTALLATION%\bin` to the [PATH environmental variable][PATH],
+where `%CHOCOLATEY_INSTALLATION%` is the Chocolatey installation path. The
+default installation directory is `C:\Chocolatey`, so the path you need to add
+to PATH variable is `C:\Chocolatey\bin` by default. If you don't know how to
+modify environmental variables, take a look at
 [this page](http://java.com/en/download/help/path.xml).
 
 After the preparing work is done, let's create a new directory `myapp-package`
@@ -99,7 +97,7 @@ You should be able to create a simple Chocolatey package now. For more details,
 please take a look at the [official guide][]. Also, you can find many real
 world examples [here](https://github.com/ferventcoder/nugetpackages).
 
-* _FYI, this blog post was written after I made
+_* FYI, this blog post was written after I made
 [this package](http://chocolatey.org/packages/editorconfig.core). You can find
 its source
 [here](https://github.com/editorconfig/chocolatey-packages/tree/master/editorconfig-core)._
