@@ -144,7 +144,7 @@ If you have installed SingleCompile, you could also execute `:h SingleCompile`
 within Vim to take a look at the SingleCompile documentation.
 
 [Vim]: http://www.vim.org
-[SingleCompile]: http://www.vim.org/scripts/script.php?script_id=3115
+[SingleCompile]: http://dev.hong.me/SingleCompile
 [quickfix]: http://vimdoc.sourceforge.net/htmldoc/quickfix.html
 [compiler feature]: http://vimdoc.sourceforge.net/htmldoc/quickfix.html#compiler-select
 [pathogen]: https://github.com/tpope/vim-pathogen
