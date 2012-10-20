@@ -15,7 +15,7 @@ My personal page on Bitbucket.org: [https://bitbucket.org/xuhdev](https://bitbuc
 My Twitter account: [http://twitter.com/#!/xuhdev](http://twitter.com/#!/xuhdev)
 
 
-Email: [dev@hong.me](mailto:dev@hong.me "Hong Xu <dev@hong.me>") (Preferred) OR [xuhdev@gmail.com](mailto:xuhdev@gmail.com "Hong Xu <xuhdev@gmail.com>")
+Email: [hong@topbug.net](mailto:hong@topbug.net "Hong Xu <hong@topbug.net>") (Preferred) OR [xuhdev@gmail.com](mailto:xuhdev@gmail.com "Hong Xu <xuhdev@gmail.com>")
 
 
 _* The Twitter and Email social icons are part of the Social Network Icon Pack
