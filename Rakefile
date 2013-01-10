@@ -11,9 +11,6 @@ document_root  = "~/website.com/"
 rsync_delete   = true
 deploy_default = "push"
 
-# Hidden "dot" files that should be included with the deployed site (see task copydot)
-copy_dot_files = []
-
 # This will be configured for you when you run config_deploy
 deploy_branch  = "master"
 
@@ -28,8 +25,8 @@ posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
 new_post_ext    = "markdown"  # default new post file extension when using the new_post task
 new_page_ext    = "markdown"  # default new page file extension when using the new_page task
-server_port     = "4000"      # port for preview server eg. localhost:4000
-
+server_host     = ENV['OCTOPRESS_IP']   || '0.0.0.0'   # host ip address for preview server
+server_port     = ENV['OCTOPRESS_PORT'] || "4000"      # port for preview server eg. localhost:4000
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
@@ -57,7 +54,7 @@ task :generate do
   puts "## Generating Site with Jekyll"
   system "compass compile --css-dir #{source_dir}/stylesheets"
   Rake::Task['minify_and_combine'].execute
-  system "jekyll"
+  system "jekyll --no-server --no-auto"
 end
 
 Rake::Minify.new(:minify_and_combine) do
@@ -112,11 +109,11 @@ end
 desc "preview the site in a web browser"
 task :preview do
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
-  puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"
+  puts "Starting to watch source with Jekyll and Compass. Starting Rack, serving to http://#{server_host}:#{server_port}"
   system "compass compile --css-dir #{source_dir}/stylesheets"
   jekyllPid = Process.spawn("jekyll --auto")
   compassPid = Process.spawn("compass watch")
-  rackupPid = Process.spawn("rackup --port #{server_port}")
+  rackupPid = Process.spawn("rackup --host #{server_host} --port #{server_port}")
 
   trap("INT") {
     [jekyllPid, compassPid, rackupPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
@@ -277,22 +274,11 @@ end
 
 desc "Default deploy task"
 task :deploy do
-  Rake::Task[:copydot].invoke(source_dir, public_dir)
   Rake::Task["#{deploy_default}"].execute
 end
 
 desc "Generate website and deploy"
 task :gen_deploy => [:integrate, :generate, :deploy] do
-end
-
-desc "copy dot files for deployment"
-task :copydot, :source, :dest do |t, args|
-  files = [".htaccess"] | copy_dot_files
-  Dir["#{args.source}/.*"].each do |file|
-    if !File.directory?(file) && files.include?(File.basename(file))
-      cp(file, file.gsub(/#{args.source}/, "#{args.dest}"));
-    end
-  end
 end
 
 desc "Deploy website via rsync"
@@ -302,7 +288,7 @@ task :rsync do
     exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
   end
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"
@@ -310,7 +296,6 @@ multitask :push do
   if File.directory?(deploy_dir)
     puts "## Deploying branch to GitHub Pages "
     (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
-    Rake::Task[:copydot].invoke(public_dir, deploy_dir)
     puts "Attempting pull, to sync local deployment repository"
     cd "#{deploy_dir}" do
       system "git pull origin #{deploy_branch}"
@@ -325,8 +310,20 @@ multitask :push do
       puts "\n## Commiting: #{message}"
       system "git commit -m \"#{message}\""
       puts "\n## Pushing generated #{deploy_dir} website"
-      system "git push origin #{deploy_branch}"
-      puts "\n## GitHub Pages deploy complete"
+      if system "git push origin #{deploy_branch}"
+        puts "\n## GitHub Pages deploy complete"
+      else
+        remote = `git remote -v`
+        repo_url = case remote
+                   when /(http[^\s]+)/
+                     $1
+                   when /(git@[^\s]+)/
+                     $1
+                   else
+                     ""
+                   end
+        raise "\n## Octopress could not push to #{repo_url}"
+      end
     end
   else
     puts "This project isn't configured for deploying to GitHub Pages\nPlease run `rake setup_github_pages[your-deployment-repo-url]`." 
@@ -382,9 +379,14 @@ task :setup_github_pages, :repo do |t, args|
   else
     repo_url = get_stdin("Enter the read/write url for your repository: ")
   end
-  user = repo_url.match(/:([^\/]+)/)[1]
+  unless repo_url[-4..-1] == ".git"
+    repo_url << ".git"
+  end
+  raise "!! The repo URL that was input was malformed." unless repo_url.match(/https:\/\/github.com\/[^\/]+\/[^\/]+/) or repo_url.match(/git@github.com:[^\/]+\/[^\/]+/)
+  user_match = repo_url.match(/(:([^\/]+)|(github.com\/([^\/]+)))/)
+  user = user_match[2] || user_match[4]
   branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? 'gh-pages' : 'master'
-  project = (branch == 'gh-pages') ? repo_url.match(/\/([^\.]+)/)[1] : ''
+  project = (branch == 'gh-pages') ? repo_url.match(/\/(.+)(\.git)/)[1] : ''
   url = "http://#{user}.github.com"
   url += "/#{project}" unless project == ''
   unless `git remote -v`.match(/origin.+?octopress.git/).nil?

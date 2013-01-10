@@ -48,44 +48,38 @@ module Jekyll
 
   class CodeBlock < Liquid::Block
     include HighlightCode
-    CaptionUrlTitle = /(\S[\S\s]*)\s+(https?:\/\/)(\S+)\s+(.+)/i
-    CaptionUrl = /(\S[\S\s]*)\s+(https?:\/\/)(\S+)/i
-    Caption = /(\S[\S\s]*)/
+    TitleUrlLinkText = /(\S[\S\s]*)\s+(https?:\/\/\S+|\/\S+)\s*(.+)?/i
+    Title = /(\S[\S\s]*)/
     def initialize(tag_name, markup, tokens)
-      @caption = nil
-      @url = nil
-      
-      @lang = get_lang(markup)
-      markup = replace_lang(markup)
+      opts     = parse_markup(markup)
+      @options = {
+        lang:      opts[:lang],
+        title:     opts[:title],
+        lineos:    opts[:lineos],
+        marks:     opts[:marks],
+        url:       opts[:url],
+        link_text: opts[:link_text] || 'link',
+        start:     opts[:start]     || 1,
+      }
+      markup     = clean_markup(markup)
 
-      @linenos = get_linenos(markup)
-      markup = replace_linenos(markup)
-
-      @marks = get_marks(markup)
-      markup = replace_marks(markup)
-      
-      @start = get_start(markup)
-      markup = replace_start(markup)
-
-      if markup =~ CaptionUrlTitle
-        @caption = $1
-        @url = $2 + $3
-        @anchor = $4
-      elsif markup =~ CaptionUrl
-        @caption = $1
-        @url = $2 + $3
-      elsif markup =~ Caption
-        @caption = $1
+      if markup =~ TitleUrlLinkText
+        @options[:title]     ||= $1
+        @options[:url]       ||= $2
+        @options[:link_text] ||= $3
+      elsif markup =~ Title
+        @options[:title]     ||= $1
       end
-      if @caption =~ /\S[\S\s]*\w+\.(\w+)/ && @lang.nil?
-        @lang = $1
+      # grab lang from filename in title
+      if @options[:title] =~ /\S[\S\s]*\w+\.(\w+)/ && @options[:lang].nil?
+        @options[:lang]      ||= $1
       end
       super
     end
 
     def render(context)
       code = super.strip
-      code = highlight(code, @lang, {caption: @caption, url: @url, anchor: @anchor, start: @start, marks: @marks, linenos: @linenos})
+      code = highlight(code, @options)
       code = context['pygments_prefix'] + code if context['pygments_prefix']
       code = code + context['pygments_suffix'] if context['pygments_suffix']
       code

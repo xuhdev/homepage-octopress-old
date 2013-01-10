@@ -1,6 +1,5 @@
 require './plugins/raw'
 require './plugins/config'
-require 'albino'
 require 'pygments'
 require 'fileutils'
 require 'digest/md5'
@@ -12,106 +11,140 @@ module HighlightCode
   include TemplateWrapper
   include SiteConfig
   def pygments(code, lang)
-    path = File.join(PYGMENTS_CACHE_DIR, "#{lang}-#{Digest::MD5.hexdigest(code)}.html") if defined?(PYGMENTS_CACHE_DIR)
-    if File.exist?(path)
-      highlighted_code = File.read(path)
-    else
-      if get_config('pygments')
-        highlighted_code = Albino.new(code, lang, :html)
-      else
-        highlighted_code = Pygments.highlight(code, :lexer => lang, :formatter => 'html', :options => {:encoding => 'utf-8'}) 
-      end
-      highlighted_code = highlighted_code.gsub(/{{/, '&#x7b;&#x7b;').gsub(/{%/, '&#x7b;&#x25;')
-      File.open(path, 'w') {|f| f.print(highlighted_code) } if path
-    end
+    highlighted_code = Pygments.highlight(code, :lexer => lang, :formatter => 'html', :options => {:encoding => 'utf-8'}) 
+    highlighted_code = highlighted_code.gsub(/{{/, '&#x7b;&#x7b;').gsub(/{%/, '&#x7b;&#x25;')
     highlighted_code.to_s
   rescue 
     puts $!,$@
   end
 
-  def highlight(code, lang, options = {})
+  def highlight(code, options = {})
+    lang = options[:lang]
     lang = 'ruby' if lang == 'ru'
     lang = 'objc' if lang == 'm'
     lang = 'perl' if lang == 'pl'
     lang = 'yaml' if lang == 'yml'
     lang = 'coffeescript' if lang == 'coffee'
+    lang = 'csharp' if lang == 'cs'
     lang = 'plain' if lang == '' or lang.nil? or !lang
 
-    caption = options[:caption]   || nil
-    url     = options[:url]       || nil
-    anchor  = options[:anchor]    || nil
-    wrap    = options[:wrap]      || true
-    marks   = options[:marks]
-    linenos = options[:linenos]
-    start   = options[:start]
+    url        = options[:url]        || nil
+    title      = options[:title]      || (url ? ' ' : nil)
+    link_text  = options[:link_text]  || nil
+    escape     = options[:escape]     || false
+    marks      = options[:marks]
+    linenos    = options[:linenos]
+    start      = options[:start]      || 1
+    no_cache   = options[:no_cache]   || false
+    cache_path = options[:cache_path] || nil
 
-    if lang == 'plain'
-      # Escape html tags
-      code = code.gsub('<','&lt;')
-    elsif lang.include? "-raw"
-      output  = "``` #{$1.sub('-raw', '')}\n"
-      output += code
-      output += "\n```\n"
-    else
-      code = pygments(code, lang).match(/<pre>(.+)<\/pre>/m)[1].gsub(/ *$/, '') #strip out divs <div class="highlight">
+    # Attempt to retrieve cached code
+    cache = nil
+    unless no_cache
+      path  = cache_path || get_cache_path(PYGMENTS_CACHE_DIR, lang, options.to_s + code)
+      cache = read_cache(path)
     end
 
-    code = tableize_code(code, lang, { linenos: linenos, start: start, marks: marks })
-    caption = captionize(caption, url, anchor) if caption
-
-    figure = "<figure class='code'>#{caption}#{code}</figure>"
-    figure = safe_wrap(figure) if wrap
-    figure
+    unless cache
+     if lang == 'plain'
+        # Escape html tags
+        code = code.gsub('<','&lt;')
+      else
+        code = pygments(code, lang).match(/<pre>(.+)<\/pre>/m)[1].gsub(/ *$/, '') #strip out divs <div class="highlight">
+      end
+      code = tableize_code(code, lang, {linenos: linenos, start: start, marks: marks })
+      title = captionize(title, url, link_text) if title
+      code = "<figure class='code'>#{title}#{code}</figure>"
+      code = safe_wrap(code) if escape
+      File.open(path, 'w') {|f| f.print(code) } unless no_cache
+    end
+    cache || code
   end
 
-  def captionize (caption, url, anchor)
-    figcaption  = "<figcaption><span>#{caption}</span>"
-    figcaption += "<a href='#{url}' title='Download code'> #{anchor || 'link'}</a>" if url
+  def read_cache (path)
+    File.exist?(path) ? File.read(path) : nil unless path.nil?
+  end
+
+  def get_cache_path (dir, name, str)
+    File.join(dir, "#{name}-#{Digest::MD5.hexdigest(str)}.html")
+  end
+
+  def captionize (caption, url, link_text)
+    figcaption  = "<figcaption>#{caption}"
+    figcaption += "<a href='#{url}'>#{(link_text || 'link').strip}</a>" if url
     figcaption += "</figcaption>"
   end
 
   def tableize_code (code, lang, options = {})
-    start = options[:start]
-    lines = options[:linenos].nil? ? true : options[:linenos]
-    marks = options[:marks]   || []
+    start = options[:start] || 1
+    lines = options[:linenos] || true
+    marks = options[:marks] || []
     table = "<div class='highlight'><table>"
     table += number_lines(start, code.lines.count, marks) if lines
-    table += "<td class='code'><pre><code class='#{lang}'>"
-    if marks.size
-      code.lines.each_with_index do |line,index|
-        classes = 'line'
-        if marks.include? index + start
-          classes += ' marked'
-          classes += ' start' unless marks.include? index - 1 + start
-          classes += ' end' unless marks.include? index + 1 + start
-        end
-        table += "<span class='#{classes}'>#{line}</span>"
+    table += "<td class='main #{'unnumbered' unless lines} #{lang}'><pre>"
+    code.lines.each_with_index do |line,index|
+      classes = 'line'
+      if marks.include? index + start
+        classes += ' marked'
+        classes += ' start' unless marks.include? index - 1 + start
+        classes += ' end' unless marks.include? index + 1 + start
       end
-    else
-      table += code.gsub /^((.+)?(\n?))/, '<span class=\'line\'>\1</span>'
+      line = line.strip.empty? ? ' ' : line
+      table += "<div class='#{classes}'>#{line}</div>"
     end
-    table +="</code></pre></td></tr></table></div>"
+    table +="</pre></td></tr></table></div>"
   end
 
   def number_lines (start, count, marks)
     start ||= 1
-    lines = "<td class='gutter'><pre class='line-numbers'>"
+    lines = "<td class='line-numbers' aria-hidden='true'><pre>"
     count.times do |index|
-      lines += "<span class='line-number#{' marked' if marks.include? index + start}'>#{index + start}</span>\n"
+      classes = 'line-number'
+      if marks.include? index + start
+        classes += ' marked'
+        classes += ' start' unless marks.include? index - 1 + start
+        classes += ' end' unless marks.include? index + 1 + start
+      end
+      lines += "<div data-line='#{index + start}' class='#{classes}'></div>"
     end
     lines += "</pre></td>"
   end
 
-  def get_lang (input)
-    lang = nil
-    if input =~ /\s*lang:(\w+)/i
-      lang = $1
-    end
-    lang
+  def parse_markup (input)
+    lang      = input.match(/\s*lang:(\w+)/i)
+    title     = input.match(/\s*title:\s*(("(.+?)")|('(.+?)')|(\S+))/i)
+    linenos   = input.match(/\s*linenos:(\w+)/i)
+    escape    = input.match(/\s*escape:(\w+)/i)
+    marks     = get_marks(input)
+    url       = input.match(/\s*url:\s*(("(.+?)")|('(.+?)')|(\S+))/i)
+    link_text = input.match(/\s*link[-_]text:\s*(("(.+?)")|('(.+?)')|(\S+))/i)
+    start     = input.match(/\s*start:(\d+)/i)
+    endline   = input.match(/\s*end:(\d+)/i)
+
+    opts = {
+      lang:         (lang.nil? ? nil : lang[1]),
+      title:        (title.nil? ? nil : title[3] || title[5] || title[6]),
+      linenos:      (linenos.nil? ? nil : linenos[1]),
+      escape:       (escape.nil? ? nil : escape[1]),
+      marks:        marks,
+      url:          (url.nil? ? nil : url[3] || url[5] || url[6]),
+      start:        (start.nil? ? nil : start[1].to_i),
+      end:          (endline.nil? ? nil : endline[1].to_i),
+      link_text:    (link_text.nil? ? nil : link_text[3] || link_text[5] || link_text[6]) 
+    }
+    opts.merge(parse_range(input, opts[:start], opts[:end]))
   end
 
-  def replace_lang (input)
-    input.sub(/ *lang:\w+/i, '')
+  def clean_markup (input)
+    input.sub(/\s*lang:\s*\w+/i, ''
+        ).sub(/\s*title:\s*(("(.+?)")|('(.+?)')|(\S+))/i, ''
+        ).sub(/\s*url:\s*(\S+)/i, ''
+        ).sub(/\s*link_text:\s*(("(.+?)")|('(.+?)')|(\S+))/i, ''
+        ).sub(/\s*mark:\d\S*/i,''
+        ).sub(/\s*linenos:\s*\w+/i,''
+        ).sub(/\s*start:\s*\d+/i,''
+        ).sub(/\s*end:\s*\d+/i,''
+        ).sub(/\s*range:\s*\d+-\d+/i,'')
   end
 
   def get_marks (input)
@@ -128,54 +161,24 @@ module HighlightCode
     marks
   end
 
-  def replace_marks (input)
-    input.sub(/ *mark:\d\S*/i,'')
-  end
-
-  def get_linenos (input)
-    linenos = true
-    if input =~ / *linenos:false/i
-      linenos = false
-    end
-    linenos
-  end
-
-  def replace_linenos (input)
-    input.sub(/ *linenos:false/i,'')
-  end
-
-  def get_start (input)
-    start = 1
-    if input =~ / *start:(\d+)/i
-      start = $1.to_i
-    end
-    start
-  end
-
-  def replace_start (input)
-    input.sub(/ *start:\d+/i,'')
-  end
-
-  def get_end (input)
-    endline = nil
-    if input =~ / *end:(\d+)/i
-      endline = $1.to_i
-    end
-    endline
-  end
-
-  def replace_end (input)
-    input.sub(/ *end:\d+/i,'')
-  end
-
-  def get_range (input, start, endline)
+  def parse_range (input, start, endline)
     if input =~ / *range:(\d+)-(\d+)/i
       start = $1.to_i
       endline = $2.to_i
     end
     {start: start, end: endline}
   end
-  def replace_range (input)
-    input.sub(/ *range:\d+-\d+/i,'')
+  
+  def get_range (code, start, endline)
+    length    = code.lines.count
+    start   ||= 1
+    endline ||= length
+    if start > 1 or endline < length
+      raise "#{filepath} is #{length} lines long, cannot begin at line #{start}" if start > length
+      raise "#{filepath} is #{length} lines long, cannot read beyond line #{endline}" if endline > length
+      code = code.split(/\n/).slice(start - 1, endline + 1 - start).join("\n")
+    end
+    code
   end
+
 end
