@@ -11,6 +11,7 @@ an ASCII text file consisting of lines of float numbers separated by
 whitespaces. In this post, I am gonna show my code (C++ and Python) to load a
 matrix from an ASCII file.
 
+<!-- more -->
 
 ## C++
 
