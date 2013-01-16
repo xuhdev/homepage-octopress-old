@@ -1,12 +1,16 @@
-require "rubygems"
-require "bundler/setup"
-require "stringex"
+require 'rubygems'
+require 'bundler/setup'
+require 'stringex'
+require 'time'
+require 'tzinfo'
 require 'rake/minify'
+require 'time'
 
 ## -- Rsync Deploy config -- ##
 # Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "user@domain.com"
 ssh_port       = "22"
+ssh_key        = ""
 document_root  = "~/website.com/"
 rsync_delete   = true
 deploy_default = "push"
@@ -18,15 +22,16 @@ deploy_branch  = "master"
 
 public_dir      = "public"    # compiled site directory
 source_dir      = "source"    # source file directory
-blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
+blog_index_dir  = "source"    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 deploy_dir      = "_deploy"   # deploy directory (for GitHub pages deployment)
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
 new_post_ext    = "markdown"  # default new post file extension when using the new_post task
 new_page_ext    = "markdown"  # default new page file extension when using the new_page task
+timezone        = "local"     # default time and date used to local timezone. Timezones (under TZ column): http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 server_host     = ENV['OCTOPRESS_IP']   || '0.0.0.0'   # host ip address for preview server
-server_port     = ENV['OCTOPRESS_PORT'] || "4000"      # port for preview server eg. localhost:4000
+server_port     = ENV['OCTOPRESS_PORT'] || '4000'      # port for preview server eg. localhost:4000
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
@@ -49,12 +54,15 @@ end
 #######################
 
 desc "Generate jekyll site"
-task :generate do
+task :generate, :no_future do |t, args|
+  future = args.no_future
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "## Generating Site with Jekyll"
   system "compass compile --css-dir #{source_dir}/stylesheets"
   Rake::Task['minify_and_combine'].execute
-  system "jekyll --no-server --no-auto"
+  system "jekyll --no-server --no-auto #{'--no-future' if future.nil?}"
+  unpublished = get_unpublished(Dir.glob("#{source_dir}/#{posts_dir}/*.*"), {no_future: future.nil?, message: "\nThese posts were not generated:"})
+  puts unpublished unless unpublished.empty?
 end
 
 Rake::Minify.new(:minify_and_combine) do
@@ -92,12 +100,13 @@ task :generate_only, :filename do |t, args|
 end
 
 desc "Watch the site and regenerate when it changes"
-task :watch do
+task :watch, :show_future do |t, args|
+  future = args.show_future
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "Starting to watch source with Jekyll and Compass."
   system "compass compile --css-dir #{source_dir}/stylesheets"
   Rake::Task['minify_and_combine'].execute
-  jekyllPid = Process.spawn("jekyll --auto")
+  jekyllPid = Process.spawn("jekyll --auto #{'--no-future' if future.nil?}")
   compassPid = Process.spawn("compass watch")
   trap("INT") {
     [jekyllPid, compassPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
@@ -106,12 +115,13 @@ task :watch do
   [jekyllPid, compassPid].each { |pid| Process.wait(pid) }
 end
 
-desc "preview the site in a web browser"
-task :preview do
+desc "preview the site in a web browser."
+task :preview, :show_future do |t, args|
+  future = args.show_future
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "Starting to watch source with Jekyll and Compass. Starting Rack, serving to http://#{server_host}:#{server_port}"
   system "compass compile --css-dir #{source_dir}/stylesheets"
-  jekyllPid = Process.spawn("jekyll --auto")
+  jekyllPid = Process.spawn("jekyll --auto #{'--no-future' if future.nil?}")
   compassPid = Process.spawn("compass watch")
   rackupPid = Process.spawn("rackup --host #{server_host} --port #{server_port}")
 
@@ -132,8 +142,9 @@ task :new_post, :title do |t, args|
     title = get_stdin("Enter a title for your post: ")
   end
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
+  time = now_in_timezone(timezone) 
   mkdir_p "#{source_dir}/#{posts_dir}"
-  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
+  filename = "#{source_dir}/#{posts_dir}/#{time.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
   if File.exist?(filename)
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
   end
@@ -142,7 +153,7 @@ task :new_post, :title do |t, args|
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
-    post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
+    post.puts "date: #{time.iso8601}"
     post.puts "comments: true"
     post.puts "external-url: "
     post.puts "categories: "
@@ -174,11 +185,12 @@ task :new_page, :filename do |t, args|
       abort("rake aborted!") if ask("#{file} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
     end
     puts "Creating new page: #{file}"
+    time = now_in_timezone(timezone) 
     open(file, 'w') do |page|
       page.puts "---"
       page.puts "layout: page"
       page.puts "title: \"#{title}\""
-      page.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
+      page.puts "date: #{time.iso8601}"
       page.puts "comments: true"
       page.puts "sharing: true"
       page.puts "footer: true"
@@ -267,7 +279,6 @@ task :update_source, :theme do |t, args|
   puts "## Updated #{source_dir} ##"
 end
 
-
 ##############
 # Deploying  #
 ##############
@@ -288,7 +299,7 @@ task :rsync do
     exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
   end
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync -avze 'ssh -p #{ssh_port} #{'-i' + ssh_key unless ssh_key.empty?}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"
@@ -326,7 +337,7 @@ multitask :push do
       end
     end
   else
-    puts "This project isn't configured for deploying to GitHub Pages\nPlease run `rake setup_github_pages[your-deployment-repo-url]`." 
+    puts "This project isn't configured for deploying to GitHub Pages\nPlease run `rake setup_github_pages[your-deployment-repo-url]`."
   end
 end
 
@@ -382,14 +393,14 @@ task :setup_github_pages, :repo do |t, args|
   unless repo_url[-4..-1] == ".git"
     repo_url << ".git"
   end
-  raise "!! The repo URL that was input was malformed." unless repo_url.match(/https:\/\/github.com\/[^\/]+\/[^\/]+/) or repo_url.match(/git@github.com:[^\/]+\/[^\/]+/)
-  user_match = repo_url.match(/(:([^\/]+)|(github.com\/([^\/]+)))/)
+  raise "!! The repo URL that was input was malformed." unless (repo_url =~ /https:\/\/github\.com\/[^\/]+\/[^\/]+/).nil? or (repo_url =~ /git@github\.com:[^\/]+\/[^\/]+/).nil?
+  user_match = repo_url.match(/(:([^\/]+)|(github\.com\/([^\/]+)))/)
   user = user_match[2] || user_match[4]
-  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? 'gh-pages' : 'master'
+  branch = (repo_url =~ /\/[\w-]+\.github\.com/).nil? ? 'gh-pages' : 'master'
   project = (branch == 'gh-pages') ? repo_url.match(/\/(.+)(\.git)/)[1] : ''
   url = "http://#{user}.github.com"
   url += "/#{project}" unless project == ''
-  unless `git remote -v`.match(/origin.+?octopress.git/).nil?
+  unless (`git remote -v` =~ /origin.+?octopress(?:\.git)?/).nil?
     # If octopress is still the origin remote (from cloning) rename it to octopress
     system "git remote rename origin octopress"
     if branch == 'master'
@@ -432,12 +443,12 @@ task :setup_github_pages, :repo do |t, args|
     f.write rakefile
   end
 
-  # Configure published url 
+  # Configure published url
   jekyll_config = IO.read('_config.yml')
   current_url = /^url:\s?(.*$)/.match(jekyll_config)[1]
   has_cname = File.exists?("#{source_dir}/CNAME")
   if current_url == 'http://yoursite.com'
-    jekyll_config.sub!(/^url:.*$/, "url: #{url}") 
+    jekyll_config.sub!(/^url:.*$/, "url: #{url}")
     File.open('_config.yml', 'w') do |f|
       f.write jekyll_config
     end
@@ -466,6 +477,31 @@ task :setup_github_pages, :repo do |t, args|
   puts "========================================================"
 end
 
+# usage rake list_posts or rake list_posts[pub|unpub]
+desc "List all unpublished/draft posts"
+task :list_drafts do
+  posts = Dir.glob("#{source_dir}/#{posts_dir}/*.*") 
+  unpublished = get_unpublished(posts)
+  puts unpublished.empty? ? "There are no posts currently in draft" : unpublished
+end
+
+def get_unpublished(posts, options={})
+  result = ""
+  message = options[:message] || "These Posts will not be published:"
+  posts.sort.each do |post|
+    file = File.read(post)
+    data = YAML.load file.match(/(^-{3}\n)(.+?)(\n-{3})/m)[2]
+    
+    if options[:no_future]
+      future = Time.now < Time.parse(data['date'].to_s) ? "future date: #{data['date']}" : false
+    end
+    draft = data['published'] == false ? 'published: false' : false
+    result << "- #{data['title']} (#{draft or future})\n" if draft or future
+  end
+  result = "#{message}\n" + result unless result.empty?
+  result
+end
+
 def ok_failed(condition)
   if (condition)
     puts "OK"
@@ -486,6 +522,28 @@ def ask(message, valid_options)
     answer = get_stdin(message)
   end
   answer
+end
+
+def now_in_timezone(timezone)
+  time = Time.now
+  unless timezone.nil? || timezone.empty? || timezone == 'local'
+    tz = TZInfo::Timezone.get(timezone) #setup Timezone object
+    adjusted_time = tz.utc_to_local(time.utc) #time object without correct offset
+    #time object with correct offset
+    time = Time.new(
+      adjusted_time.year,
+      adjusted_time.month,
+      adjusted_time.day,
+      adjusted_time.hour,
+      adjusted_time.min,
+      adjusted_time.sec,
+      tz.period_for_utc(time.utc).utc_total_offset())
+    #convert offset to utc instead of just ±0 if that was specified
+    if ['utc','zulu','universal','uct','gmt','gmt0','gmt+0','gmt-0'].include? timezone.downcase
+      time = time.utc
+    end
+  end
+  time
 end
 
 desc "list tasks"
