@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Load A Matrix from An Ascii Format File (C++ and Python)"
+title: "Load A Matrix from An ASCII Format File (C++ and Python)"
 date: 2013-01-10 11:48
 comments: true
 categories: [C++, Python, Scientific]
