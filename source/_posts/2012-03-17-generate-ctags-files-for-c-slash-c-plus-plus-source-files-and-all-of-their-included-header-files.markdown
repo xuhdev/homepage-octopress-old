@@ -19,7 +19,7 @@ use the following command:
 For some users that need more info of the symbols, they may use this command
 instead:
 
-    ctags –R --c++-kinds=+p --fields=+iaS --extra=+q .
+    ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 
 No matter which one you use, the generated tags file only contains the symbols
 in the files in your project source tree, but not any external file, such as
@@ -30,7 +30,7 @@ files first, and let the editor or IDE read both the generated tags file and the
 tags file for the project source tree. For example, the following command will
 generate a tags file for all your system header files on UNIX/Linux:
 
-    ctags –R --c++-kinds=+p --fields=+iaS --extra=+q /usr/include
+    ctags -R --c++-kinds=+p --fields=+iaS --extra=+q /usr/include
 
 This command usually takes a very long time to finish, and finally it gives a
 quite large tags file, which causes the editor or IDE a long time to search this
