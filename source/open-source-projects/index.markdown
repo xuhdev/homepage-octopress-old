@@ -110,20 +110,9 @@ line programs, which will be read by CmdLauncher.
 
 ## Donate
 
-You may want to make a donation if you would like to support my projects:
+I would appreciate it if you would like to support my projects by donating on
+[GitTip][].
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-  <input type="hidden" name="cmd" value="_donations">
-  <input type="hidden" name="business" value="xuhdev@gmail.com">
-  <input type="hidden" name="lc" value="US">
-  <input type="hidden" name="item_name" value="Hong Xu">
-  <input type="hidden" name="no_note" value="0">
-  <input type="hidden" name="currency_code" value="USD">
-  <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
-  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-
-</form>
 
 
 [CmdLauncher]: http://cmdlauncher.nongnu.org
@@ -147,3 +136,4 @@ You may want to make a donation if you would like to support my projects:
 [syntax/dosini.vim]: http://www.vim.org/scripts/script.php?script_id=3747
 [tags2db]: http://xuhdev.github.com/tags2db
 [vimscript]: http://en.wikipedia.org/wiki/Vim_script
+[GitTip]: https://www.gittip.com/xuhdev/
