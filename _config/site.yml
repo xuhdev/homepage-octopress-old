@@ -8,6 +8,7 @@ title: Hong Xu
 subtitle: Hong's Personal Technology Blog
 author: Hong Xu
 
+recent_posts: 10 # Posts in the sidebar Recent Posts section
 
 # ----------------------- #
 #    Jekyll & Plugins     #
