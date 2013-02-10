@@ -46,7 +46,7 @@ Give this file execute permission:
 
     chmod +x git-archive-all
 
-Then copy this script to one of your directory in the
+Then copy this script to one of your directories in the
 [PATH environment variable](http://en.wikipedia.org/wiki/PATH_\(variable\))
 and switch your working directory to the root directory of your Git repository.
 Run the following command to archive the Git repository and its submodules:
@@ -54,7 +54,7 @@ Run the following command to archive the Git repository and its submodules:
     git-archive-all [archive-file-name.format]
 
 If the above command does not work (probably because your Python interpreter
-executable is installed somewhere other than `/usr/bin`), try:
+executable is installed somewhere other than **/usr/bin**), try:
 
     python /path/to/git-archive-all [archive-file-name.format]
 
@@ -62,10 +62,13 @@ For example:
 
     git-archive-all my-archive.tar.gz
 
-Then a compressed file `my-archive.tar.gz` will appear in your working
+Then a compressed file **my-archive.tar.gz** will show up in your working
 directory. You don't need to specify a compression format like the Git's
 Archive command -- git-archive-all will decide the format based on the
 suffix of your file name, such as [tar.gz][tar], [zip][].
+
+_For [Homebrew][] users on Mac OS X: Simply run `brew install git-archive-all`
+to finish the installation. Then use `git-archive-all` command as above._
 
 ### If you are working on Windows
 
@@ -80,10 +83,10 @@ For example:
 
     python C:\python_scripts\git-archive-all my-archive.zip
 
-Then a compressed file `my-archive.zip` will appear in your working directory.
-You don't need to specify a compression format like the Git's Archive command --
-git-archive-all will decide the format based on the suffix of your file name,
-such as [tar.gz][tar], [zip][].
+Then a compressed file **my-archive.zip** will show up in your working
+directory.  You don't need to specify a compression format like the Git's
+Archive command -- git-archive-all will decide the format based on the suffix
+of your file name, such as [tar.gz][tar], [zip][].
 
 ## More
 
@@ -93,6 +96,7 @@ interested, please visit [its homepage][git-archive-all].
 
 [Distributed Version Control System]: http://en.wikipedia.org/wiki/Distributed_revision_control
 [Git]: http://www.git-scm.com
+[Homebrew]: http://mxcl.github.com/homebrew/
 [Python]: http://www.python.org
 [git-archive-all]: https://github.com/Kentzo/git-archive-all
 [tar]: http://en.wikipedia.org/wiki/Tar_(file_format)

@@ -1,6 +1,5 @@
 ---
-# -------------------------- #
-#   User Deployment Config   #
-# -------------------------- #
-
-deploy_default: rsync
+deploy_branch: master
+deploy_dir: _deploy
+copy_dot_files: []
+deploy_default: push
