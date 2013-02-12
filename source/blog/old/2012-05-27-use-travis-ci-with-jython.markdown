@@ -5,6 +5,9 @@ comments: false
 footer: false
 ---
 
+_This method is already outdated. View the updated working version of this post
+[here]({{ root_url }}/blog/2012/05/27/use-travis-ci-with-jython/)._
+
 [Travis CI][] is a hosted continuous integration service for the open source
 community, helping run tests for your [GitHub][] projects for every single push
 and pull request. However, by the time this post is written, Travis CI has not
