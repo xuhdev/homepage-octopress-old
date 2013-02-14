@@ -21,7 +21,7 @@
       <p>A Vim plugin making it more convenient to compile and run a single source file.</p>
       <p class="view"><a href="https://github.com/xuhdev/SingleCompile">View the Project on GitHub <small>xuhdev/SingleCompile</small></a></p>
       <ul>
-        <li><a href="http://www.vim.org/scripts/download_script.php?src_id=17958">Download <strong>ZIP File</strong></a></li>
+        <li><a href="http://www.vim.org/scripts/download_script.php?src_id=19513">Download <strong>ZIP File</strong></a></li>
         <li><a href="https://github.com/xuhdev/SingleCompile">View On <strong>GitHub</strong></a></li>
         <li><a href="http://www.vim.org/scripts/script.php?script_id=3115">View On <strong>Vim Online</strong></a></li>
       </ul>
@@ -207,6 +207,11 @@ nmap &lt;F10&gt; :SCCompileRun&lt;cr&gt;
           <li>sol-studio-f95 (Sun Fortran 95 Compiler(Sun Solaris Studio)), UNIX only</li>
         </ul>
 
+        <li>Go</li>
+        <ul>
+          go (Go)
+        </ul>
+
         <li>Haskell</li>
         <ul>
           <li>ghc (Glasgow Haskell Compiler)</li>
@@ -254,6 +259,7 @@ nmap &lt;F10&gt; :SCCompileRun&lt;cr&gt;
         <ul>
           <li>latex (LaTeX)</li>
           <li>pdflatex (pdfLaTeX)</li>
+          <li>latexmk (Automatic LaTeX document generation routine)</li>
         </ul>
 
         <li>LISP</li>
@@ -308,7 +314,8 @@ nmap &lt;F10&gt; :SCCompileRun&lt;cr&gt;
           <li>ironpython (IronPython)</li>
           <li>jython (Jython)</li>
           <li>pypy (PyPy)</li>
-          <li>python (Python Interpreter)</li>
+          <li>python (Python Interpreter, usually the system default Python, no matter it is Python 2 or 3.)</li>
+          <li>python2 (Python 2 Interpreter)</li>
           <li>python3 (Python 3 Interpreter)</li>
         </ul>
 
@@ -325,6 +332,12 @@ nmap &lt;F10&gt; :SCCompileRun&lt;cr&gt;
         <li>Ruby</li>
         <ul>
           <li>ruby (Ruby Interpreter)</li>
+        </ul>
+
+        <li>Scala</li>
+        <ul>
+          <li>scala (Scala compiler)</li>
+          Note Vim does not detect scala out of the box. See https://github.com/bjartek/scala-vim-support
         </ul>
 
         <li>sh</li>
