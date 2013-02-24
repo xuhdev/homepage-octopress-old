@@ -23,7 +23,7 @@ was born to solve this problem, making this process more convenient and
 powerful than simply defining a few key mappings:
 
 -  Compile or run the source file quickly using [quickfix feature][quickfix]
-   and [compiler feature][] of vim;
+   and [compiler feature][] of Vim;
 -  Auto detecting compilers and interpreters;
 -  Fast switch between several installed compilers or interpreters;
 -  Multi-language support;
