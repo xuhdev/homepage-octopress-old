@@ -6,7 +6,6 @@ require "stringex"
 require 'time'
 require 'tzinfo'
 require 'rake/minify'
-require 'time'
 require 'yaml'
 require 'octopress'
 
@@ -18,7 +17,9 @@ require 'octopress'
 ###   Please do not change anything below if you want help --
 ###   otherwise, you're on your own ;-)
 
-configuration = Octopress::Configuration.read_configuration
+configurator   = Octopress::Configuration.new
+configuration  = configurator.read_configuration
+full_stash_dir = "#{configuration[:source]}/#{configuration[:stash_dir]}"
 
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
@@ -44,14 +45,14 @@ desc "Generate jekyll site"
 task :generate, :no_future do |t, args|
   future = args.no_future
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(configuration[:source])
-  Octopress::Configuration.write_configs_for_generation
+  configurator.write_configs_for_generation
   puts "## Generating Site with Jekyll"
   system "compass compile --css-dir #{configuration[:source]}/stylesheets"
   Rake::Task['minify_and_combine'].execute
   system "jekyll --no-server --no-auto #{'--no-future' if future.nil?}"
   unpublished = get_unpublished(Dir.glob("#{configuration[:source]}/#{configuration[:posts_dir]}/*.*"), {no_future: future.nil?, message: "\nThese posts were not generated:"})
   puts unpublished unless unpublished.empty?
-  Octopress::Configuration.remove_configs_for_generation
+  configurator.remove_configs_for_generation
 end
 
 Rake::Minify.new(:minify_and_combine) do
@@ -92,7 +93,7 @@ desc "Watch the site and regenerate when it changes"
 task :watch, :show_future do |t, args|
   future = args.show_future
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(configuration[:source])
-  Octopress::Configuration.write_configs_for_generation
+  configurator.write_configs_for_generation
   puts "Starting to watch source with Jekyll and Compass."
   system "compass compile --css-dir #{configuration[:source]}/stylesheets"
   Rake::Task['minify_and_combine'].execute
@@ -100,7 +101,7 @@ task :watch, :show_future do |t, args|
   compassPid = Process.spawn("compass watch")
   trap("INT") {
     [jekyllPid, compassPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
-    Octopress::Configuration.remove_configs_for_generation
+    configurator.remove_configs_for_generation
     exit 0
   }
   [jekyllPid, compassPid].each { |pid| Process.wait(pid) }
@@ -110,7 +111,7 @@ desc "preview the site in a web browser."
 task :preview, :show_future do |t, args|
   future = args.show_future
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(configuration[:source])
-  Octopress::Configuration.write_configs_for_generation
+  configurator.write_configs_for_generation
   puts "Starting to watch source with Jekyll and Compass. Starting Rack, serving to http://#{configuration[:server_host]}:#{configuration[:server_port]}"
   system "compass compile --css-dir #{configuration[:source]}/stylesheets"
   jekyllPid = Process.spawn("jekyll --auto #{'--no-future' if future.nil?}")
@@ -119,7 +120,7 @@ task :preview, :show_future do |t, args|
 
   trap("INT") {
     [jekyllPid, compassPid, rackupPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
-    Octopress::Configuration.remove_configs_for_generation
+    configurator.remove_configs_for_generation
     exit 0
   }
 
@@ -135,7 +136,7 @@ task :new_post, :title do |t, args|
     title = get_stdin("Enter a title for your post: ")
   end
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(configuration[:source])
-  time = now_in_timezone(configuration[:timezone]) 
+  time = now_in_timezone(configuration[:timezone])
   mkdir_p "#{configuration[:source]}/#{configuration[:posts_dir]}"
   filename = "#{configuration[:source]}/#{configuration[:posts_dir]}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{configuration[:new_post_ext]}"
   if File.exist?(filename)
@@ -178,7 +179,7 @@ task :new_page, :filename do |t, args|
       abort("rake aborted!") if ask("#{file} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
     end
     puts "Creating new page: #{file}"
-    time = now_in_timezone(timezone) 
+    time = now_in_timezone(configuration[:timezone])
     open(file, 'w') do |page|
       page.puts "---"
       page.puts "layout: page"
@@ -195,23 +196,22 @@ task :new_page, :filename do |t, args|
 end
 
 # usage rake isolate[my-post]
-desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much quicker."
+desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much more quickly."
 task :isolate, :filename do |t, args|
   if args.filename
     filename = args.filename
   else
     filename = get_stdin("Enter a post file name: ")
   end
-  full_configuration[:stash_dir] = "#{configuration[:source]}/#{configuration[:stash_dir]}"
-  FileUtils.mkdir(full_configuration[:stash_dir]) unless File.exist?(full_configuration[:stash_dir])
+  FileUtils.mkdir(full_stash_dir) unless File.exist?(full_stash_dir)
   Dir.glob("#{configuration[:source]}/#{configuration[:posts_dir]}/*.*") do |post|
-    FileUtils.mv post, full_configuration[:stash_dir] unless post.include?(filename)
+    FileUtils.mv post, full_stash_dir unless post.include?(filename)
   end
 end
 
 desc "Move all stashed posts back into the posts directory, ready for site generation."
 task :integrate do
-  FileUtils.mv Dir.glob("#{configuration[:source]}/#{configuration[:stash_dir]}/*.*"), "#{configuration[:source]}/#{configuration[:posts_dir]}/"
+  FileUtils.mv Dir.glob("#{full_stash_dir}/*.*"), "#{configuration[:source]}/#{configuration[:posts_dir]}/"
 end
 
 desc "Clean out caches: .pygments-cache, .gist-cache, .sass-cache"
@@ -348,12 +348,12 @@ task :set_root_dir, :dir do |t, args|
       dir = "/" + args.dir.sub(/(\/*)(.+)/, "\\2").sub(/\/$/, '');
     end
     # update personal configuration
-    site_configs = Octopress::Configuration.read_config('site.yml')
+    site_configs = configurator.read_config('site.yml')
     site_configs[:destination] = "public#{dir}"
     site_configs[:subscribe_rss] = "#{dir}/atom.xml"
     site_configs[:root] = "/#{dir.sub(/^\//, '')}"
-    Octopress::Configuration.write_config('site.yml', site_configs)
-    
+    configurator.write_config('site.yml', site_configs)
+
     rm_rf configuration[:destination]
     mkdir_p site_configs[:destination]
     puts "\n========================================================"
@@ -368,7 +368,9 @@ task :setup_github_pages, :repo do |t, args|
   if args.repo
     repo_url = args.repo
   else
-    repo_url = get_stdin("Enter the read/write url for your repository: ")
+    puts "Enter the read/write url for your repository"
+    puts "(For example, 'git@github.com:your_username/your_username.github.com)"
+    repo_url = get_stdin("Repository url: ")
   end
   unless repo_url[-4..-1] == ".git"
     repo_url << ".git"
@@ -416,17 +418,17 @@ task :setup_github_pages, :repo do |t, args|
   end
 
   # Configure deployment setup in deploy.yml
-  deploy_configuration = Octopress::Configuration.read_config('deploy.yml')
+  deploy_configuration = configurator.read_config('deploy.yml')
   deploy_configuration[:deploy_default] = "push"
   deploy_configuration[:deploy_branch]  = branch
-  deploy_configuration = Octopress::Configuration.read_config('defaults/deploy/gh_pages.yml').deep_merge(deploy_configuration)
+  deploy_configuration = configurator.read_config('defaults/deploy/gh_pages.yml').deep_merge(deploy_configuration)
   puts deploy_configuration
-  Octopress::Configuration.write_config('deploy.yml', deploy_configuration)
+  configurator.write_config('deploy.yml', deploy_configuration)
 
   # Configure published url
-  site_configuration = Octopress::Configuration.read_config('site.yml')
+  site_configuration = configurator.read_config('site.yml')
   site_configuration[:url] = url if site_configuration.has_key?(:url) && site_configuration[:url] == 'http://yoursite.com'
-  site_configuration = Octopress::Configuration.read_config('defaults/jekyll.yml').deep_merge(site_configuration)
+  site_configuration = configurator.read_config('defaults/jekyll.yml').deep_merge(site_configuration)
 
   puts "\n========================================================"
   has_cname = File.exists?("#{configuration[:source]}/CNAME")
@@ -454,7 +456,7 @@ end
 # usage rake list_posts or rake list_posts[pub|unpub]
 desc "List all unpublished/draft posts"
 task :list_drafts do
-  posts = Dir.glob("#{configuration[:source]}/#{configuration[:posts_dir]}/*.*") 
+  posts = Dir.glob("#{configuration[:source]}/#{configuration[:posts_dir]}/*.*")
   unpublished = get_unpublished(posts)
   puts unpublished.empty? ? "There are no posts currently in draft" : unpublished
 end
@@ -465,7 +467,7 @@ def get_unpublished(posts, options={})
   posts.sort.each do |post|
     file = File.read(post)
     data = YAML.load file.match(/(^-{3}\n)(.+?)(\n-{3})/m)[2]
-    
+
     if options[:no_future]
       future = Time.now < Time.parse(data['date'].to_s) ? "future date: #{data['date']}" : false
     end
