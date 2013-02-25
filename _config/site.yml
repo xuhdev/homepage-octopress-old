@@ -62,6 +62,9 @@ google_plus_user: xuhdev
 google_plus_hidden: true
 google_plus_image_size: 32
 
+# Use comment
+use_comments: true
+
 # Disqus Comments
 disqus_short_name: xuhdev-homepage
 disqus_show_comment_count: true
