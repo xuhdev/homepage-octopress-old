@@ -87,9 +87,9 @@ Run the following command in `myapp-package` directory to test your package:
 
 The easiest way (or, to be more accurate, the easiest way to learn) to publish
 the package is to use the web interface. First, go to
-[http://chocolatey.org/][Chocolatey] and get an account. Go to the [Upload
-Package][] page, and upload your package there. Done!  There is an alternative
-way to publish the package on command line, see [cpush][].
+[http://chocolatey.org/][Chocolatey] and create an account. Go to the
+[Upload Package][] page, and upload your package there. Done!  There is an
+alternative way to publish the package on command line, see [cpush][].
 
 ## 
 
