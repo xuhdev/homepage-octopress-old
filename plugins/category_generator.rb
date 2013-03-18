@@ -19,6 +19,8 @@
 # - category_title_prefix: The string used before the category name in the page title (default is
 #                          'Category: ').
 
+require 'stringex'
+
 module Jekyll
 
   # The CategoryIndex class creates a single category page for the specified category.
@@ -115,7 +117,7 @@ module Jekyll
           else
             slug = title = category
           end
-          cat_dir = slug.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase
+          cat_dir = slug.to_url
           cat_dir = File.join(dir, cat_dir) unless dir.nil? or dir.empty?
           self.write_category_index(cat_dir, category, title)
         end
@@ -162,7 +164,6 @@ ERR
     #
     def category_links(categories)
       categories = categories.sort!.map { |c| category_link c }
-
       case categories.length
       when 0
         ""
@@ -187,7 +188,7 @@ ERR
         slug = title = category
       end
       dir = @context.registers[:site].config['category_dir']
-      url = slug.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase
+      url = slug.to_url
       url = "#{dir}/#{url}" unless dir.nil? or dir.empty?
       "<a class='category' href='/#{url}/'>#{title}</a>"
     end
