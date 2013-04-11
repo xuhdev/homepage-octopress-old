@@ -382,7 +382,7 @@ task :rsync do
     ""
   end
   document_root = ensure_trailing_slash(configuration[:document_root])
-  ok_failed system("rsync -avze 'ssh -p #{configuration[:ssh_port]} #{ssh_key}' #{exclude} #{configuration[:rsync_args]} #{"--delete" unless !configuration[:rsync_delete]} #{ensure_trailing_slash(configuration[:destination])} #{configuration[:ssh_user]}:#{document_root}")
+  ok_failed system("rsync -avze 'ssh -p #{configuration[:ssh_port]} #{ssh_key}' #{exclude} #{configuration[:rsync_args]} #{"--delete-after" unless !configuration[:rsync_delete]} #{ensure_trailing_slash(configuration[:destination])} #{configuration[:ssh_user]}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"
@@ -506,7 +506,7 @@ task :setup_github_pages, :repo do |t, args|
     unless exit_status.success?
       error = ''
       while line = stdout_err.gets do error << line end
-      puts "Be sure your repo (#{repo_url}) is set up properly and try again".red 
+      puts "Be sure your repo (#{repo_url}) is set up properly and try again".red
       abort error
     end
   end
