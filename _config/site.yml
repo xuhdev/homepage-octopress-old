@@ -66,9 +66,10 @@ google_plus_image_size: 32
 use_comments: true
 
 # Disqus Comments
-disqus_short_name: xuhdev-homepage
-disqus_show_comment_count: true
-disqus_developer: 0
+disqus:
+  short_name: xuhdev-homepage
+  show_comment_count: true
+  developer: 0
 
 # Google Analytics
 google_analytics_tracking_id: UA-29984794-1
