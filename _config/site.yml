@@ -78,4 +78,4 @@ google_analytics_tracking_id: UA-29984794-1
 gauges_analytics_tracking_id:
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
