@@ -19,7 +19,10 @@ using [Homebrew][] in Mac OS X and set them as default.
 ## Install Homebrew
 
 First, visit [Homebrew][] homepage and follow the installation instructions to
-install Homebrew. Shortcut: use the following command to install:
+install Homebrew.
+
+Shortcut: install the latest [XCode]() and then run the following command to
+install:
 
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
@@ -47,9 +50,9 @@ Then you may probably want to install the following ones:
     brew install gawk
     brew install wget
 
-The `--default-names` option will prevent Homebrew from append **g**s to the
-newly installed commands, thus we could use these commands as default ones over
-the ones shipped by OS X.
+The `--default-names` option will prevent Homebrew from prepending **g**s to
+the newly installed commands, thus we could use these commands as default ones
+over the ones shipped by OS X.
 
 Now you should have an easier command line system in your OS X. Have fun with
 them!
@@ -58,6 +61,7 @@ them!
 
 
 
+[GNU Coreutils]: http://en.wikipedia.org/wiki/GNU_Core_Utilities
 [Homebrew]: http://brew.sh
 [POSIX]: http://en.wikipedia.org/wiki/POSIX
-[GNU Coreutils]: http://en.wikipedia.org/wiki/GNU_Core_Utilities
+[XCode]: https://developer.apple.com/xcode/
