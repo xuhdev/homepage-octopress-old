@@ -7,12 +7,12 @@ external-url:
 categories: [Mac OS X, GNU, Software Development]
 ---
 
-If you moved onto Mac OS X from Linux, you would probably find out that the
-command line tools shipped with Mac OS X are not as powerful and easy to use as
-the tools in Linux. The reason is that Mac OS X uses the BSD version command
-line tools, which are different from the Linux version, while they are both
-compliant with [POSIX][] standards. But we can easily install the GNU tools by
-using [Homebrew][] in Mac OS X and set them as default.
+If you are moving onto Mac OS X from Linux, you would probably find out that
+the command line tools shipped with Mac OS X are not as powerful and easy to
+use as the tools in Linux. The reason is that Mac OS X uses the BSD version
+command line tools, which are different from the Linux version, while they are
+both compliant with [POSIX][] standards. But we can easily install the GNU
+tools by using [Homebrew][] in Mac OS X and set them as default.
 
 <!-- more -->
 
