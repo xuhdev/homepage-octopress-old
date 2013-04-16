@@ -36,7 +36,7 @@ post_sidebar: my_main_sidebar.html
 
 # Javascript social buttons often generate lots of http requests and may track your viewer's browsing history
 # Show respect for privacy and bandwidth with simple links for Twitter, Facebook and Google Plus.
-respectfully_social: true
+respectfully_social: false
 
 # Github repositories
 github_user: xuhdev
