@@ -15,16 +15,17 @@ module Octopress
       unless Octopress.configuration.has_key? :require_js
         abort "No :require_js key in configuration. Cannot proceed.".red
       end
-      unless Octopress.configuration[:require_js].has_key? :globals
-        abort "No :globals key in :require_js configuration. Cannot proceed.".red
+      unless Octopress.configuration[:require_js].has_key? :lib
+        abort "No :lib key in :require_js configuration. Cannot proceed.".red
       end
       unless Octopress.configuration[:require_js].has_key? :modules
         abort "No :modules key in :require_js configuration. Cannot proceed.".red
       end
 
       # Read js dependencies from require_js.yml configuration
-      @globals = Octopress.configuration[:require_js][:globals].collect {|item| Dir.glob("#{@js_assets_path}/#{item}") }.flatten.uniq
-      @modules = Octopress.configuration[:require_js][:modules].collect {|item| Dir.glob("#{@js_assets_path}/#{item}") }.flatten.uniq
+      @lib = Octopress.configuration[:require_js][:lib].collect {|item| Dir.glob("#{@js_assets_path}/#{item}") }.flatten.uniq
+      @modules = Octopress.configuration[:require_js][:modules].collect {|item| "#{@js_assets_path}/#{item}" }.flatten.uniq
+      @module_files = @modules.collect {|item| Dir[item+'/**/*'] }.flatten.uniq
 
       @template_path = File.expand_path("../../#{Octopress.configuration[:source]}", File.dirname(__FILE__))
       @build_path = "/javascripts/build"
@@ -32,7 +33,7 @@ module Octopress
 
 
     def get_fingerprint
-      Digest::MD5.hexdigest(@modules.concat(@globals).uniq.map! do |path|
+      Digest::MD5.hexdigest(@module_files.concat(@lib).uniq.map! do |path|
         "#{File.mtime(path).to_i}"
       end.join)
     end
@@ -51,8 +52,7 @@ module Octopress
       if File.exists?(file) and File.open(file) {|f| f.readline} =~ /#{@fingerprint}/
         false
       else
-        modules = @modules.delete_if { |f| @globals.include? f }
-        js = Stitch::Package.new(:dependencies => @globals, :paths => modules).compile
+        js = Stitch::Package.new(:dependencies => @lib, :paths => @modules).compile
         js = "/* Octopress fingerprint: #{@fingerprint} */\n" + js
         js = Uglifier.new.compile js if Octopress.env == 'production'
         write_path = "#{@template_path}/#{@build_path}"
@@ -66,3 +66,4 @@ module Octopress
     end
   end
 end
+
