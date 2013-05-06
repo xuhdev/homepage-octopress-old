@@ -50,6 +50,7 @@ Then you may probably want to install the following ones:
     brew install grep --default-names
     brew install gawk
     brew install screen
+    brew install watch
     brew install wget
 
 The `--default-names` option will prevent Homebrew from prepending **g**s to
