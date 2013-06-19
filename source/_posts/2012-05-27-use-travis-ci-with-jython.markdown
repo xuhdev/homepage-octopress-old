@@ -7,6 +7,9 @@ external-url:
 categories: [Python, Jython, Java, GitHub, Travis CI, Software Development]
 ---
 
+_This page has been translated into [Spanish](http://www.webhostinghub.com/support/es/misc/utilice-travis-ci-con)
+language by Maria Ramos from [Webhostinghub.com](https://plus.google.com/100699836350835346064/posts)._
+
 _This post was updated on Feb 11, 2013, since the old way never works now.
 However, the original post is still available
 [here]({{ root_url }}/blog/old/2012-05-27-use-travis-ci-with-jython.html)._
