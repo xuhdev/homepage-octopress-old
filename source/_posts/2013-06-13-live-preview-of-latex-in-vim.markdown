@@ -62,7 +62,7 @@ A simple screenshot:
 ## An Alternative
 
 An alternative might be [Kevin Klement's vim-live-latex-preview](https://github.com/ying17zi/vim-live-latex-preview),
-which I haven't tried out.
+which I haven't tried out though.
 
 
 [Vim-LaTeX]: http://vim-latex.sourceforge.net/
