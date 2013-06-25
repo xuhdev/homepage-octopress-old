@@ -9,6 +9,9 @@ categories: [Software Development, GitHub, git]
 
 {% include custom/post_initialization.html %}
 
+This page has been translated into [Spanish](http://www.webhostinghub.com/support/es/misc/coloque-una-solicitud)
+language by Maria Ramos from [Webhostinghub.com](https://plus.google.com/100699836350835346064/posts).
+
 [GitHub][] users may have this experience: after reporting an issue for a
 project on GitHub, you suddenly found a solution to fix it. Then you want to
 attach a [pull request][] to this issue, but by the time this article is
