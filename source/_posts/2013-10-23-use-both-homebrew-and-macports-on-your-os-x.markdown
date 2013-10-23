@@ -15,13 +15,13 @@ The basic rules here are using Homebrew packages as much as possible. When one p
 install it from Macports (you will soon see why). We will wrap the executables installed by Macports with suitable
 Environmental Variables.
 
+<!-- more -->
+
 ## Install Homebrew and Macports
 
 Following the installation instructions on their websites ([Homebrew][] and
 [Macports](http://www.macports.org/install.php)) to install both of them. But remember not to modify environmental
 variables related to Macports, such as `PATH`, `LD_LIBRARY_PATH`.
-
-<!-- more -->
 
 ## Wrap Macports Executables with Appropriate Environmental Variables When You Use them
 
