@@ -61,7 +61,8 @@ over the ones shipped by OS X.
 Now you should have an easier command line system in your OS X. Have fun with
 them!
 
-
+**Update**: You may also want to add `$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman` to the `MANPATH` environmental
+variable, where `$HOMEBREW_PREFIX` is the prefix of Homebrew, which is `/usr/local` by default. (Thanks Matthew Walker!)
 
 
 
