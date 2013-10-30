@@ -77,6 +77,12 @@ Executing the above line will give you a new "port" command which is actually a 
 not a big deal, Macports packages require more energy to set up. That's why I try to use Homebrew if the package is
 available there.
 
+## When Using Homebrew to Install Packages ...
+
+When using Homebrew to install packages, one noticeable thing is that sometimes `/opt/local` may interference the build
+of the packages. In this case, you might want to try to run `brew install --env=std package_name` and `brew install
+--env=super package_name` to see whether the build works, or you even need to rename `/opt/local` temporarily.
+
 ## Myself
 
 I've used Macports to install evince and texlive, and there is no problem to use this method by far. If you have any
