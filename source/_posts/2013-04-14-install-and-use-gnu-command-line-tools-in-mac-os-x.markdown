@@ -39,7 +39,8 @@ First comes the most important one -- [GNU Coreutils][]:
 GNU Coreutils contains the most essential UNIX commands, such as **ls**,
 **cat**.
 
-Then you may probably want to install the following ones:
+Then you may probably want to install the following ones (For some of the packages, you need to run `brew tap
+homebrew/dupes` first):
 
     brew install findutils --default-names
     brew install gnu-indent --default-names
