@@ -114,10 +114,9 @@ line programs, which will be read by CmdLauncher.
 
 ## Donate
 
-I would appreciate it if you would like to support my projects by donating on
-[GitTip][].
+I would appreciate it if you would like to support my projects and blog by donating on [GitTip][] or via BitCoins:
 
-
+<a class="coinbase-button" data-code="da2e79f77e4fa25941c22523e1452536" data-button-style="donation_large" href="https://coinbase.com/checkouts/da2e79f77e4fa25941c22523e1452536">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
 
 [Backup On The Go]: https://github.com/xuhdev/backup-on-the-go#readme
 [CmdLauncher]: http://cmdlauncher.nongnu.org
