@@ -121,6 +121,8 @@ menu. Then choose the file format as **Text File** in the Open File Dialog:
 Finally, choose the plain text file you saved before in the file browser, and
 enjoy!
 
+**Note:** I noticed that this method currently doesn't work for plot. Please let me know if you have a method that works
+for plot.
 
 [Mathematica]: http://www.wolfram.com/mathematica/
 [Mathematica Notebook]: http://www.wolfram.com/technology/nb/
