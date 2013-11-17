@@ -36,12 +36,12 @@ a wrapper script:
 ## Wrap Macports command (any executables installed by Macports).
  
 if [ "$#" -le 0 ]; then
-echo "Usage: $0 command [arg1, arg2, ...]" >&2
-exit 1
+  echo "Usage: $0 command [arg1, arg2, ...]" >&2
+  exit 1
 fi
  
 if [[ -z $MACPORTS_PREFIX ]]; then
-MACPORTS_PREFIX='/opt/local'
+  MACPORTS_PREFIX='/opt/local'
 fi
  
  
