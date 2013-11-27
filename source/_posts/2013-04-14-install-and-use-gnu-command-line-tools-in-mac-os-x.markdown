@@ -42,6 +42,7 @@ GNU Coreutils contains the most essential UNIX commands, such as **ls**,
 Then you may probably want to install the following ones (For some of the packages, you need to run `brew tap
 homebrew/dupes` first):
 
+    brew install bash   # probably you will think the bash on your OS X is too old
     brew install diffutils
     brew install findutils --default-names
     brew install gnu-indent --default-names
