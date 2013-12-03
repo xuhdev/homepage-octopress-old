@@ -39,10 +39,9 @@ First comes the most important one -- [GNU Coreutils][]:
 GNU Coreutils contains the most essential UNIX commands, such as **ls**,
 **cat**.
 
-Then you may probably want to install the following ones (For some of the packages, you need to run `brew tap
-homebrew/dupes` first):
+Then you may probably want to install the following ones:
 
-    brew install bash   # probably you will think the bash on your OS X is too old
+    brew install binutils
     brew install diffutils
     brew install findutils --default-names
     brew install gnu-indent --default-names
@@ -60,6 +59,12 @@ homebrew/dupes` first):
 The `--default-names` option will prevent Homebrew from prepending **g**s to
 the newly installed commands, thus we could use these commands as default ones
 over the ones shipped by OS X.
+
+Some command line tools already exist on OS X, but you may wanna a newer version. You need to run `brew tap
+homebrew/dupes` first, then:
+
+    brew install bash
+    brew install gdb  # gdb requires further actions to make it work. See `brew info gdb`.
 
 Now you should have an easier command line system in your OS X. Have fun with
 them!
