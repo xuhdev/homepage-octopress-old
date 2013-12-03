@@ -69,6 +69,7 @@ Some command line tools already exist on OS X, but you may wanna a newer version
     brew install emacs
     brew install gdb  # gdb requires further actions to make it work. See `brew info gdb`.
     brew install gpatch
+    brew install m4
     brew install make
     brew install nano
 
@@ -77,8 +78,9 @@ instead of the version shipped by OS X:
 
     brew install file-formula
     brew install less
-    brew install m4
     brew install openssh
+    brew install perl
+    brew install python
     brew install rsync
     brew install unzip
     brew install vim macvim
