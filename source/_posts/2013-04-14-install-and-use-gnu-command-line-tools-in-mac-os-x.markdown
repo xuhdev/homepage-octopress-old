@@ -77,11 +77,13 @@ As a complementary set of packages, the following ones are not from GNU, but you
 instead of the version shipped by OS X:
 
     brew install file-formula
+    brew install git
     brew install less
     brew install openssh
     brew install perl
     brew install python
     brew install rsync
+    brew install svn
     brew install unzip
     brew install vim macvim
     brew install zsh
