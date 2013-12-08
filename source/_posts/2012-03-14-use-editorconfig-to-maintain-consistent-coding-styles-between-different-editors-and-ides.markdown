@@ -62,14 +62,14 @@ Let's check this file line by line.
 This is a [comment line][comment]. All lines starting with a `#` or `;` will be
 regarded as comment lines.
 
-{% codeblock lang:ini start:2 %}
+{% codeblock lang:ini %}
 root = true
 {% endcodeblock %}
 
 This line tells EditorConfig this is the root of the project, thus EditorConfig
 won't apply the settings of `.editorconfig` outside this directory.
 
-{% codeblock lang:ini start:4 %}
+{% codeblock lang:ini %}
 [*]
 indent_style = space
 end_of_line = lf
@@ -78,14 +78,14 @@ end_of_line = lf
 These 3 lines indicates for all files, if not specially specified, we use spaces
 for indentation, and use `lf` as the [EOL][] marker for all files.
 
-{% codeblock lang:ini start:8 %}
+{% codeblock lang:ini %}
 [*.c]
 indent_size = 4
 {% endcodeblock %}
 
 These two lines means, for any C source files, the size of indentation is 4.
 
-{% codeblock lang:ini start:11 %}
+{% codeblock lang:ini %}
 [Makefile]
 indent_style = tab
 indent_size = 8
