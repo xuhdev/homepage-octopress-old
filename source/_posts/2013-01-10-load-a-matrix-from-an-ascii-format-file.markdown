@@ -18,7 +18,7 @@ matrix from an ASCII file.
 The following C++ function is to load a matrix from an ASCII file into a
 `vector< vector<double> >` object, some kind of "C++ style" 2D array.
 
-```cpp
+```cpp load_matrix.cpp https://gist.github.com/4500925
 #include <istream>
 #include <string>
 #include <sstream>
@@ -74,7 +74,7 @@ The code is also available on [GitHub Gist](https://gist.github.com/4500925).
 
 The Python code loads the matrix into a [numpy.matrix]() object.
 
-```python
+```python load_matrix.py https://gist.github.com/4437648
 def load_matrix_from_file(f):
     """
     This function is to load an ascii format matrix (float numbers separated by
