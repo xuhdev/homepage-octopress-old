@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Back up Homebrew Packages"
+title: "Back up (Migrate) Homebrew Packages"
 date: 2013-12-07T22:59:52-08:00
 comments: true
 external-url: 
@@ -8,15 +8,16 @@ categories: [Homebrew, OS X]
 ---
 
 As one of the most popular package manager on OS X, [Homebrew][] is indeed a very nice tool to manage packages. However,
-when you want to back up your packages, or install the same packages on another machine, e.g. move the packages to your
-new Mac, Homebrew didn't invent such a tool. If you are moving to an OS X of the same version, you can simply copy the
-Homebrew directory (default is `/usr/local`) to your new machine. Otherwise, we need to find a way to install the
-exactly same packages on your new machine. In order to accomplish the goal, I wrote a small piece of bash script to
-generate a restore script to install the packages.
+when you want to back up your packages, or migrate the packages onto another machine, Homebrew didn't invent such a
+tool. If you are moving to an OS X of the same version, you can simply copy the Homebrew directory (default is
+`/usr/local`) to your new machine. Otherwise, we need to find a way to install the exactly same packages on your new
+machine. In order to accomplish the goal, I wrote a small piece of bash script to generate a restore script to install
+the packages.
 
 <!-- more -->
 
-## The Backup Script
+## The Backup (Migration) Script
+
 The script itself is quite short:
 
 ```sh backup-homebrew.sh https://gist.github.com/xuhdev/7854010
