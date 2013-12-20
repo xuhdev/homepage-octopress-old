@@ -44,7 +44,7 @@ homebrew/dupes` first, but only once for your system):
 
     brew install binutils
     brew install diffutils
-    brew install ed
+    brew install ed --default-names
     brew install findutils --default-names
     brew install gawk
     brew install gnu-indent --default-names
@@ -80,7 +80,7 @@ instead of the version shipped by OS X:
     brew install git
     brew install less
     brew install openssh
-    brew install perl
+    brew install perl518   # must run "brew tap homebrew/versions" first!
     brew install python
     brew install rsync
     brew install svn
