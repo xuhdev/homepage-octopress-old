@@ -30,7 +30,7 @@ environmental variable, `$MACPORTS_PREFIX/lib` to the `DYLD_LIBRARY_PATH` enviro
 `$MACPORTS_PREFIX` is the installation prefix of Macports (by default it is `/opt/local`. To do this, I wrote
 a wrapper script:
 
-```sh use_macports.sh
+```sh use_macports.sh https://gist.github.com/xuhdev/7127799
 #!/bin/sh
  
 ## Wrap Macports command (any executables installed by Macports).
@@ -56,8 +56,6 @@ shift
 exec $command $*
 ```
 
-This file is also available at [Github Gist](https://gist.github.com/xuhdev/7127799).
-
 Copy this script to any directory in your `PATH` environmental variable. Then, to wrap any executables installed by
 Macports, just run:
 
@@ -67,8 +65,9 @@ For example, you need to run `port` command to install `texlive`:
 
     use_macports.sh port install texlive
 
-For convenience, if you want to run `port` (or any other commands) directly without the lengthy command above, you can
-wrap often used commands to scripts. For example, assuming `~/bin` is in your `PATH` environmental variable:
+For convenience, if you want to run `port` (or any other executables installed from MacPorts, e.g. `pdflatex` if texlive
+is installed from MacPorts) directly without the lengthy command above, you can wrap frequently used commands into
+scripts. For example, assuming `~/bin` is in your `PATH` environmental variable:
 
     echo 'exec use_macports.sh port $*' >~/bin/port
     chmod +x ~/bin/port
