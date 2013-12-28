@@ -79,13 +79,14 @@ instead of the version shipped by OS X:
     brew install file-formula
     brew install git
     brew install less
-    brew install openssh
+    brew install openssh --with-brewed-openssl
     brew install perl518   # must run "brew tap homebrew/versions" first!
-    brew install python
+    brew install python --with-brewed-openssl
     brew install rsync
     brew install svn
     brew install unzip
-    brew install vim macvim
+    brew install vim --override-system-vi
+    brew install macvim --override-system-vim --custom-system-icons
     brew install zsh
 
 Now you should have an easier command line system in your OS X. Have fun with
