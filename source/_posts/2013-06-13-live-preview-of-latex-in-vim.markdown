@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Live Preview of LaTeX in Vim"
-date: 2013-06-13T00:35:56-07:00
+date: 2013-06-13T00:35:56
 comments: true
 external-url: 
 categories: [LaTeX, Vim]

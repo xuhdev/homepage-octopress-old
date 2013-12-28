@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Use Both Homebrew and Macports on Your OS X"
-date: 2013-10-23T15:21:24-07:00
+date: 2013-10-23T15:21:24
 comments: true
 external-url: 
 categories: [OS X, Homebrew, Macports]

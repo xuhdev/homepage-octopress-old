@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Track Mathematica Source Files with Version Control Systems"
-date: 2013-05-02T01:06:50-07:00
+date: 2013-05-02T01:06:50
 comments: true
 file_title: 2013-05-02-track-mathematica-source-files-with-version-control-systems
 categories: [Mathematica, git, Version Control, hg, bazaar, svn]

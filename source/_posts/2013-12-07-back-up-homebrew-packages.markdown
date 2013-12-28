@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Back up (Migrate) Homebrew Packages"
-date: 2013-12-07T22:59:52+00:00
+date: 2013-12-07T22:59:52
 comments: true
 external-url: 
 categories: [Homebrew, OS X]

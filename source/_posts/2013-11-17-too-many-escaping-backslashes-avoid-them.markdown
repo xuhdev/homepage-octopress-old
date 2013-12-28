@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Too Many Escaping Backslashes? Avoid Them!"
-date: 2013-11-17T00:56:56-08:00
+date: 2013-11-17T00:56:56
 comments: true
 external-url: 
 categories: [utility, python]

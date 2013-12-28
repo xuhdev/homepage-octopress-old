@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Manage Multiple SSH Private Keys"
-date: 2013-05-05T11:59:07-07:00
+date: 2013-05-05T11:59:07
 comments: true
 categories: [ssh]
 ---

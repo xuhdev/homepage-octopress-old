@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Install and Use GNU Command Line Tools on Mac OS X"
-date: 2013-04-14T00:32:45-07:00
+date: 2013-04-14T00:32:45
 comments: true
 external-url: 
 categories: [Mac OS X, GNU, Software Development]
