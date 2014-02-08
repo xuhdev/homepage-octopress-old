@@ -87,5 +87,9 @@ of the packages. In this case, you might want to try to run `brew install --env=
 I've used Macports to install evince and texlive, and there is no problem to use this method by far. If you have any
 problems or concerns please feel free to comment.
 
+_Update:_ There is now a known issue when using [kpsewhich][] with this method. It seems that kpsewhich cannot detect
+its parameters correctly using this method.
+
 [Homebrew]: http://brew.sh
 [Macports]: http://macports.org
+[kpsewhich]: http://texblog.net/hypertext-help/latex-tools/kpsewhich/
