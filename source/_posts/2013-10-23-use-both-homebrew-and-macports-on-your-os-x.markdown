@@ -21,14 +21,13 @@ Environmental Variables.
 
 Following the installation instructions on their websites ([Homebrew][] and
 [Macports](http://www.macports.org/install.php)) to install both of them. But remember not to modify environmental
-variables related to Macports, such as `PATH`, `DYLD_LIBRARY_PATH`.
+variables related to Macports, such as `PATH`, `CPATH`.
 
 ## Wrap Macports Executables with Appropriate Environmental Variables When You Use them
 
 Before running any executables, we need to prepend `$MACPORTS_PREFIX/bin:$MACPORTS_PREFIX/sbin` to the `PATH`
-environmental variable, `$MACPORTS_PREFIX/lib` to the `DYLD_LIBRARY_PATH` environmental variable, etc. where
-`$MACPORTS_PREFIX` is the installation prefix of Macports (by default it is `/opt/local`. To do this, I wrote
-a wrapper script:
+environmental variable, etc. where `$MACPORTS_PREFIX` is the installation prefix of Macports (by default it is
+`/opt/local`. To do this, I wrote a wrapper script:
 
 ```sh use_macports.sh https://gist.github.com/xuhdev/7127799
 #!/bin/sh
@@ -46,7 +45,6 @@ fi
  
  
 export PATH="$MACPORTS_PREFIX/bin:$MACPORTS_PREFIX/sbin:$PATH"
-export DYLD_LIBRARY_PATH="$MACPORTS_PREFIX/lib:$DYLD_LIBRARY_PATH"
 export CPATH="$MACPORTS_PREFIX/include:$CPATH"
  
 command=$1
