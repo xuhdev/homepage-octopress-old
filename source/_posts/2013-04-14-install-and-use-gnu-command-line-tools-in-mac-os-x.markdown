@@ -24,7 +24,7 @@ install Homebrew.
 Shortcut: install the latest [XCode]() and then run the following command to
 install:
 
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 Then add the following line to your **.bashrc** or **.zshrc**:
 
