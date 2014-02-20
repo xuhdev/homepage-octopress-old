@@ -15,6 +15,9 @@ The basic rules here are using Homebrew packages as much as possible. When one p
 install it from Macports (you will soon see why). We will wrap the executables installed by Macports with suitable
 Environmental Variables.
 
+_Please note that this post only presents a workaround. It is not garanteed to work, and it is possible that it does not
+work under some certain circumstances._
+
 <!-- more -->
 
 ## Install Homebrew and Macports
