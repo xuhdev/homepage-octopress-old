@@ -94,6 +94,8 @@ them!
 
 **Update**: You may also want to add `$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman` to the `MANPATH` environmental
 variable, where `$HOMEBREW_PREFIX` is the prefix of Homebrew, which is `/usr/local` by default. (Thanks Matthew Walker!)
+Alternatively, there is also a one-line setup which you could put in your shell configuration files
+[here](https://gist.github.com/quickshiftin/9130153) by quickshiftin.
 
 
 
