@@ -124,11 +124,11 @@ I would appreciate it if you would like to support my projects and blog by donat
 [G95 Fortran Compiler]: http://www.g95.org
 [GNU Fortran Compiler]: http://gcc.gnu.org/wiki/GFortran
 [GitTip]: https://www.gittip.com/xuhdev/
-[Heroku]: https://www.heroku.com/
+[Heroku]: https://www.heroku.com
 [IniParser]: http://www.vim.org/scripts/script.php?script_id=3434
 [Intel Fortran Compiler]: http://software.intel.com/en-us/articles/intel-compilers
 [SQLite]: http://www.sqlite.org
-[SingleCompile]: http://www.topbug.net/SingleCompile
+[SingleCompile]: http://singlecompile.topbug.net
 [Vim]: http://www.vim.org
 [compiler/g95.vim]: http://www.vim.org/scripts/script.php?script_id=3492
 [compiler/gfortran.vim]: http://www.vim.org/scripts/script.php?script_id=3496
