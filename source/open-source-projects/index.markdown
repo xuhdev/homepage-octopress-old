@@ -57,13 +57,13 @@ Vim syntax file for dosini files (\*.ini).
 This script has been included in the offical Vim distribution since Vim version
 7.3.313.
 
-### [nautilus-py-vim][]
+### [Nautilus-Edit-with-Vim][]
 
-A [nautilus][] extension aimed at helping start editing with Vim fast and
+A [Nautilus][] extension aimed at helping start editing with Vim fast and
 conveniently on GNOME.
 
-nautilus-py-vim is an extension for nautilus, the GNOME file manager, and is
-written in python. This extension adds several menu items in the nautilus
+Nautilus-Edit-with-Vim is an extension for Nautilus, the GNOME file manager, and is
+written in python. This extension adds several menu items in the Nautilus
 right-click context menu for gvim, such as "Edit with gVim", etc, just like
 gVim on Windows.
 
@@ -137,8 +137,8 @@ I would appreciate it if you would like to support my projects and blog by donat
 [gccxml]: http://www.gccxml.org
 [indent/java.vim]: http://www.vim.org/scripts/script.php?script_id=3899
 [ini]: http://en.wikipedia.org/wiki/INI_file
-[nautilus-py-vim]: http://xuhdev.bitbucket.org/nautilus-py-vim/nautilus-py-vim.html
-[nautilus]: http://live.gnome.org/Nautilus
+[Nautilus-Edit-with-Vim]: http://nautilusvim.topbug.net
+[Nautilus]: http://live.gnome.org/Nautilus
 [syntax/dosini.vim]: http://www.vim.org/scripts/script.php?script_id=3747
 [tags2db]: http://www.topbug.net/tags2db
 [vimscript]: http://en.wikipedia.org/wiki/Vim_script
