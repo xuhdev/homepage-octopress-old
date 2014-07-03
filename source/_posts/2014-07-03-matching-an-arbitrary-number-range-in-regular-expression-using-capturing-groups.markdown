@@ -6,9 +6,9 @@ comments: true
 categories: [Regular Expressions]
 ---
 
-To match an arbitrary number range in a regular expression, is to match a string with a specific pattern which contains
-a number range. For example, to match with a pattern `test{0..100}`, where `{0..100}` denotes an integer not smaller
-than `0` and not larger `100`, is such a case.
+To match an arbitrary number range in a [regular expression], is to match a string with a specific pattern which
+contains a number range. For example, to match with a pattern `test{0..100}`, where `{0..100}` denotes an integer not
+smaller than `0` and not larger `100`, is such a case.
 
 Although we already have [some](http://www.regular-expressions.info/numericranges.html)
 [solutions](http://stackoverflow.com/questions/1377926/regular-expression-numeric-range) to match a number range in
@@ -50,3 +50,8 @@ Another more flexible version is shown below (for Python >= 3.4):
 The function `match_number_range` replaces any occurrence of `{num1..num2}` with a regex which represents any integers
 within capturing groups, then extracts them and compares the numbers later. However, you should never have any capturing
 group in the original pattern, otherwise this simple function won't work.
+
+_I came up with this idea when I added the feature to match a number range in [the glob engine of
+EditorConfig C Core](https://github.com/editorconfig/editorconfig-core-c/blob/master/src/lib/ec_glob.c)._
+
+[regular expression]: http://en.wikipedia.org/wiki/Regular_expression
