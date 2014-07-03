@@ -31,7 +31,7 @@ permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public
 plugins: plugins
-code_dir: downloads/code
+code_dir: code
 category_dir: blog/categories
 markdown: rdiscount
 
@@ -93,3 +93,6 @@ google_analytics_tracking_id: UA-29984794-1
 
 # Facebook Like
 facebook_like: true
+
+# Use UTC
+timezone: UTC
