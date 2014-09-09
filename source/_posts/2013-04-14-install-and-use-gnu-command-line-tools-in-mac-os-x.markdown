@@ -14,6 +14,10 @@ command line tools, which are different from the Linux version, while they are
 both compliant with [POSIX][] standards. But we can easily install the GNU
 tools by using [Homebrew][] in Mac OS X and set them as default.
 
+Note: you need to notice that you may have some compatibility issues with shell scripts written specifically for OS X
+after you have replaced your OS X commands with the GNU version. Although the very vast majority of shell scripts have
+no problem, you just need to be aware that when there comes a problem, this may be the spot to check on.
+
 <!-- more -->
 
 ## Install Homebrew
@@ -29,6 +33,7 @@ install:
 Then add the following line to your **.bashrc** or **.zshrc**:
 
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+
 
 ## Install the GNU Command Line Tools
 
