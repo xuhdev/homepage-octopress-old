@@ -9,7 +9,7 @@ categories: [php, hosting]
 In this post, I will show you a workaround to install additional PHP extensions which are not available on your
 Linux/BSD shared host. Before you proceed, you should ask whether your shared hosting company has an official way to
 install or whether they can include the extension you need on their system, as this method is really only a
-"workaround": it probably works, but there is no guarantee of stability, especially your shared hosting company upgrades
+workaround: it probably works, but there is no guarantee of stability, especially your shared hosting company upgrades
 PHP version.
 
 <!-- more -->
