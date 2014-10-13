@@ -36,7 +36,7 @@ source code from [PHP website](PHP) which is corresponding to the version on you
 ## Does Your Shared Host Provide Compiler and Meet Other Requirements to Build the extension?
 
 Log into your SSH account. Type `which gcc` to see whether the command exists. If yes, very likely you can build the
-extension right on the shared host, but note that there may be some missing head files or libraries. If you cannot
+extension right on the shared host, but note that there may be some missing header files or libraries. If you cannot
 build your extension on the shared host, see the next section for what to do.
 
 ## Figure out What OS Your Shared Hosting Company Uses
@@ -83,7 +83,7 @@ path to the extension directory (I assume you put all your extensions in `~/php_
 Finally, don't forget to add a new line `extension = your_extension.so` to your `php.ini` to enable the new extension.
 Take a test and hopefully it should work.
 
-# It does not work!
+# It doesn't work!
 
 If it turns out that your site still does not use the new extension, first make sure you have enabled this extension in
 your `php.ini`. If you are sure you have enabled the extension, run `ldd /path/to/your/extension.so` on the host to see
