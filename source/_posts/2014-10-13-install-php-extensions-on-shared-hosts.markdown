@@ -12,6 +12,8 @@ install or whether they can include the extension you need on their system, as t
 workaround: it probably works, but there is no guarantee of stability, especially your shared hosting company upgrades
 PHP version.
 
+I'll assume you have the basic knowledge of how to use a UNIX shell.
+
 <!-- more -->
 
 # Prerequisition
@@ -27,23 +29,32 @@ the required libraries installed.
 # Build the Extension
 
 ## Download the Source
+
 Download the source from the extension website. If the extension is included in PHP source, download the version of PHP
 source code from [PHP website](PHP) which is corresponding to the version on your shared host.
 
+## Does Your Shared Host Provide Compiler and Meet Other Requirements to Build the extension?
+
+Log into your SSH account. Type `which gcc` to see whether the command exists. If yes, very likely you can build the
+extension right on the shared host, but note that there may be some missing head files or libraries. If you cannot
+build your extension on the shared host, see the next section for what to do.
+
 ## Figure out What OS Your Shared Hosting Company Uses
 
-This can be done by logging in your SSH account and inspecting files there, such as `/etc/debian_version`,
-`/etc/redhat-release` to determine which Linux distribution or BSD variants you are using. You can try to get some
-information by executing `uname -a`. However, there is no definite way to tell which platform you are on, you need to be
-familiar with different distributions or BSD variants if the shared hosting company has blocked some easy ways to tell
-which OS it is on. The most common ones may be CentOS, Debian, Ubuntu and FreeBSD.
+You only need this part if you are not able to build the extension on the shared host, which means you have to build the
+extension on a different machine. Figuring out what platform your shared host is on, log in your SSH account and
+inspecting files there, such as `/etc/debian_version`, `/etc/redhat-release` to determine which Linux distribution or
+BSD variants you are using. You can try to get some information by executing `uname -a`. However, there is no definite
+way to tell which platform you are on, you need to be familiar with different distributions or BSD variants if the
+shared hosting company has blocked some easy ways to tell which OS it is on. The most common ones may be CentOS, Debian,
+Ubuntu and FreeBSD.
 
 ## Build the Extension on the Same Platform with Your Shared Host
 
-After figuring out what platform your website is on, you need to have an exactly same BSD variant or Linux distribution
-and version to build the extension. If you happen to be on the same platform, congrats you can go straight ahead and
-build it. If you are using a different Linux distribution or BSD variants, just install it on a virtual machine, such as
-[VirtualBox][].
+For those people who cannot build extensions on the shared host directly, after figuring out what platform your website
+is on, you need to have an exactly same BSD variant or Linux distribution and version to build the extension. If you
+happen to be on the same platform, congrats you can go straight ahead and build it. If you are using a different Linux
+distribution or BSD variants, just install it on a virtual machine, such as [VirtualBox][].
 
 Follow the extension build instructions and build the extension on the target platform. If your extension is only
 available with the PHP source code, configure PHP with a command similar to the command below when building PHP (check
@@ -62,7 +73,7 @@ on the shared host. Make a new directory under your home directory, say `~/php_e
 extensions in `extension_dir` to your newly created directory. Then, also copy the extension you built to this
 directory.
 
-OK, we are almost there. Add an `extension_dir` directive to your own `php.ini` file to make PHP able to find your
+Alright, we are almost there. Add an `extension_dir` directive to your own `php.ini` file to make PHP able to find your
 extension. If you don't know the path of your extension directory, you can run the following command to find out the
 path to the extension directory (I assume you put all your extensions in `~/php_extensions`):
 
@@ -70,7 +81,15 @@ path to the extension directory (I assume you put all your extensions in `~/php_
     pwd
 
 Finally, don't forget to add a new line `extension = your_extension.so` to your `php.ini` to enable the new extension.
-Test your site and enjoy!
+Take a test and hopefully it should work.
+
+# It does not work!
+
+If it turns out that your site still does not use the new extension, first make sure you have enabled this extension in
+your `php.ini`. If you are sure you have enabled the extension, run `ldd /path/to/your/extension.so` on the host to see
+whether some dependencies are missing. If there is, either you didn't build the extension on the same OS with the same
+version with the shared host, or the shared host does not have a required library installed. If it's the latter case,
+do the same thing above for all the missing libraries, and install them in your home directory on the shared host.
 
 # Conclusion
 
