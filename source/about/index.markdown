@@ -8,14 +8,18 @@ sidebar: false
 
 This is Hong Xu's personal technology blog.
 
-My personal page on Github: [https://github.com/xuhdev](https://github.com/xuhdev)
+You can find me on:
 
-My personal page on Bitbucket.org: [https://bitbucket.org/xuhdev](https://bitbucket.org/xuhdev)
+[Github](https://github.com/xuhdev)
 
-My Twitter account: [http://twitter.com/#!/xuhdev](http://twitter.com/#!/xuhdev)
+[BitBucket](https://bitbucket.org/xuhdev)
+
+[GNU Social/StatusNet](https://status.topbug.net)
+
+[Twitter](http://twitter.com/#!/xuhdev)
 
 
-Email: [hong@topbug.net](mailto:hong@topbug.net "Hong Xu <hong@topbug.net>") (Preferred) OR [xuhdev@gmail.com](mailto:xuhdev@gmail.com "Hong Xu <xuhdev@gmail.com>")
+Email: [hong@topbug.net](mailto:hong@topbug.net "Hong Xu <hong@topbug.net>")
 
 
 _* The Twitter and Email social icons are part of the Social Network Icon Pack
