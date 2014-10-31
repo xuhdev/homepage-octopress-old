@@ -44,11 +44,12 @@ void load_matrix(std::istream* is,
 
         for (string::const_iterator i = line.begin(); i != line.end(); ++ i)
         {
-            // If we i is not a delim, then append it to strnum
+            // If i is not a delim, then append it to strnum
             if (delim.find(*i) == string::npos)
             {
                 strnum += *i;
-                continue;
+                if (i + 1 != line.end()) // If it's the last char, do not continue
+                    continue;
             }
 
             // if strnum is still empty, it means the previous char is also a
@@ -65,6 +66,34 @@ void load_matrix(std::istream* is,
             strnum.clear();
         }
     }
+}
+
+// example
+#include <fstream>
+#include <iostream>
+
+int main()
+{
+    using namespace std;
+
+    // read the file
+    std::ifstream is("input.txt");
+
+    // load the matrix
+    std::vector< std::vector<double> > matrix;
+    load_matrix(&is, &matrix);
+
+    // print out the matrix
+    cout << "The matrix is:" << endl;
+    for (std::vector< std::vector<double> >::const_iterator it = matrix.begin(); it != matrix.end(); ++ it)
+    {
+        for (std::vector<double>::const_iterator itit = it->begin(); itit != it->end(); ++ itit)
+            cout << *itit << '\t';
+
+        cout << endl;
+    }
+
+    return 0;
 }
 ```
 
