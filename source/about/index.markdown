@@ -8,6 +8,10 @@ sidebar: false
 
 This is Hong Xu's personal technology blog.
 
+My PGP user ID `Hong Xu (xuhdev) <hong@topbug.net>`
+
+PGP key fingerprint `9563 FFB6 00C3 D853 E945  D504 F73B 71A2 2994 E7CF`
+
 You can find me on:
 
 [Github](https://github.com/xuhdev)
