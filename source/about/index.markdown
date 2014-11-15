@@ -12,6 +12,12 @@ My PGP user ID `Hong Xu (xuhdev) <hong@topbug.net>`
 
 PGP key fingerprint `9563 FFB6 00C3 D853 E945  D504 F73B 71A2 2994 E7CF`
 
+My primary key [4096R/2994E7CF]({{root_url}} /about/primary-key.txt)
+
+Signing key [4096R/822F8478]({{root_url}}/about/822F8478.txt)
+
+Encryption key [4096R/9A58473C]({{root_url}}/about/9A58473C.txt)
+
 You can find me on:
 
 [Github](https://github.com/xuhdev)
