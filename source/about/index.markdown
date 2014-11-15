@@ -8,17 +8,19 @@ sidebar: false
 
 This is Hong Xu's personal technology blog.
 
-My PGP user ID `Hong Xu (xuhdev) <hong@topbug.net>`
+### PGP Info
 
-PGP key fingerprint `9563 FFB6 00C3 D853 E945  D504 F73B 71A2 2994 E7CF`
+pub   [4096R/2994E7CF]({{root_url}}/about/2994E7CF.txt) 2014-11-07 Primary Key
 
-My primary key [4096R/2994E7CF]({{root_url}} /about/primary-key.txt)
+   Key fingerprint = `9563 FFB6 00C3 D853 E945  D504 F73B 71A2 2994 E7CF`
 
-Signing key [4096R/822F8478]({{root_url}}/about/822F8478.txt)
+uid       `Hong Xu (xuhdev) <hong@topbug.net>`
 
-Encryption key [4096R/9A58473C]({{root_url}}/about/9A58473C.txt)
+sub   [4096R/9A58473C]({{root_url}}/about/9A58473C.txt) 2014-11-07 Encrypting Key
 
-You can find me on:
+sub   [4096R/822F8478]({{root_url}}/about/822F8478.txt) 2014-11-07 Signing Key
+
+### Social Network
 
 [Github](https://github.com/xuhdev)
 
