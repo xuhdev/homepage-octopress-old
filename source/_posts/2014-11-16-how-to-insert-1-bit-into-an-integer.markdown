@@ -31,3 +31,5 @@ x &= ((~((T) 0)) << position);
 y &= ~((~((T) 0)) << position);
 x |= y;
 ```
+
+Don't hesitate to comment if you think there is a better (more elegant or faster) way.
