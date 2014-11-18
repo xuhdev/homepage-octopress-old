@@ -24,6 +24,14 @@ GitHub repositories to BitBucket in the cloud. You could deploy it on
 [Heroku][],  and it will automatically mirror your GitHub repositories to
 BitBucket periodically.
 
+## Quine-McCluskey minimizer
+
+[Quine-McCluskey minimizer][] is a [Quine-McCluskey algorithm][] implementation
+library modified from
+[Stefan Moebius' command line only version](http://sourceforge.net/projects/mini-qmc).
+It is modified to be used as a library. Also additional compatibility fixes and
+documents are added.
+
 ## Vim Related Projects
 
 [Vim][] is a highly configurable text editor built to enable efficient text
@@ -127,6 +135,8 @@ I would appreciate it if you would like to support my projects and blog by donat
 [Heroku]: https://www.heroku.com
 [IniParser]: http://www.vim.org/scripts/script.php?script_id=3434
 [Intel Fortran Compiler]: http://software.intel.com/en-us/articles/intel-compilers
+[Quine-McCluskey algorithm]: https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm
+[Quine-McCluskey minimizer]: https://github.com/xuhdev/Quine-McCluskey-minimizer#readme
 [SQLite]: http://www.sqlite.org
 [SingleCompile]: http://singlecompile.topbug.net
 [Vim]: http://www.vim.org
