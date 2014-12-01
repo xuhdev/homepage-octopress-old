@@ -120,9 +120,39 @@ people who are not experts. What the command line program developers need to do
 is to write a simple ini format file containing information of their command
 line programs, which will be read by CmdLauncher.
 
+## Minor Contributions
+
+I've made minor contributions to a number of projects.
+
+- [el-get][]
+- [git-archive-all][]
+- [Homebrew][]
+- [Octopress][]
+- [Octopress-Theme-Slash][]
+- [oh-my-zsh][] [web-search plugin](https://github.com/robbyrussell/oh-my-zsh/commit/25313814775c08c64dc541fbadceb38c669c541a#diff-68cf51b8a790287ea23ff40ecb6632cb)
+- [Vim][] patches
+[7.3.063](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.063)
+[7.3.079](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.079)
+[7.3.094](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.094)
+[7.3.113](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.113)
+[7.3.115](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.115)
+[7.3.174](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.174)
+[7.3.191](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.191)
+[7.3.234](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.234)
+[7.3.293](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.293)
+[7.3.493](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.493)
+[7.3.844](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.844)
+[7.3.845](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.845)
+- [zsh][] patches
+[31462](http://www.zsh.org/mla/workers/2013/msg00509.html)
+[32064](http://www.zsh.org/mla/workers//2013/msg01094.html)
+[32069](http://www.zsh.org/mla/workers/2013/msg01099.html)
+[32428](http://www.zsh.org/mla/workers//2014/msg00218.html)
+- [zsh-completion][]
+
 ## Donate
 
-I would appreciate it if you would like to support my projects and blog by donating on [GitTip][] or via BitCoins:
+I would appreciate it if you would like to support my projects and blog by donating via BitCoins:
 
 <a class="coinbase-button" data-code="112e87a7b41c6fc00222a0fc62e56feb" data-button-style="donation_large" href="https://coinbase.com/checkouts/112e87a7b41c6fc00222a0fc62e56feb">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
 
@@ -131,10 +161,12 @@ I would appreciate it if you would like to support my projects and blog by donat
 [EditorConfig]: http://editorconfig.org
 [G95 Fortran Compiler]: http://www.g95.org
 [GNU Fortran Compiler]: http://gcc.gnu.org/wiki/GFortran
-[GitTip]: https://www.gittip.com/xuhdev/
 [Heroku]: https://www.heroku.com
+[Homebrew]: http://brew.sh
 [IniParser]: http://www.vim.org/scripts/script.php?script_id=3434
 [Intel Fortran Compiler]: http://software.intel.com/en-us/articles/intel-compilers
+[Octopress]: http://octopress.org
+[Octopress-Theme-Slash]: http://tommy351.github.io/Octopress-Theme-Slash
 [Quine-McCluskey algorithm]: https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm
 [Quine-McCluskey minimizer]: https://github.com/xuhdev/Quine-McCluskey-minimizer#readme
 [SQLite]: http://www.sqlite.org
@@ -144,11 +176,16 @@ I would appreciate it if you would like to support my projects and blog by donat
 [compiler/gfortran.vim]: http://www.vim.org/scripts/script.php?script_id=3496
 [compiler/ifort.vim]: http://www.vim.org/scripts/script.php?script_id=3497
 [ctags]: http://ctags.sf.net
+[el-get]: https://github.com/dimitri/el-get
 [gccxml]: http://www.gccxml.org
+[git-archive-all]: https://github.com/Kentzo/git-archive-all
 [indent/java.vim]: http://www.vim.org/scripts/script.php?script_id=3899
 [ini]: http://en.wikipedia.org/wiki/INI_file
 [Nautilus-Edit-with-Vim]: http://nautilusvim.topbug.net
 [Nautilus]: http://live.gnome.org/Nautilus
+[oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
 [syntax/dosini.vim]: http://www.vim.org/scripts/script.php?script_id=3747
 [tags2db]: http://www.topbug.net/tags2db
 [vimscript]: http://en.wikipedia.org/wiki/Vim_script
+[zsh]: http://www.zsh.org
+[zsh-completion]: https://github.com/zsh-users/zsh-completions
