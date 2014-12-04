@@ -143,18 +143,13 @@ I've made minor contributions to a number of projects.
 [7.3.493](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.493)
 [7.3.844](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.844)
 [7.3.845](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.845)
+- [wxWidgets][] changeset [67022](http://trac.wxwidgets.org/changeset/67022/)
 - [zsh][] patches
 [31462](http://www.zsh.org/mla/workers/2013/msg00509.html)
 [32064](http://www.zsh.org/mla/workers//2013/msg01094.html)
 [32069](http://www.zsh.org/mla/workers/2013/msg01099.html)
 [32428](http://www.zsh.org/mla/workers//2014/msg00218.html)
 - [zsh-completion][]
-
-## Donate
-
-I would appreciate it if you would like to support my projects and blog by donating via BitCoins:
-
-<a class="coinbase-button" data-code="112e87a7b41c6fc00222a0fc62e56feb" data-button-style="donation_large" href="https://coinbase.com/checkouts/112e87a7b41c6fc00222a0fc62e56feb">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
 
 [Backup On The Go]: https://github.com/xuhdev/backup-on-the-go#readme
 [CmdLauncher]: http://cmdlauncher.nongnu.org
@@ -187,5 +182,6 @@ I would appreciate it if you would like to support my projects and blog by donat
 [syntax/dosini.vim]: http://www.vim.org/scripts/script.php?script_id=3747
 [tags2db]: http://www.topbug.net/tags2db
 [vimscript]: http://en.wikipedia.org/wiki/Vim_script
+[wxWidgets]: http://wxwidgets.org/
 [zsh]: http://www.zsh.org
 [zsh-completion]: https://github.com/zsh-users/zsh-completions
