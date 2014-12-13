@@ -6,6 +6,8 @@ comments: false
 sidebar: false
 ---
 
+# Major Contribution
+
 ## EditorConfig
 
 [EditorConfig][] helps developers define and maintain consistent coding styles
@@ -48,22 +50,6 @@ file.
 
 This is a Vim plugin providing a set of functions to read and write [ini][]
 format files for [vimscript][].
-
-### [indent/java.vim][]
-
-This is a Vim indent file for java source files. This indent file is based
-on the java indent file maintained by Toby Allsopp, which was shipped
-with the official Vim distribution before Vim version 7.3.408.
-
-This script has been included in the official Vim distribution since
-Vim version 7.3.409.
-
-### [syntax/dosini.vim][]
-
-Vim syntax file for dosini files (\*.ini).
-
-This script has been included in the offical Vim distribution since Vim version
-7.3.313.
 
 ### [Nautilus-Edit-with-Vim][]
 
@@ -120,9 +106,27 @@ people who are not experts. What the command line program developers need to do
 is to write a simple ini format file containing information of their command
 line programs, which will be read by CmdLauncher.
 
-## Minor Contributions
+# Projects I Took Over Maintainance
 
-I've made minor contributions to a number of projects.
+### [indent/java.vim][]
+
+This is a Vim indent file for java source files. This indent file is based
+on the java indent file maintained by Toby Allsopp, which was shipped
+with the official Vim distribution before Vim version 7.3.408.
+
+This script has been included in the official Vim distribution since
+Vim version 7.3.409.
+
+### [syntax/dosini.vim][]
+
+Vim syntax file for dosini files (\*.ini).
+
+This script has been included in the offical Vim distribution since Vim version
+7.3.313.
+
+# Minor Contribution
+
+I've made some contribution to a variety of projects.
 
 - [el-get][]
 - [git-archive-all][]
@@ -144,12 +148,13 @@ I've made minor contributions to a number of projects.
 [7.3.844](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.844)
 [7.3.845](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.845)
 - [wxWidgets][] changeset [67022](http://trac.wxwidgets.org/changeset/67022/)
+- [xfce4-i3-workspaces-plugin][] [commits](https://github.com/denesb/xfce4-i3-workspaces-plugin/commits?author=xuhdev)
 - [zsh][] patches
 [31462](http://www.zsh.org/mla/workers/2013/msg00509.html)
 [32064](http://www.zsh.org/mla/workers//2013/msg01094.html)
 [32069](http://www.zsh.org/mla/workers/2013/msg01099.html)
 [32428](http://www.zsh.org/mla/workers//2014/msg00218.html)
-- [zsh-completion][]
+- [zsh-completion][] [commits](https://github.com/zsh-users/zsh-completions/commits?author=xuhdev)
 
 [Backup On The Go]: https://github.com/xuhdev/backup-on-the-go#readme
 [CmdLauncher]: http://cmdlauncher.nongnu.org
@@ -183,5 +188,6 @@ I've made minor contributions to a number of projects.
 [tags2db]: http://www.topbug.net/tags2db
 [vimscript]: http://en.wikipedia.org/wiki/Vim_script
 [wxWidgets]: http://wxwidgets.org/
+[xfce4-i3-workspaces-plugin]: https://github.com/denesb/xfce4-i3-workspaces-plugin
 [zsh]: http://www.zsh.org
 [zsh-completion]: https://github.com/zsh-users/zsh-completions
