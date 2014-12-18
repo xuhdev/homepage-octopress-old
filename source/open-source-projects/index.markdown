@@ -124,6 +124,7 @@ line programs, which will be read by CmdLauncher.
 
 I've made minor contributions to a number of projects.
 
+- [F-Droid][]
 - [el-get][]
 - [git-archive-all][]
 - [Homebrew][]
@@ -159,6 +160,7 @@ I would appreciate it if you would like to support my projects and blog by donat
 [Backup On The Go]: https://github.com/xuhdev/backup-on-the-go#readme
 [CmdLauncher]: http://cmdlauncher.nongnu.org
 [EditorConfig]: http://editorconfig.org
+[F-Droid]: https://f-droid.org
 [G95 Fortran Compiler]: http://www.g95.org
 [GNU Fortran Compiler]: http://gcc.gnu.org/wiki/GFortran
 [Heroku]: https://www.heroku.com
