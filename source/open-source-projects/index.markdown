@@ -129,11 +129,12 @@ This script has been included in the offical Vim distribution since Vim version
 I've made some contribution to a variety of projects.
 
 - [F-Droid][]
-- [el-get][]
-- [git-archive-all][]
-- [Homebrew][]
+- [el-get][] [commits](https://github.com/dimitri/el-get/commits?author=xuhdev)
+- [git-archive-all][] [commits](https://github.com/Kentzo/git-archive-all/commits?author=xuhdev)
+- [Homebrew][] [commits](https://github.com/Homebrew/homebrew/commits?author=xuhdev)
+- [mu4e][] [commits](https://github.com/djcb/mu/commits?author=xuhdev)
 - [Octopress][]
-- [Octopress-Theme-Slash][]
+- [Octopress-Theme-Slash][] [commits](https://github.com/tommy351/Octopress-Theme-Slash/commits?author=xuhdev)
 - [oh-my-zsh][] [web-search plugin](https://github.com/robbyrussell/oh-my-zsh/commit/25313814775c08c64dc541fbadceb38c669c541a#diff-68cf51b8a790287ea23ff40ecb6632cb)
 - [Vim][] patches
 [7.3.063](ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.063)
@@ -158,7 +159,7 @@ I've made some contribution to a variety of projects.
 - [zsh-completion][] [commits](https://github.com/zsh-users/zsh-completions/commits?author=xuhdev)
 
 [Backup On The Go]: https://github.com/xuhdev/backup-on-the-go#readme
-[CmdLauncher]: http://cmdlauncher.nongnu.org
+[CmdLauncher]: http://www.topbug.net/cmdlauncher
 [EditorConfig]: http://editorconfig.org
 [F-Droid]: https://f-droid.org
 [G95 Fortran Compiler]: http://www.g95.org
@@ -167,8 +168,10 @@ I've made some contribution to a variety of projects.
 [Homebrew]: http://brew.sh
 [IniParser]: http://www.vim.org/scripts/script.php?script_id=3434
 [Intel Fortran Compiler]: http://software.intel.com/en-us/articles/intel-compilers
-[Octopress]: http://octopress.org
+[Nautilus-Edit-with-Vim]: http://nautilusvim.topbug.net
+[Nautilus]: http://live.gnome.org/Nautilus
 [Octopress-Theme-Slash]: http://tommy351.github.io/Octopress-Theme-Slash
+[Octopress]: http://octopress.org
 [Quine-McCluskey algorithm]: https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm
 [Quine-McCluskey minimizer]: https://github.com/xuhdev/Quine-McCluskey-minimizer#readme
 [SQLite]: http://www.sqlite.org
@@ -183,13 +186,12 @@ I've made some contribution to a variety of projects.
 [git-archive-all]: https://github.com/Kentzo/git-archive-all
 [indent/java.vim]: http://www.vim.org/scripts/script.php?script_id=3899
 [ini]: http://en.wikipedia.org/wiki/INI_file
-[Nautilus-Edit-with-Vim]: http://nautilusvim.topbug.net
-[Nautilus]: http://live.gnome.org/Nautilus
+[mu4e]: http://www.djcbsoftware.nl/code/mu/mu4e.html
 [oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
 [syntax/dosini.vim]: http://www.vim.org/scripts/script.php?script_id=3747
 [tags2db]: http://www.topbug.net/tags2db
 [vimscript]: http://en.wikipedia.org/wiki/Vim_script
 [wxWidgets]: http://wxwidgets.org/
 [xfce4-i3-workspaces-plugin]: https://github.com/denesb/xfce4-i3-workspaces-plugin
-[zsh]: http://www.zsh.org
 [zsh-completion]: https://github.com/zsh-users/zsh-completions
+[zsh]: http://www.zsh.org
