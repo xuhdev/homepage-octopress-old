@@ -159,7 +159,7 @@ I've made some contribution to a variety of projects.
 - [zsh-completion][] [commits](https://github.com/zsh-users/zsh-completions/commits?author=xuhdev)
 
 [Backup On The Go]: https://github.com/xuhdev/backup-on-the-go#readme
-[CmdLauncher]: http://www.topbug.net/cmdlauncher
+[CmdLauncher]: http://cmdlauncher.topbug.net
 [EditorConfig]: http://editorconfig.org
 [F-Droid]: https://f-droid.org
 [G95 Fortran Compiler]: http://www.g95.org
